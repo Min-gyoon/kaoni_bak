@@ -18,9 +18,20 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired(required=false)
 	private MemberDAO memberDAO;	
 		
+	@Override
 	public List<MemberVO> memberSelectAll(MemberVO mvo) {
-	
 		return memberDAO.memberSelectAll(mvo);
+	}
+
+	@Override
+	public void memberSignUp(MemberVO mvo) {
+		memberDAO.memberSignUp(mvo);
+	}
+
+	@Override
+	public List<MemberVO> memberLogin(MemberVO mvo) {
+		return memberDAO.memberLogin(mvo);
+		
 	}
 
 }

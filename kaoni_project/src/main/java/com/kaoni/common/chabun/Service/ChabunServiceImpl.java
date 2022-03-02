@@ -15,11 +15,12 @@ public class ChabunServiceImpl implements ChabunService {
 	
 	@Autowired
 	private ChabunDAO chabunDAO;
-	
+
 	@Override
 	public MemberVO getMemberChabun() {
 		logger.info("------member chabun service-------");
 		return chabunDAO.getMemberChabun();
 	}
+	
 
 }
