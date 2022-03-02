@@ -4,10 +4,7 @@
 <mapper namespace="com.kaoni.Member.DAO.MemberDAO">
 <select id="memberSelectAll" parameterType="MemberVO" resultType="MemberVO">
 	SELECT 
-		NAME
-	   ,GENDER	
-	   ,AGE
-	   	ADDRESS	
-	   FROM TESTTBL
+		NAME	
+	   FROM MEMBERTBL
 </select>
 </mapper>

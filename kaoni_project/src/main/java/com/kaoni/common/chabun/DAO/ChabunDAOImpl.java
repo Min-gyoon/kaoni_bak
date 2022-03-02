@@ -11,7 +11,7 @@ import com.kaoni.Member.VO.MemberVO;
 public class ChabunDAOImpl implements ChabunDAO {
 	private Logger logger = Logger.getLogger(ChabunDAOImpl.class);
 
-	@Autowired
+	@Autowired(required=false)
 	private SqlSessionTemplate sqlSession;
 	
 	@Override

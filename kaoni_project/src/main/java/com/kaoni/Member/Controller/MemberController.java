@@ -30,11 +30,11 @@ public class MemberController {
 	*/
 	
 	
-	@RequestMapping(value="test", method=RequestMethod.GET)
-	public String Test() {
+	@RequestMapping(value="aa", method=RequestMethod.GET)
+	public String aa() {
 		logger.info("test info");
 		
-		return "test";
+		return "aa";
 	}
 	@ResponseBody
 	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
