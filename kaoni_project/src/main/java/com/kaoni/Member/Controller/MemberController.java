@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
+import com.kaoni.common.chabun.Service.ChabunService;
 
 @Controller
 public class MemberController {
@@ -21,6 +22,13 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	private ChabunService chabunService;
+	
+	/*insert 부분에 추가할 코드 
+		String emnum =ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getemnum());
+		mvo.setEmnum(emnum);
+	*/
+	
 	
 	@RequestMapping(value="test", method=RequestMethod.GET)
 	public String Test() {
