@@ -34,4 +34,9 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public void memberUpdateInfo(MemberVO mvo) {
+		memberDAO.memberUpdateInfo(mvo);
+	}
+
 }

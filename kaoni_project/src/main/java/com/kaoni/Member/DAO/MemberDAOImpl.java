@@ -31,9 +31,9 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("memberLogin", mvo);
 	}
-
-	
-
-	
+	@Override
+	public void memberUpdateInfo(MemberVO mvo) {
+		sqlSession.update("updateInfo", mvo);
+	}
 
 }

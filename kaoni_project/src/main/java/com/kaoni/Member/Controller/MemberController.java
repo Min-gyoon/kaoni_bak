@@ -3,6 +3,7 @@ package com.kaoni.Member.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -29,9 +30,6 @@ public class MemberController {
 	@Autowired
 	private ChabunService chabunService;
 	
-	/*insert 부분에 추가할 코드 
-		
-	*/
 	@ResponseBody
 	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
 	public String memberSelectAll(Model model, MemberVO mvo){
@@ -41,55 +39,78 @@ public class MemberController {
 		return "member/memberSelectAll";
 	}
 	
-	//회원가입
+//	회원가입
 	@RequestMapping(value="memberSignUp", method=RequestMethod.GET)
 	public String memberSignUp(){
 		return "member/memberSignUp";
 	}
-	//회원가입
+	
 	@RequestMapping(value="memberSignUp", method=RequestMethod.POST)
 	public String memberSignUpSuccess(Model model,MemberVO mvo){
 		memberService.memberSignUp(mvo);
+		
 		String emnum =ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 		mvo.setEmnum(emnum);
+		
 		logger.info(emnum);
 		return "redirect:/";
 	}
 	
 	
-	//회원정보 수정(비밀번호 체크)
-//	@RequestMapping(value = "changeInfo",method = RequestMethod.GET)
-//	public String changeInfo() {
-//		return "member/changeInfo";
-//	}
-//	
-//	@RequestMapping(value = "changeInfo",method = RequestMethod.POST)
-//	public String changeInfoPasswdCheck() {
-//		return "redirect:/";
-//	}
-//	
+//	회원정보 수정 전 비밀번호 체크
+	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.GET)
+	public String changeInfo_pwCheck() {
+		return "member/updateInfo_pwCheck";
+	}
 	
-	//로그인
+	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.POST)
+	public String changeInfoPasswdCheck() {
+		
+		return "member/updateInfo_pwCheck";
+	}
+	
+	
+//	회원정보 수정 창
+	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
+	public String updateInfo() {
+		return "member/updateInfo";
+	}
+	
+	@RequestMapping(value = "updateInfo",method = RequestMethod.POST)
+	public String updateInfo2(HttpServletRequest request,MemberVO mvo,HttpSession session) {
+		
+		String id = (String)session.getAttribute("id");
+
+		memberService.memberUpdateInfo(mvo);
+		session.invalidate(); // 세션종료 
+		
+		return "redirect:/";
+	}
+	
+	
+//	로그인
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public String memberLogin(){
-		logger.info("불러옴");
 		return "member/memberLogin";
 	}
 	
 	//로그인
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public String memberLoginSuccess(@RequestParam(name ="id", required = true)String id ,Model model,
-			MemberVO mvo, HttpSession session){
+	public String memberLoginSuccess(@RequestParam(name ="id", required = true)String id,Model model,
+			MemberVO mvo, HttpSession session, HttpServletRequest request){
 		
+		session = request.getSession();
 		memberService.memberLogin(mvo);
-		logger.info("로그인 성공");
 		
 		if(id.equals(mvo.getId())) {
-			session.setAttribute(mvo.getId(), "true");
-			logger.info("세션성공");
+			session.setAttribute("id", id);
+			
+//			logger.info("id = "+id);
+//			logger.info("mvo.id list = "+mvo.getId());
 		}else{
 			logger.info("실패");
 		}
+		
 		return "redirect:/";
 	}
 	

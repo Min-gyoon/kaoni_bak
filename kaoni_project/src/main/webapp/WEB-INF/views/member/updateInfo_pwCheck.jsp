@@ -8,6 +8,7 @@
 </head>
 <body>
  <table>
+ 	<form>
         <tr>
             <td>
                     ID
@@ -24,9 +25,10 @@
         </tr>
         <tr>
             <td>
-                <input type="button" value="확인">
+                <input type="submit" value="확인">
             </td>
         </tr>
+    </form>
     </table>
 
 
