@@ -13,11 +13,13 @@ public class ChabunDAOImpl implements ChabunDAO {
 
 	@Autowired(required=false)
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
 	public MemberVO getMemberChabun() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getMemberChabun");
 	}
+	
+
 
 }

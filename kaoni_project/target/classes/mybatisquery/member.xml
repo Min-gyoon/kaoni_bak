@@ -7,4 +7,41 @@
 		NAME	
 	   FROM MEMBERTBL
 </select>
+<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
+	SELECT COUNT(*)
+          FROM MEMBERTBL
+         WHERE ID = '${id}'
+           AND PASSWD = '${passwd}'
+</select>
+ <insert id="memberSignUp"> 
+		 INSERT INTO MEMBERTBL
+		 (
+		 EMNUM
+		 ,NAME
+		 ,POSITION
+		 ,AGE
+		 ,ID
+		 ,PASSWD
+		 ,GENDER
+		 ) 
+		 VALUES 
+		 (
+		 '${emnum}'
+		 ,'${name}'
+		 ,'${position}'
+		 ,${age}
+		 ,'${id}'
+		 ,'${passwd}'
+		 ,'${gender}'
+		 )
+</insert> 
+<select id="findInfo">
+		SELECT * FROM MEMBERTBL WHERE ID ='${id}'
+</select>
+<update id="updateInfo" parameterType="MemberVO" >
+	UPDATE MEMBERTBL SET 
+	POSITION = '${position}'
+	PASSWD = '${passwd}'
+	WHERE ID = '${id}'
+</update>
 </mapper>

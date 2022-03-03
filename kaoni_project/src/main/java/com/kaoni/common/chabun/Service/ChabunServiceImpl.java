@@ -15,13 +15,11 @@ public class ChabunServiceImpl implements ChabunService {
 	
 	@Autowired(required=false)
 	private ChabunDAO chabunDAO;
-	
+
 	@Override
 	public MemberVO getMemberChabun() {
 		// TODO Auto-generated method stub
 		return chabunDAO.getMemberChabun();
 	}
-	
-	
 
 }

@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>hi
-
+<body>
+<%String id = (String)session.getAttribute("id");  %>
+<h4>세션 아이디 :<%=id%></h4>
+<h4>세션 아이디 : ${id}</h4>
 </body>
 </html>

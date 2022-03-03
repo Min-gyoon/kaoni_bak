@@ -1,19 +1,26 @@
 package com.kaoni.Member.VO;
 
-public class MemberVO {
 
-	String name;
-	String gender;
-	String age;
-	String address;
+public class MemberVO {
 	
-	public MemberVO() {}
-	public MemberVO(String name, String gender, String age, String address) {
-		super();
+	String emnum;
+	String name;
+	String position;
+	int age;
+	String id;
+	String passwd;
+	String gender;
+	
+	public MemberVO() {
+	}
+	public MemberVO(String emnum, String name, String position, int age, String id, String passwd, String gender) {
+		this.emnum = emnum;
 		this.name = name;
-		this.gender = gender;
+		this.position = position;
 		this.age = age;
-		this.address = address;
+		this.id = id;
+		this.passwd = passwd;
+		this.gender = gender;
 	}
 	public String getName() {
 		return name;
@@ -21,23 +28,40 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
 	public String getGender() {
 		return gender;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getAge() {
-		return age;
+	public void setEmnum(String emnum) {
+		this.emnum = emnum;
 	}
-	public void setAge(String age) {
-		this.age = age;
+	public String getEmnum() {
+		return emnum;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
 }
