@@ -1,6 +1,5 @@
 package com.kaoni.Member.Controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
@@ -39,11 +37,9 @@ public class MemberController {
 	@RequestMapping(value="memberSignUp2", method=RequestMethod.POST)
 	public String memberSignUpSuccess(Model model,HttpServletRequest request){
 		
-		//int age = Integer.parseInt(request.getParameter("age"));
 		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 		MemberVO mvo = new MemberVO();
 		mvo.setEmnum(emnum);
-		//mvo.setAge(age);
 		mvo.setGender(request.getParameter("gender"));
 		mvo.setPasswd(request.getParameter("passwd"));
 		mvo.setId(request.getParameter("id"));
@@ -62,9 +58,14 @@ public class MemberController {
 		return "member/updateInfo_pwCheck";
 	}
 	
-	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.POST)
-	public String changeInfoPasswdCheck() {
-		return "member/updateInfo_pwCheck";
+	@RequestMapping(value = "updateInfo_pwCheck2",method = RequestMethod.POST)
+	public String changeInfoPasswdCheck(MemberVO mvo,HttpServletRequest request,
+			@RequestParam(name = "passwd")String passwd) {
+		if(passwd == mvo.getPasswd()) {
+		return "member/updateInfo";}
+		else {
+			return "redirect:/";
+		}
 	}
 	
 	
@@ -75,7 +76,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
-	public String updateInfo1(HttpServletRequest request,MemberVO mvo,HttpSession session) {
+	public String updateInfo1(HttpServletRequest request,MemberVO mvo, HttpSession session) {
 		mvo.setPosition(request.getParameter("position"));
 		mvo.setPasswd(request.getParameter("passwd"));
 		mvo.getId();
@@ -84,29 +85,25 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
-//	로그인
+//	로그인, 세션
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public String memberLogin(){
 		return "member/memberLogin";
 	}
 	
 	@RequestMapping(value="memberLogin1", method=RequestMethod.POST)
-	public String memberLoginSuccess(@RequestParam(name ="id", required = true)String id,Model model,
-			MemberVO mvo, HttpSession session, HttpServletRequest request){
+	public String memberLoginSuccess(HttpServletRequest request, MemberVO mvo){
 		
-		session = request.getSession();
-		memberService.memberLogin(mvo);
+		HttpSession session = request.getSession();	
+		MemberVO memberVO = memberService.memberLogin(mvo);
 		
-		if(id.equals(mvo.getId())) {
-			session.setAttribute("id", id);
-			
-//			logger.info("id = "+id);
-//			logger.info("mvo.id list = "+mvo.getId());
-		}else{
-			logger.info("실패");
+		if(memberVO == null) {
+			session.setAttribute("member", null);
+			return "redirect:/";
+		}else {
+			session.setAttribute("member", memberVO.getId());
+			return "redirect:/";
 		}
-		return "redirect:/";
-	}
+		}
 	
 }
