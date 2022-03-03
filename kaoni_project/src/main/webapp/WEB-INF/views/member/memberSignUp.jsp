@@ -35,7 +35,7 @@ function checkValue()
         <br><br>
         <b><font size="6" color="gray">회원가입</font></b>
         <br><br><br>
-        <form method="post" name ="userinfo">
+        <form method="post" name ="userinfo" action="memberSignUp2.kaoni">
         <input type="hidden" name="emnum" id="emnum">
             <table>
                 <tr>

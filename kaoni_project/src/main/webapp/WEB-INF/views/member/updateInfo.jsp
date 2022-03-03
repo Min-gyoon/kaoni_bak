@@ -9,7 +9,7 @@
 <body>
 <h3>회원정보 수정</h3>
     <table>
-        <form method="post">
+        <form method="post" action="updateInfo2.kaoni">
               <tr>
                   <td>이름</td>
                   <td></td>

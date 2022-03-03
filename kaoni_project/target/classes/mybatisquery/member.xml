@@ -39,9 +39,6 @@
 		SELECT * FROM MEMBERTBL WHERE ID ='${id}'
 </select>
 <update id="updateInfo" parameterType="MemberVO" >
-	UPDATE MEMBERTBL SET 
-	POSITION = '${position}'
-	PASSWD = '${passwd}'
-	WHERE ID = '${id}'
+	UPDATE MEMBERTBL SET POSITION = '${position}',PASSWD = '${passwd}' WHERE ID = '${id}'
 </update>
 </mapper>

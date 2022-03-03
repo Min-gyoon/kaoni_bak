@@ -30,29 +30,28 @@ public class MemberController {
 	@Autowired
 	private ChabunService chabunService;
 	
-	@ResponseBody
-	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
-	public String memberSelectAll(Model model, MemberVO mvo){
-		List<MemberVO> list = memberService.memberSelectAll(mvo);
-		model.addAttribute("MemberVO", mvo);
-		model.addAttribute("list", list);
-		return "member/memberSelectAll";
-	}
-	
 //	회원가입
-	@RequestMapping(value="memberSignUp", method=RequestMethod.GET)
+	@RequestMapping(value="memberSignUp1", method=RequestMethod.GET)
 	public String memberSignUp(){
 		return "member/memberSignUp";
 	}
 	
-	@RequestMapping(value="memberSignUp", method=RequestMethod.POST)
-	public String memberSignUpSuccess(Model model,MemberVO mvo){
-		memberService.memberSignUp(mvo);
+	@RequestMapping(value="memberSignUp2", method=RequestMethod.POST)
+	public String memberSignUpSuccess(Model model,HttpServletRequest request){
 		
-		String emnum =ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+		//int age = Integer.parseInt(request.getParameter("age"));
+		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+		MemberVO mvo = new MemberVO();
 		mvo.setEmnum(emnum);
-		
+		//mvo.setAge(age);
+		mvo.setGender(request.getParameter("gender"));
+		mvo.setPasswd(request.getParameter("passwd"));
+		mvo.setId(request.getParameter("id"));
+		mvo.setPosition(request.getParameter("position"));
+		mvo.setName(request.getParameter("name"));
+		memberService.memberSignUp(mvo);
 		logger.info(emnum);
+		
 		return "redirect:/";
 	}
 	
@@ -65,7 +64,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.POST)
 	public String changeInfoPasswdCheck() {
-		
 		return "member/updateInfo_pwCheck";
 	}
 	
@@ -76,14 +74,13 @@ public class MemberController {
 		return "member/updateInfo";
 	}
 	
-	@RequestMapping(value = "updateInfo",method = RequestMethod.POST)
-	public String updateInfo2(HttpServletRequest request,MemberVO mvo,HttpSession session) {
+	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
+	public String updateInfo1(HttpServletRequest request,MemberVO mvo,HttpSession session) {
+		mvo.setPosition(request.getParameter("position"));
+		mvo.setPasswd(request.getParameter("passwd"));
+		mvo.getId();
 		
-		String id = (String)session.getAttribute("id");
-
-		memberService.memberUpdateInfo(mvo);
-		session.invalidate(); // 세션종료 
-		
+		memberService.updateInfo(mvo);
 		return "redirect:/";
 	}
 	
@@ -94,8 +91,7 @@ public class MemberController {
 		return "member/memberLogin";
 	}
 	
-	//로그인
-	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
+	@RequestMapping(value="memberLogin1", method=RequestMethod.POST)
 	public String memberLoginSuccess(@RequestParam(name ="id", required = true)String id,Model model,
 			MemberVO mvo, HttpSession session, HttpServletRequest request){
 		
@@ -110,7 +106,6 @@ public class MemberController {
 		}else{
 			logger.info("실패");
 		}
-		
 		return "redirect:/";
 	}
 	

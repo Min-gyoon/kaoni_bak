@@ -8,7 +8,7 @@
 </head>
 <body>
 <table>
-	<form method="post">
+	<form method="post" action="memberLogin1.kaoni">
         <tr><td>ID</td>
             <td>
                <input type="text" name="id">

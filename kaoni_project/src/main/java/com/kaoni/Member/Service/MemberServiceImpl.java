@@ -24,19 +24,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void memberSignUp(MemberVO mvo) {
-		memberDAO.memberSignUp(mvo);
+	public int memberSignUp(MemberVO mvo) {
+		return memberDAO.memberSignUp(mvo);
 	}
 
 	@Override
 	public List<MemberVO> memberLogin(MemberVO mvo) {
 		return memberDAO.memberLogin(mvo);
-		
 	}
 
 	@Override
-	public void memberUpdateInfo(MemberVO mvo) {
-		memberDAO.memberUpdateInfo(mvo);
+	public int updateInfo(MemberVO mvo) {
+		 return memberDAO.updateInfo(mvo);
 	}
 
 }
