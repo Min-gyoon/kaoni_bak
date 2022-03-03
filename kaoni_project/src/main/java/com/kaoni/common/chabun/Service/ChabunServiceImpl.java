@@ -13,13 +13,15 @@ import com.kaoni.common.chabun.DAO.ChabunDAO;
 public class ChabunServiceImpl implements ChabunService {
 	private Logger logger = Logger.getLogger(ChabunServiceImpl.class);
 	
-	@Autowired
+	@Autowired(required=false)
 	private ChabunDAO chabunDAO;
 	
 	@Override
 	public MemberVO getMemberChabun() {
-		logger.info("------member chabun service-------");
+		// TODO Auto-generated method stub
 		return chabunDAO.getMemberChabun();
 	}
+	
+	
 
 }

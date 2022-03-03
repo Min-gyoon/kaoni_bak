@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaoni.pcr.DAO.PcrDAO">
+<insert id="pcrInsert" parameterType="PcrVO">
+	INSERT INTO PCRTBL(
+					EMNUM,
+					POUTCOME,
+					ISOLEA,
+					ISOLEB,
+					PCONTENT
+	)VALUES(
+					#{emnum, jdbcType=VARCHAR}	<!-- 1 -->
+				   ,#{poutcome, jdbcType=VARCHAR}	<!-- 2 -->
+				   ,#{isolea, jdbcType=VARCHAR}	<!-- 3 -->
+				   ,#{isoleb, jdbcType=VARCHAR}	<!-- 4 -->
+				   ,#{pcontent, jdbcType=VARCHAR}	<!-- 5 -->
+	
+	)
+</insert>
+<update id="pcrUpdate" parameterType="PcrVO">
+	UPDATE PCRTBL SET POUTCOME=#{poutcome, jdbcType=VARCHAR}, 
+	ISOLEB=#{isoleb, jdbcType=VARCHAR}, 
+	PCONTENT=#{pcontent, jdbcType=VARCHAR} 
+	WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
+
+</update>
+
+</mapper>
