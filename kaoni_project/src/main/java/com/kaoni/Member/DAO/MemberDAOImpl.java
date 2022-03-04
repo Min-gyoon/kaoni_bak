@@ -16,25 +16,22 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Autowired(required=false)
 	private SqlSessionTemplate sqlSession;
-	
-	@Override
-	public List<MemberVO> memberSelectAll(MemberVO mvo) {
-		return sqlSession.selectList("memberSelectAll", mvo);
-	}
 
 	@Override
 	public int memberSignUp(MemberVO mvo) {
 		return sqlSession.insert("memberSignUp", mvo);
 	}
-
 	@Override
-	public List<MemberVO> memberLogin(MemberVO mvo) {
-		return sqlSession.selectList("memberLogin", mvo);
+	public MemberVO memberLogin(MemberVO mvo){
+		return sqlSession.selectOne("memberLogin",mvo);
 	}
+	
 	@Override
 	public int updateInfo(MemberVO mvo) {
 		return sqlSession.update("updateInfo", mvo);
-		
 	}
+
+
+	
 
 }

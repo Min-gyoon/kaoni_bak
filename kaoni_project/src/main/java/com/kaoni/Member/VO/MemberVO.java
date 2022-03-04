@@ -6,21 +6,29 @@ public class MemberVO {
 	String emnum;
 	String name;
 	String position;
-	int age;
 	String id;
 	String passwd;
 	String gender;
+	String Dname;
 	
 	public MemberVO() {
+		super();
 	}
-	public MemberVO(String emnum, String name, String position, int age, String id, String passwd, String gender) {
+	public MemberVO(String emnum, String name, String position, String id, String passwd, String gender, String dname) {
+		super();
 		this.emnum = emnum;
 		this.name = name;
 		this.position = position;
-		this.age = age;
 		this.id = id;
 		this.passwd = passwd;
 		this.gender = gender;
+		this.Dname = dname;
+	}
+	public String getEmnum() {
+		return emnum;
+	}
+	public void setEmnum(String emnum) {
+		this.emnum = emnum;
 	}
 	public String getName() {
 		return name;
@@ -33,12 +41,6 @@ public class MemberVO {
 	}
 	public void setPosition(String position) {
 		this.position = position;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
 	}
 	public String getId() {
 		return id;
@@ -58,10 +60,13 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public void setEmnum(String emnum) {
-		this.emnum = emnum;
+	public String getDname() {
+		return Dname;
 	}
-	public String getEmnum() {
-		return emnum;
+	public void setDname(String dname) {
+		Dname = dname;
 	}
+	
+	
+	
 }

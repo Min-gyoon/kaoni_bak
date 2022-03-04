@@ -8,13 +8,13 @@
 </head>
 <body>
  <table>
- 	<form>
+ 	<form method="post" action="updateInfo_pwCheck2.kaoni">
         <tr>
             <td>
                     ID
             </td>
             <td>
-                <h5>${id}</h5>
+                <h5>${member}</h5>
             </td>
         </tr>
         <tr>
