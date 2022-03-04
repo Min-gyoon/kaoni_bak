@@ -10,14 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
 
-import oracle.jdbc.logging.annotations.Log;
 
 @Controller
 public class MemberController {
@@ -34,7 +32,6 @@ public class MemberController {
 	public String memberSignUp(){
 		return "member/memberSignUp";
 	}
-	
 	@RequestMapping(value="memberSignUp2", method=RequestMethod.POST)
 	public String memberSignUpSuccess(Model model,HttpServletRequest request){
 		
@@ -54,37 +51,34 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
 //	회원정보 수정 전 비밀번호 체크
 	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.GET)
 	public String changeInfo_pwCheck() {
 		return "member/updateInfo_pwCheck";
 	}
-	
-	@RequestMapping(value = "updateInfo_pwCheck2",method = RequestMethod.POST)
-	public String changeInfoPasswdCheck(MemberVO mvo,HttpServletRequest request
-			) {
+	@RequestMapping(value = "updateInfo_pwCheck1",method = RequestMethod.POST)
+	public String changeInfoPasswdCheck(MemberVO mvo,HttpServletRequest request) {
 		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = new MemberVO();
-			
-		String passwd = request.getParameter("passwd");
-		memberVO.setId((String)session.getAttribute("member"));
-		memberVO.setPasswd(passwd);
+		HttpSession session = request.getSession(true);
+		MemberVO memberVO = new MemberVO(); 
+		
+		memberVO.setId(request.getParameter("id"));
+		memberVO.setPasswd(request.getParameter("passwd"));
+		
+		mvo.setId((String)session.getAttribute("member"));
+		mvo.setPasswd((String)session.getAttribute("passwd"));
+		
+		memberService.memberLogin(memberVO);
 		memberService.memberLogin(mvo);
 		
-		if(passwd != memberVO.getPasswd()) {
-			logger.info(passwd);
-			logger.info(memberVO.getPasswd());
-			return "redirect:/";
-		}else {
-			logger.info(passwd);
-			logger.info(memberVO.getPasswd());
-		return "member/updateInfo";}
+		if(memberVO.getPasswd().equals(mvo.getPasswd())) {
+			return "member/updateInfo";
+		}else{
+		return "redirect:/";
+		}
 	}
-	
-	
-//	회원정보 수정 창
+
+	//	회원정보 수정 창
 	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
 	public String updateInfo() {
 		return "member/updateInfo";
@@ -113,10 +107,14 @@ public class MemberController {
 		MemberVO memberVO = memberService.memberLogin(mvo);
 		
 		if(memberVO == null) {
+			session.setAttribute("emnum", null);
 			session.setAttribute("member", null);
+			session.setAttribute("passwd", null);
 			return "redirect:/";
 		}else {
+			session.setAttribute("emnum", memberVO.getEmnum());
 			session.setAttribute("member", memberVO.getId());
+			session.setAttribute("passwd", memberVO.getPasswd());
 			return "redirect:/";
 		}
 		}

@@ -8,7 +8,7 @@
 	   FROM MEMBERTBL
 </select>
 <select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
-	SELECT ID, PASSWD
+	SELECT ID, PASSWD, EMNUM
           FROM MEMBERTBL
          WHERE ID = '${id}'
          AND PASSWD = '${passwd}'
