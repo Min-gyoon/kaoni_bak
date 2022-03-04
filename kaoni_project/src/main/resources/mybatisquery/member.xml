@@ -19,20 +19,20 @@
 		 EMNUM
 		 ,NAME
 		 ,POSITION
-		 ,AGE
 		 ,ID
 		 ,PASSWD
 		 ,GENDER
+		 ,DNAME
 		 ) 
 		 VALUES 
 		 (
 		 '${emnum}'
 		 ,'${name}'
 		 ,'${position}'
-		 ,${age}
 		 ,'${id}'
 		 ,'${passwd}'
 		 ,'${gender}'
+		 ,'${Dname}'
 		 )
 </insert> 
 <select id="findInfo">

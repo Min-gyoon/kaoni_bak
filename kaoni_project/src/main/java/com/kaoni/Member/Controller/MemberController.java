@@ -1,6 +1,5 @@
 package com.kaoni.Member.Controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +16,8 @@ import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
+
+import oracle.jdbc.logging.annotations.Log;
 
 @Controller
 public class MemberController {
@@ -40,11 +41,13 @@ public class MemberController {
 		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 		MemberVO mvo = new MemberVO();
 		mvo.setEmnum(emnum);
-		mvo.setGender(request.getParameter("gender"));
-		mvo.setPasswd(request.getParameter("passwd"));
-		mvo.setId(request.getParameter("id"));
-		mvo.setPosition(request.getParameter("position"));
 		mvo.setName(request.getParameter("name"));
+		mvo.setPosition(request.getParameter("position"));
+		mvo.setId(request.getParameter("id"));
+		mvo.setPasswd(request.getParameter("passwd"));
+		mvo.setGender(request.getParameter("gender"));
+		mvo.setDname(request.getParameter("Dname"));
+		
 		memberService.memberSignUp(mvo);
 		logger.info(emnum);
 		
@@ -59,13 +62,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "updateInfo_pwCheck2",method = RequestMethod.POST)
-	public String changeInfoPasswdCheck(MemberVO mvo,HttpServletRequest request,
-			@RequestParam(name = "passwd")String passwd) {
-		if(passwd == mvo.getPasswd()) {
-		return "member/updateInfo";}
-		else {
+	public String changeInfoPasswdCheck(MemberVO mvo,HttpServletRequest request
+			) {
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = new MemberVO();
+			
+		String passwd = request.getParameter("passwd");
+		memberVO.setId((String)session.getAttribute("member"));
+		memberVO.setPasswd(passwd);
+		memberService.memberLogin(mvo);
+		
+		if(passwd != memberVO.getPasswd()) {
+			logger.info(passwd);
+			logger.info(memberVO.getPasswd());
 			return "redirect:/";
-		}
+		}else {
+			logger.info(passwd);
+			logger.info(memberVO.getPasswd());
+		return "member/updateInfo";}
 	}
 	
 	
