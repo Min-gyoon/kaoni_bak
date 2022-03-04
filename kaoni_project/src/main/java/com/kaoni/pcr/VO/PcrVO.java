@@ -6,15 +6,17 @@ public class PcrVO {
 	String isolea;
 	String isoleb;
 	String pcontent;
+	String deleteyn;
 	
 	public PcrVO(){}
 	
-	public PcrVO(String poutcome, String emnum, String isolea, String isoleb, String pcontent) {
+	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent) {
 		super();
 		this.poutcome = poutcome;
 		this.emnum = emnum;
 		this.isolea = isolea;
 		this.isoleb = isoleb;
+		this.deleteyn = deleteyn;
 	}
 	public String getPoutcome() {
 		return poutcome;
@@ -47,6 +49,14 @@ public class PcrVO {
 
 	public void setPcontent(String pcontent) {
 		this.pcontent = pcontent;
+	}
+
+	public String getDeleteyn() {
+		return deleteyn;
+	}
+
+	public void setDeleteyn(String deleteyn) {
+		this.deleteyn = deleteyn;
 	}
 	
 }

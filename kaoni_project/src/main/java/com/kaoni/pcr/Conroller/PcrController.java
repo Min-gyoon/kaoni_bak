@@ -59,10 +59,12 @@ public class PcrController {
 	}
 	@RequestMapping(value="PcrUpdateForm", method=RequestMethod.GET)
 	public String pcrUpdateForm(PcrVO pvo, Model model, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		pvo.setEmnum((String)session.getAttribute("emnum"));
+		//HttpSession session = req.getSession();
+		//pvo.setEmnum((String)session.getAttribute("emnum"));
+		pvo.setEmnum("EM002");
 		List<PcrVO> list = pcrService.pcrSelectAll(pvo);
 		if(list.size()>0) {
+			logger.info("list.size()->>>"+list.size());
 			logger.info("list제대로 가져옴");
 			model.addAttribute("list", list);
 			return "Pcr/pcrUpdateForm";
@@ -79,6 +81,7 @@ public class PcrController {
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
 		pvo.setPcontent(req.getParameter("pcontent"));
+		pvo.setDeleteyn(req.getParameter("deleteyn"));
 		logger.info("emnum-->>"+pvo.getEmnum());	
 		int nCnt = pcrService.pcrUpdate(pvo);
 		if(nCnt>0) {

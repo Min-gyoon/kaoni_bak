@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%String id = (String)session.getAttribute("id");  %>
-<h4>세션 아이디 :<%=id%></h4>
-<h4>세션 아이디 : ${id}</h4>
+<a href="http://localhost:8080/memberLogin.kaoni">로그인</a>
+<a href="http://localhost:8080/pcrForm.kaoni">코로나진단</a>
+
 </body>
 </html>

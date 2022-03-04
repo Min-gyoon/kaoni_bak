@@ -29,9 +29,11 @@
 </select>
 
 <update id="pcrUpdate" parameterType="PcrVO">
-	UPDATE PCRTBL SET POUTCOME=#{poutcome, jdbcType=VARCHAR}, 
+	UPDATE PCRTBL SET 
+	POUTCOME=#{poutcome, jdbcType=VARCHAR}, 
 	ISOLEB=#{isoleb, jdbcType=VARCHAR}, 
-	PCONTENT=#{pcontent, jdbcType=VARCHAR} 
+	PCONTENT=#{pcontent, jdbcType=VARCHAR}, 
+	DELETEYN=#{deleteyn, jdbcType=VARCHAR}
 	WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 
 </update>
