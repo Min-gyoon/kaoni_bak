@@ -68,7 +68,7 @@ body {
 </head>
 <body>
 	<form name="jindan" id="jindan">
-		<input type="hidden" name="enmum" id="enmum">
+		<input type="hidden" name="emnum" id="emnum">
 		<table>
 			<thead>
 				<tr>
