@@ -22,15 +22,15 @@
                   <td>직책</td>
                   <td><select name="position">
 					    <option value=""></option>
-					    <option value="학생">사원</option>
-					    <option value="회사원">대리</option>
+					    <option value="사원">사원</option>
+					    <option value="대리">대리</option>
 					    <option value="팀장">팀장</option>
-					    <option value="기타">과장</option>
+					    <option value="과장">과장</option>
 					</select></td>
               </tr>
               <tr>
                   <td>ID</td>
-                  <td><input type ="text" name ="id" readonly="readonly" value=${id}></td>
+                  <td><input type ="text" name ="id" readonly="readonly" value=${member}></td>
               </tr>
               <tr>
                   <td>PW</td>

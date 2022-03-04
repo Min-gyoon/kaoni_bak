@@ -8,10 +8,10 @@
 	   FROM MEMBERTBL
 </select>
 <select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">
-	SELECT COUNT(*)
+	SELECT ID, PASSWD, EMNUM
           FROM MEMBERTBL
          WHERE ID = '${id}'
-           AND PASSWD = '${passwd}'
+         AND PASSWD = '${passwd}'
 </select>
  <insert id="memberSignUp"> 
 		 INSERT INTO MEMBERTBL
@@ -19,20 +19,20 @@
 		 EMNUM
 		 ,NAME
 		 ,POSITION
-		 ,AGE
 		 ,ID
 		 ,PASSWD
 		 ,GENDER
+		 ,DNAME
 		 ) 
 		 VALUES 
 		 (
 		 '${emnum}'
 		 ,'${name}'
 		 ,'${position}'
-		 ,${age}
 		 ,'${id}'
 		 ,'${passwd}'
 		 ,'${gender}'
+		 ,'${Dname}'
 		 )
 </insert> 
 <select id="findInfo">

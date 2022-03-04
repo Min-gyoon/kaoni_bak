@@ -76,12 +76,24 @@ function checkValue()
                     </td>
                 </tr>
                 <tr>
+                <td id="title">부서</td>
+                <td>
+                <select name="Dname">
+					    <option value=""></option>
+					    <option value="SS개발부">SS개발부</option>
+					    <option value="ES개발부">ES개발부</option>
+					    <option value="경영지원실">경영지원실</option>
+					    <option value="사업부">사업부</option>
+					</select>
+                </td>
+                </tr>
+                <tr>
                 <td id ="title">직책</td>
                 <td>
                 <select name="position">
 					    <option value=""></option>
 					    <option value="학생">사원</option>
-					    <option value="회사원">대리</option>
+					    <option value="대리">대리</option>
 					    <option value="팀장">팀장</option>
 					    <option value="기타">과장</option>
 					</select>
