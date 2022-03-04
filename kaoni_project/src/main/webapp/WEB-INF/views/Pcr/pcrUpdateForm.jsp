@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,32 +24,22 @@ $(document).ready(function(){
     	yearSuffix: '년'
   });
 $(function() {
-    $("#isolea, #isoleb").datepicker();
+    $("#isoleb").datepicker();
   });
 $(document).on("click", "#pcrbtn", function(){
 	$("#jindan").attr({
-		"action":"pcrInsert.kaoni",
+		"action":"pcrUpdate.kaoni",
 		"method":"GET",
 		"enctype":"application/x-www-form-urlencoded"				
 	}).submit();
 });
 $(document).on("click", "#curebtn", function(){
-	document.getElementsByName('putoutcome').value("N");
+	
+	 document.getElementById("poutcome").value="N"; 
 	alert("제출하기를 눌러주세요.");
 	
 });//curebtn click
 });
-function checkOnlyOne(element) {
-	  
-	  const checkboxes 
-	      = document.getElementsByName("poutcome");
-	  
-	  checkboxes.forEach((cb) => {
-	    cb.checked = false;
-	  })
-	  
-	  element.checked = true;
-	}
 
 </script>
 <style type="text/css">
@@ -72,9 +64,20 @@ body {
 <title>코로나 진단표</title>
 </head>
 <body>
+		  <%
+  //세션, 쿼리 조인 후 직책 부서 추가. 
+  
+Object obj = request.getAttribute("list");
+List<PcrVO> list = (List)obj;
+PcrVO pvo = list.get(0);
+String isolea = pvo.getIsolea().split("\\s+")[0];
+String isoleb = pvo.getIsoleb().split("\\s+")[0];
+
+%>
 	<form name="jindan" id="jindan">
-		<input type="hidden" name="enmum" id="enmum">
+		<input type="hidden" name="emnum" id="emnum" value="<%=pvo.getEmnum()%>">
 		<table>
+
 			<thead>
 				<tr>
 					<th colspan="3">코로나 진단표</th>
@@ -83,19 +86,16 @@ body {
 			<tbody>
 				<tr>
 					<td>검사 결과</td>
-					<td><input type="checkbox" name="poutcome" value="Y"
-						onclick='checkOnlyOne(this)'>양성</td>
-					<td><input type="checkbox" name="poutcome" value="N"
-						onclick='checkOnlyOne(this)'>음성</td>
+					<td colspan="2"><input type="text" id="poutcome" name="poutcome" value="<%= pvo.getPoutcome()%>"></td>
 				</tr>
 				<tr>
 					<td>자가격리기간</td>
-					<td>시작일: <input type="text" id="isolea" name="isolea" readonly></td>
-					<td>종료일: <input type="text" id="isoleb" name="isoleb"></td>
+					<td>시작일: <input type="text" id="isolea" name="isolea" value="<%=isolea %>" readonly></td>
+					<td>종료일: <input type="text" id="isoleb" name="isoleb" value="<%=isoleb %>"></td>
 				</tr>
 				<tr>
 					<td>특이사항</td><!-- -->
-					<td colspan="2"><textarea rows="4" cols="50" id="pcontent" name="pcontent" ></textarea></td>
+					<td colspan="2"><textarea rows="4" cols="50" id="pcontent" name="pcontent"><%=pvo.getPcontent() %></textarea></td>
 				</tr>
 			</tbody>
 		</table>

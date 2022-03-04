@@ -1,5 +1,7 @@
 package com.kaoni.pcr.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,20 @@ public class PcrServiceImpl implements PcrService {
 	public int pcrUpdate(PcrVO pvo) {
 		// TODO Auto-generated method stub
 		return pcrdao.pcrUpdate(pvo);
+	}
+
+
+	@Override
+	public List<PcrVO> pcrSelectAll(PcrVO pvo) {
+		// TODO Auto-generated method stub
+		return pcrdao.pcrSelectAll(pvo);
+	}
+
+
+	@Override
+	public List<PcrVO> pcrUpdateForm(PcrVO pvo) {
+		// TODO Auto-generated method stub
+		return pcrdao.pcrUpdateForm(pvo);
 	}
 
 }
