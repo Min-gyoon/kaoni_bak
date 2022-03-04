@@ -5,5 +5,6 @@
 <configuration>
 <typeAliases>
 <typeAlias type="com.kaoni.Member.VO.MemberVO" alias="MemberVO"/>
+<typeAlias type="com.kaoni.pcr.VO.PcrVO" alias="PcrVO"/>
 </typeAliases>
 </configuration>
