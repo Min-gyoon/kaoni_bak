@@ -1,15 +1,20 @@
 package com.kaoni.Member.VO;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MemberVO {
+	 String emnum;
 	
-	String emnum;
-	String name;
-	String position;
-	String id;
-	String passwd;
-	String gender;
-	String Dname;
+	 @NotEmpty(message = "빈공간 안됌")
+	 String name;
+	
+	 String position;
+	
+	 String id;
+	 String passwd;
+	 String gender;
+	 String Dname;
 	
 	public MemberVO() {
 		super();
