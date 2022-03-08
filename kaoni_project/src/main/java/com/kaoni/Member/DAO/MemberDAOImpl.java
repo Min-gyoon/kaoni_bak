@@ -1,6 +1,5 @@
 package com.kaoni.Member.DAO;
 
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -30,6 +29,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public int updateInfo(MemberVO mvo) {
 		return sqlSession.update("updateInfo", mvo);
 	}
+
 
 
 	

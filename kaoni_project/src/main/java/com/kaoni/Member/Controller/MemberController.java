@@ -117,6 +117,6 @@ public class MemberController {
 			session.setAttribute("passwd", memberVO.getPasswd());
 			return "redirect:/";
 		}
-		}
+		}	
 	
 }

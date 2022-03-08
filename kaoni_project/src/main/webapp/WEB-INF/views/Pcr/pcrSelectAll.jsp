@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
+<%@ page import="com.kaoni.Member.VO.MemberVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +24,10 @@
   
 Object obj = request.getAttribute("listAll");
 List<PcrVO> list = (List)obj;
+MemberVO mvo;
 for(int i = 0; i < list.size(); i++){
 PcrVO pvo = list.get(i);
+mvo = pvo.getMemberVO();
 String isolea = pvo.getIsolea().split("\\s+")[0];
 String isoleb = pvo.getIsoleb().split("\\s+")[0];
 String outcome = pvo.getPoutcome();
@@ -32,9 +35,9 @@ System.out.println("isolea--->"+isolea);
 
 %>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><input type="text" value="<%=mvo.getName() %>"></td>
+    <td><input type="text" value="<%=mvo.getPosition() %>"></td>
+    <td><input type="text" value="<%=mvo.getDname() %>"></td>
     <td><input type="text" value="<%=isolea %>"> ~ <input type="text" value="<%=isoleb %>"></td>
     <td><%= outcome%></td>
   </tr>

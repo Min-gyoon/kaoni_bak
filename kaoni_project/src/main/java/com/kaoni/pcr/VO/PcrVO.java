@@ -1,5 +1,7 @@
 package com.kaoni.pcr.VO;
 
+import com.kaoni.Member.VO.MemberVO;
+
 public class PcrVO {
 	String poutcome;
 	String emnum;
@@ -7,11 +9,12 @@ public class PcrVO {
 	String isoleb;
 	String pcontent;
 	String deleteyn;
+	private MemberVO memberVO;
 	
 	public PcrVO(){}
 	
-	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent) {
-		super();
+	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent, MemberVO memberVO) {
+		this.memberVO = memberVO;
 		this.poutcome = poutcome;
 		this.emnum = emnum;
 		this.isolea = isolea;
@@ -57,6 +60,14 @@ public class PcrVO {
 
 	public void setDeleteyn(String deleteyn) {
 		this.deleteyn = deleteyn;
+	}
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 	
 }
