@@ -1,19 +1,22 @@
 package com.kaoni.Member.VO;
 
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MemberVO {
+	 
 	 String emnum;
-	
-	 @NotEmpty(message = "1")
-	 @NotBlank(message = "3")
+	 @NotBlank(message = "이름 공백")
 	 String name;
-	
-	 String position;
-	
+	 @NotBlank(message = "ID 공백")
 	 String id;
+	 @NotBlank(message = "비밀번호 공백")
+	 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$\n"
+	 , message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
+	 String position;
 	 String passwd;
 	 String gender;
 	 String Dname;
