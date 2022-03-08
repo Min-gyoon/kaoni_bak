@@ -71,10 +71,10 @@
             <td>
             <select name="position">
                     <option value=""></option>
-                    <option value="학생">사원</option>
+                    <option value="사원">사원</option>
                     <option value="대리">대리</option>
                     <option value="팀장">팀장</option>
-                    <option value="기타">과장</option>
+                    <option value="과장">과장</option>
                 </select>
             </td>
                 

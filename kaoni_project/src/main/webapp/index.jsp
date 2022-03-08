@@ -18,7 +18,7 @@
     header ,main, footer{
     margin: auto; /* header의 양쪽 여백(margin)을 동등하게 맞춤 -> 수평가운데정렬 */
     width: 1080px;
-    height: 215px;
+    height: 300px;
     display: flex;
     align-items: center; /* 하위 요소들 수직 가운데정렬 */
     position: relative;
@@ -26,6 +26,7 @@
      header {
         background: lightgray;
         height: 215px;
+        outline : 1px black solid;
       }
       main {
         background: #f2f4f7;
@@ -45,22 +46,23 @@
 <body>
 <%-- <%String id = (String)session.getAttribute("emnum");  %>
 <h4>세션 사번 :<%=id%></h4> --%>
-<h4>세션 사번 :${emnum}</h4>
-<h4>세션 이름 :${member}</h4>
+
+
+  <header>상단
+   <div>
+  <h4>세션 사번 :${emnum}</h4><br>
+	<h4>세션 이름 :${member}</h4><br>
 <a href="http://localhost:8080/memberSignUp.kaoni">회원가입</a>
 <a href="http://localhost:8080/memberLogin.kaoni">로그인</a>
 <a href="http://localhost:8080/updateInfo_pwCheck.kaoni">회원정보수정</a>
 <a href="http://localhost:8080/pcrForm.kaoni">코로나진단</a>
-<a href="http://localhost:8080/pcrSelectAll.kaoni">pcr 결과 리스트</a>
-<a href="http://localhost:8080/PcrUpdateForm.kaoni">Pcr 업데이트</a>
+<a href="http://localhost:8080/pcrSelectAll.kaoni">Pcr결과리스트</a>
+<a href="http://localhost:8080/PcrUpdateForm.kaoni">Pcr업데이트</a>
 <a href="http://localhost:8080/selfForm.kaoni">자가진단</a>
+<a href="http://localhost:8080/selfSelectAll.kaoni">자가진단 결과리스트</a>
 <a href="http://localhost:8080/logOut.kaoni">로그아웃</a>
-
- <div id="header" role="banner">상단</div>
-  <div id="main" role="main">메인</div>
-  <div id="footer" role="contentinfo">하단</div>
-
-  <header>상단</header>
+</div> </header>
+  </header>
     <main>메인
       <div style="width: 1080px; height: auto;">
         <div>

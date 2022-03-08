@@ -44,7 +44,7 @@ public class MemberController {
 				System.out.println("ObjectName :"+obj.getObjectName());
 				logger.info("에러 실행");
 				}
-			return "redirect:/";
+			return "member/memberSignUp";
 		}else {
 		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 		mvo.setEmnum(emnum);
@@ -52,7 +52,7 @@ public class MemberController {
 		memberService.memberSignUp(mvo);
 		logger.info(emnum);
 		logger.info("가입 실행");
-		return "member/memberSignUp";
+		return "redirect:/";
 		}
 	}
 	
@@ -128,8 +128,6 @@ public class MemberController {
 	public String logOut(HttpServletRequest request, HttpSession session) {
 		session = request.getSession();
 		session.invalidate();
-		
 		return "redirect:/";
-		
 	}
 }
