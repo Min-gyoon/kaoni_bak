@@ -35,64 +35,64 @@ public class SelfController {
 	}
 	
 	
-	@RequestMapping(value="selfInsert")
-	public String selfInsert(HttpServletRequest request) {
-		logger.info("logger Controller insert--------");
-		SelfVO svo = new SelfVO();
-		
-		HttpSession session = request.getSession();
-		String checklogin = (String)session.getAttribute("emnum");
-		if(checklogin==null) {
-			return "needlogin";
-		}
-		svo.setEmnum(checklogin);
-		ArrayList  list = new ArrayList();
-		
-		String s1 = request.getParameter("Selfcheck1");
-		String s2 = request.getParameter("Selfcheck2");
-		String s3 = request.getParameter("Selfcheck3");
-		String s4 = request.getParameter("Selfcheck4");
-		String s5 = request.getParameter("Selfcheck5");
-		String s6 = request.getParameter("Selfcheck6");
-		
-		list.add(s1);
-		list.add(s2);
-		list.add(s3);
-		list.add(s4);
-		list.add(s5);
-		list.add(s6);
-		
-		int sCnt = 0;
-		for(int i =0; i<list.size(); i++) {
-			String count = (String) list.get(i);
-			logger.info(count);
-			if(count.equals("Y")) {
-				sCnt++;
-				logger.info(sCnt);
-			}
-		}
-		
-		svo.setSelfcheck1(s1);
-		svo.setSelfcheck2(s2);
-		svo.setSelfcheck3(s3);
-		svo.setSelfcheck4(s4);
-		svo.setSelfcheck5(s5);
-		svo.setSelfcheck6(s6);
-		svo.setscnt(Integer.toString(sCnt));
-		int nCnt = selfservice.selfInsert(svo);
-		
-		if(sCnt>3) {
-			//return "self/warning";
-			return "redirect:/";
-		}
-		
-		
-		if(nCnt > 0) {
-			return "redirect:/";
-		}else {
-		return "self/selfForm";
-		}
-	}
+	@RequestMapping(value="selfInsert") 
+	public String selfInsert(HttpServletRequest request) { 
+	logger.info("logger Controller insert--------"); 
+	SelfVO svo = new SelfVO(); 
+	 
+	HttpSession session = request.getSession(); 
+	String checklogin = (String)session.getAttribute("emnum"); 
+	if(checklogin==null) { 
+	return "needlogin"; 
+	} 
+	svo.setEmnum(checklogin); 
+	ArrayList<String> list = new ArrayList<>(); 
+	 
+	String s1 = request.getParameter("Selfcheck1"); 
+	String s2 = request.getParameter("Selfcheck2"); 
+	String s3 = request.getParameter("Selfcheck3"); 
+	String s4 = request.getParameter("Selfcheck4"); 
+	String s5 = request.getParameter("Selfcheck5"); 
+	String s6 = request.getParameter("Selfcheck6"); 
+	 
+	list.add(s1); 
+	list.add(s2); 
+	list.add(s3); 
+	list.add(s4); 
+	list.add(s5); 
+	list.add(s6); 
+	 
+	int sCnt = 0; 
+	for(int i =0; i<list.size(); i++) { 
+	String count = (String) list.get(i); 
+	logger.info(count); 
+	if(count.equals("Y")) { 
+	sCnt++; 
+	logger.info(sCnt); 
+	} 
+	} 
+	 
+	svo.setSelfcheck1(s1); 
+	svo.setSelfcheck2(s2); 
+	svo.setSelfcheck3(s3); 
+	svo.setSelfcheck4(s4); 
+	svo.setSelfcheck5(s5); 
+	svo.setSelfcheck6(s6); 
+	svo.setscnt(Integer.toString(sCnt)); 
+	int nCnt = selfservice.selfInsert(svo); 
+	 
+	if(sCnt>3) { 
+	//return "self/warning"; 
+	return "redirect:/"; 
+	} 
+	 
+	 
+	if(nCnt > 0) { 
+	return "redirect:/"; 
+	}else { 
+	return "self/selfForm"; 
+	}}
+
 	@RequestMapping(value="selfSelectAll")
 	public String selfSelectAll(HttpServletRequest request, Model model, SelfVO svo) {
 		//세션처리할것
@@ -106,12 +106,10 @@ public class SelfController {
 		
 		model.addAttribute("listAll", listAll);
 		if(listAll.size()>0) {
-			return "redirect:/";
+			return "self/selfSelectAll";
 		}else {	
 			logger.info("selectall data error");
 			return "redirect:/";}
-
-	
 	
 }
 }

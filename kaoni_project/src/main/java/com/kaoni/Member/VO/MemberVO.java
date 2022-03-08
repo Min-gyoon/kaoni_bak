@@ -1,20 +1,26 @@
 package com.kaoni.Member.VO;
 
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class MemberVO {
+	 
 	 String emnum;
-	
-	 @NotEmpty(message = "1")
-	 @NotBlank(message = "3")
+	 
+	 @NotBlank(message = "이름 공백")
 	 String name;
-	
-	 String position;
-	
+	 
+	 @NotBlank(message = "ID 공백")
 	 String id;
+	 
+	 @NotBlank(message = "비밀번호 공백")
+	 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+	 , message = "최소 8 자, 하나 이상의 문자와 하나의 숫자를 사용하세요.")
 	 String passwd;
+	 
+	 String position;
 	 String gender;
 	 String Dname;
 	

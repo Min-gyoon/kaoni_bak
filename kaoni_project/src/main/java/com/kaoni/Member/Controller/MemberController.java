@@ -35,9 +35,6 @@ public class MemberController {
 	
 	@RequestMapping( value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
-		System.out.println("Name :"+mvo.getName());
-		System.out.println("Id :"+mvo.getId());
-		System.out.println("PW :"+mvo.getPasswd());
 		System.out.println("BindingResult : "+ result);
 		logger.info("프린트 실행");
 		if(result.hasErrors()) {
@@ -47,7 +44,7 @@ public class MemberController {
 				System.out.println("ObjectName :"+obj.getObjectName());
 				logger.info("에러 실행");
 				}
-			return "redirect:/";
+			return "member/memberSignUp";
 		}else {
 		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 		mvo.setEmnum(emnum);
@@ -55,7 +52,7 @@ public class MemberController {
 		memberService.memberSignUp(mvo);
 		logger.info(emnum);
 		logger.info("가입 실행");
-		return "member/memberSignUp";
+		return "redirect:/";
 		}
 	}
 	
@@ -127,4 +124,10 @@ public class MemberController {
 		}
 		}	
 	
+	@RequestMapping(value = "logOut", method = RequestMethod.GET)
+	public String logOut(HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		session.invalidate();
+		return "redirect:/";
+	}
 }
