@@ -2,36 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kaoni.pcr.DAO.PcrDAO">
+	<resultMap type="MemberVO" id="MemberVO">
+		<result column="EMNUM" property="emnum" />
+		<result column="NAME" property="name" />
+		<result column="POSITION" property="position" />
+		<result column="DNAME" property="dname" />
+	</resultMap>
+	<resultMap type="PcrVO" id="PcrVO">
+		<result column="EMNUM" property="emnum" />
+		<result column="ISOLEA" property="isolea" />
+		<result column="ISOLEB" property="isoleb" />
+		<result column="POUTCOME" property="poutcome" />
+		<collection property="memberVO" resultMap="MemberVO" />
+	</resultMap>
+<select id="pcrSelectAll" parameterType="PcrVO" resultMap="PcrVO">
+	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.NAME, M.DNAME, M.POSITION FROM PCRTBL P, MEMBERTBL M 
+	WHERE P.EMNUM = M.EMNUM
+</select>
 <insert id="pcrInsert" parameterType="PcrVO">
 	INSERT INTO PCRTBL(
 					EMNUM,
 					POUTCOME,
 					ISOLEA,
 					ISOLEB,
-					PCONTENT
+					PCONTENT,
+					DELETEYN
 	)VALUES(
 					#{emnum, jdbcType=VARCHAR}	<!-- 1 -->
 				   ,#{poutcome, jdbcType=VARCHAR}	<!-- 2 -->
 				   ,#{isolea, jdbcType=VARCHAR}	<!-- 3 -->
 				   ,#{isoleb, jdbcType=VARCHAR}	<!-- 4 -->
 				   ,#{pcontent, jdbcType=VARCHAR}	<!-- 5 -->
+				     ,#{deleteyn, jdbcType=VARCHAR}
 	
 	)
 </insert>
-<!-- 쿼리 수정해야함. 회원번호 가지고 회원 이름+직급, 부서, 격리기기간, 확진여부 -->
-<select id="pcrSelectAll" parameterType="PcrVO" resultType="PcrVO">
-	SELECT * FROM PCRTBL ORDER BY 1 ASC
-</select>
-
 <select id="pcrUpdateForm" parameterType="PcrVO" resultType="PcrVO">
 	SELECT * FROM PCRTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 	
 </select>
 
 <update id="pcrUpdate" parameterType="PcrVO">
-	UPDATE PCRTBL SET POUTCOME=#{poutcome, jdbcType=VARCHAR}, 
+	UPDATE PCRTBL SET 
+	POUTCOME=#{poutcome, jdbcType=VARCHAR}, 
 	ISOLEB=#{isoleb, jdbcType=VARCHAR}, 
-	PCONTENT=#{pcontent, jdbcType=VARCHAR} 
+	PCONTENT=#{pcontent, jdbcType=VARCHAR}, 
+	DELETEYN=#{deleteyn, jdbcType=VARCHAR}
 	WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 
 </update>

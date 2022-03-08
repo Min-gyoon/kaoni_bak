@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaoni.self.DAO.SelfDAO">
+<insert id="selfInsert" parameterType="SelfVO">
+	INSERT INTO SELFTBL(
+					EMNUM,     	<!-- 1 -->
+					SELFCHECK1, <!-- 2 -->
+					SELFCHECK2, <!-- 3 -->
+					SELFCHECK3, <!-- 4 -->
+					SELFCHECK4, <!-- 5 -->
+					SELFCHECK5, <!-- 6 -->
+					SELFCHECK6, <!-- 7 -->
+					DELETEYN, <!-- 8 -->
+					INSERTDATE, <!-- 9 -->
+					SCNT
+	)VALUES(
+					#{emnum, jdbcType=VARCHAR}	<!-- 1 -->
+				   ,#{selfcheck1, jdbcType=VARCHAR}	<!-- 2 -->
+				   ,#{selfcheck2, jdbcType=VARCHAR}	<!-- 3 -->
+				   ,#{selfcheck3, jdbcType=VARCHAR}	<!-- 4 -->
+				   ,#{selfcheck4, jdbcType=VARCHAR}	<!-- 5 -->
+				   ,#{selfcheck5, jdbcType=VARCHAR}	<!-- 6 -->
+				   ,#{selfcheck6, jdbcType=VARCHAR}	<!-- 7 -->
+				   ,'Y'
+				   ,SYSDATE
+				   ,#{scnt, jdbcType=VARCHAR}
+	
+	)
+</insert>
+<select id="selfSelectAll" parameterType="SelfVO" resultType="SelfVO">
+SELECT * FROM SELFTBL 
+WHERE EMNUM = #{emnum, jdbcType=VARCHAR} AND ROWNUM =1 
+ORDER BY INSERTDATE DESC
+</select>
+
+
+</mapper>

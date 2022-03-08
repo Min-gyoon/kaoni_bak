@@ -34,9 +34,14 @@ $(document).on("click", "#pcrbtn", function(){
 	}).submit();
 });
 $(document).on("click", "#curebtn", function(){
-	
 	 document.getElementById("poutcome").value="N"; 
-	alert("제출하기를 눌러주세요.");
+	 document.getElementById("deleteyn").value="Y";
+	 $("#jindan").attr({
+			"action":"pcrUpdate.kaoni",
+			"method":"GET",
+			"enctype":"application/x-www-form-urlencoded"				
+		}).submit();
+	alert("완치로 저장하겠습니다.");
 	
 });//curebtn click
 });
@@ -102,6 +107,7 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
 		<div style='width: 80px; float: right;'>
 			<input type="button" id="pcrbtn" value="제출하기">
 			<input type="button" id="curebtn" value="치료완료">
+			<input type="hidden" id="deleteyn" name="deleteyn" value="<%=pvo.getDeleteyn() %>">
 		</div>
 	</form>
 </body>
