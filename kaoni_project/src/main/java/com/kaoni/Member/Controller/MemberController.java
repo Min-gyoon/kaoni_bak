@@ -1,13 +1,14 @@
 package com.kaoni.Member.Controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,7 +16,6 @@ import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
-
 
 @Controller
 public class MemberController {
@@ -27,28 +27,36 @@ public class MemberController {
 	@Autowired
 	private ChabunService chabunService;
 	
-//	회원가입
-	@RequestMapping(value="memberSignUp1", method=RequestMethod.GET)
+//	회원가입	
+	@RequestMapping(value="memberSignUp", method=RequestMethod.GET)
 	public String memberSignUp(){
 		return "member/memberSignUp";
 	}
-	@RequestMapping(value="memberSignUp2", method=RequestMethod.POST)
-	public String memberSignUpSuccess(Model model,HttpServletRequest request){
-		
+	
+	@RequestMapping( value="memberSignUp1", method=RequestMethod.POST)
+	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
+		System.out.println("Name :"+mvo.getName());
+		System.out.println("Id :"+mvo.getId());
+		System.out.println("PW :"+mvo.getPasswd());
+		System.out.println("BindingResult : "+ result);
+		logger.info("프린트 실행");
+		if(result.hasErrors()) {
+			for(ObjectError obj : result.getAllErrors()) {
+				System.out.println("메세지 :"+obj.getDefaultMessage());
+				System.out.println("코드 :"+ obj.getCode());
+				System.out.println("ObjectName :"+obj.getObjectName());
+				logger.info("에러 실행");
+				}
+			return "redirect:/";
+		}else {
 		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
-		MemberVO mvo = new MemberVO();
 		mvo.setEmnum(emnum);
-		mvo.setName(request.getParameter("name"));
-		mvo.setPosition(request.getParameter("position"));
-		mvo.setId(request.getParameter("id"));
-		mvo.setPasswd(request.getParameter("passwd"));
-		mvo.setGender(request.getParameter("gender"));
-		mvo.setDname(request.getParameter("Dname"));
 		
 		memberService.memberSignUp(mvo);
 		logger.info(emnum);
-		
-		return "redirect:/";
+		logger.info("가입 실행");
+		return "member/memberSignUp";
+		}
 	}
 	
 //	회원정보 수정 전 비밀번호 체크
