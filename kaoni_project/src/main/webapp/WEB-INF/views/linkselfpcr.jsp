@@ -11,7 +11,7 @@
 <table>
 <tr>
 <td>
-<a href="">셀프 검사하기</a>
+<a href="http://localhost:8080/selfForm.kaoni">셀프 검사하기</a>
 </td>
 </tr>
 </table>
@@ -23,7 +23,7 @@
 <table>
 <tr>
 <td>
-<a href="">검사결과 혹은 자가격리 기간 입력하기</a>
+<a href="http://localhost:8080/pcrForm.kaoni">검사결과 혹은 자가격리 기간 입력하기</a>
 </td>
 </tr>
 </table>
