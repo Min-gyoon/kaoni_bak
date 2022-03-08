@@ -27,22 +27,38 @@ public class MemberController {
 	@Autowired
 	private ChabunService chabunService;
 	
+	
+
+	    // 16진수 문자열을 바이트 배열로 변환   
+	public static byte[] hexToByteArray(String hex) {
+	        if (hex == null || hex.length() % 2 != 0) {
+	            return new byte[]{};
+	        }
+
+	        byte[] bytes = new byte[hex.length() / 2];
+	        for (int i = 0; i < hex.length(); i += 2) {
+	            byte value = (byte)Integer.parseInt(hex.substring(i, i + 2), 16);
+	            bytes[(int) Math.floor(i / 2)] = value;
+	        }
+	        return bytes;
+	    }
+	
+	
 //	회원가입	
 	@RequestMapping(value="memberSignUp", method=RequestMethod.GET)
 	public String memberSignUp(){
 		return "member/memberSignUp";
 	}
 	
-	@RequestMapping( value="memberSignUp1", method=RequestMethod.POST)
+	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
 		System.out.println("BindingResult : "+ result);
-		logger.info("프린트 실행");
 		if(result.hasErrors()) {
 			for(ObjectError obj : result.getAllErrors()) {
 				System.out.println("메세지 :"+obj.getDefaultMessage());
 				System.out.println("코드 :"+ obj.getCode());
 				System.out.println("ObjectName :"+obj.getObjectName());
-				logger.info("에러 실행");
+				logger.info("에러 발생");
 				}
 			return "member/memberSignUp";
 		}else {
@@ -55,6 +71,31 @@ public class MemberController {
 		return "redirect:/";
 		}
 	}
+	
+//	로그인, 세션
+	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
+	public String memberLogin(){
+		return "member/memberLogin";
+	}
+	
+	@RequestMapping(value="memberLogin1", method=RequestMethod.POST)
+	public String memberLoginSuccess(HttpServletRequest request, MemberVO mvo){
+		
+		HttpSession session = request.getSession();	
+		MemberVO memberVO = memberService.memberLogin(mvo);
+		
+		if(memberVO == null) {
+			session.setAttribute("emnum", null);
+			session.setAttribute("member", null);
+			session.setAttribute("passwd", null);
+			return "redirect:/";
+		}else {
+			session.setAttribute("emnum", memberVO.getEmnum());
+			session.setAttribute("member", memberVO.getId());
+			session.setAttribute("passwd", memberVO.getPasswd());
+			return "redirect:/";
+		}
+		}	
 	
 //	회원정보 수정 전 비밀번호 체크
 	@RequestMapping(value = "updateInfo_pwCheck",method = RequestMethod.GET)
@@ -99,35 +140,15 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-//	로그인, 세션
-	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public String memberLogin(){
-		return "member/memberLogin";
-	}
-	
-	@RequestMapping(value="memberLogin1", method=RequestMethod.POST)
-	public String memberLoginSuccess(HttpServletRequest request, MemberVO mvo){
-		
-		HttpSession session = request.getSession();	
-		MemberVO memberVO = memberService.memberLogin(mvo);
-		
-		if(memberVO == null) {
-			session.setAttribute("emnum", null);
-			session.setAttribute("member", null);
-			session.setAttribute("passwd", null);
-			return "redirect:/";
-		}else {
-			session.setAttribute("emnum", memberVO.getEmnum());
-			session.setAttribute("member", memberVO.getId());
-			session.setAttribute("passwd", memberVO.getPasswd());
-			return "redirect:/";
-		}
-		}	
-	
+
 	@RequestMapping(value = "logOut", method = RequestMethod.GET)
 	public String logOut(HttpServletRequest request, HttpSession session) {
 		session = request.getSession();
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	 
+	
+
 }
