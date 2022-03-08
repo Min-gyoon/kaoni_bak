@@ -1,12 +1,14 @@
 package com.kaoni.Member.VO;
 
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MemberVO {
 	 String emnum;
 	
-	 @NotEmpty(message = "빈공간 안됌")
+	 @NotEmpty(message = "1")
+	 @NotBlank(message = "3")
 	 String name;
 	
 	 String position;
@@ -17,10 +19,8 @@ public class MemberVO {
 	 String Dname;
 	
 	public MemberVO() {
-		super();
 	}
 	public MemberVO(String emnum, String name, String position, String id, String passwd, String gender, String dname) {
-		super();
 		this.emnum = emnum;
 		this.name = name;
 		this.position = position;
