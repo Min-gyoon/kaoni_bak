@@ -43,18 +43,22 @@
       }
 </style>
 <body>
-<%String id = (String)session.getAttribute("emnum");  %>
-<h4>세션 사번 :<%=id%></h4>
+<%-- <%String id = (String)session.getAttribute("emnum");  %>
+<h4>세션 사번 :<%=id%></h4> --%>
 <h4>세션 사번 :${emnum}</h4>
 <h4>세션 이름 :${member}</h4>
-<<<<<<< HEAD:kaoni_project/src/main/webapp/WEB-INF/views/index.jsp
+<a href="http://localhost:8080/memberSignUp.kaoni">회원가입</a>
 <a href="http://localhost:8080/memberLogin.kaoni">로그인</a>
+<a href="http://localhost:8080/updateInfo_pwCheck.kaoni">회원정보수정</a>
 <a href="http://localhost:8080/pcrForm.kaoni">코로나진단</a>
+<a href="http://localhost:8080/pcrSelectAll.kaoni">pcr 결과 리스트</a>
+<a href="http://localhost:8080/PcrUpdateForm.kaoni">Pcr 업데이트</a>
+<a href="http://localhost:8080/selfForm.kaoni">자가진단</a>
+<a href="http://localhost:8080/logOut.kaoni">로그아웃</a>
+
  <div id="header" role="banner">상단</div>
   <div id="main" role="main">메인</div>
   <div id="footer" role="contentinfo">하단</div>
-
-=======
 
   <header>상단</header>
     <main>메인
@@ -77,6 +81,5 @@
 
     </main>
     <footer>하단</footer>
->>>>>>> refs/remotes/origin/master:kaoni_project/src/main/webapp/index.jsp
 </body>
 </html>

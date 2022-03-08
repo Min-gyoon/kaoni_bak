@@ -61,9 +61,7 @@ public class SelfController {
 				logger.info(sCnt);
 			}
 		}
-		if(sCnt>3) {
-			return "self/warning";
-		}
+		
 		
 		svo.setSelfcheck1(s1);
 		svo.setSelfcheck2(s2);
@@ -73,7 +71,9 @@ public class SelfController {
 		svo.setSelfcheck6(s6);
 		svo.setscnt(Integer.toString(sCnt));
 		int nCnt = selfservice.selfInsert(svo);
-		
+		if(sCnt>3) {
+			return "self/warning";
+		}
 		
 		
 		if(nCnt > 0) {

@@ -35,9 +35,6 @@ public class MemberController {
 	
 	@RequestMapping( value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
-		System.out.println("Name :"+mvo.getName());
-		System.out.println("Id :"+mvo.getId());
-		System.out.println("PW :"+mvo.getPasswd());
 		System.out.println("BindingResult : "+ result);
 		logger.info("프린트 실행");
 		if(result.hasErrors()) {
@@ -127,4 +124,12 @@ public class MemberController {
 		}
 		}	
 	
+	@RequestMapping(value = "logOut", method = RequestMethod.GET)
+	public String logOut(HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		session.invalidate();
+		
+		return "redirect:/";
+		
+	}
 }
