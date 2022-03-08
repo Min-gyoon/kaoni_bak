@@ -24,8 +24,14 @@ public class PcrController {
 	private PcrService pcrService;
 
 	@RequestMapping(value="pcrForm", method=RequestMethod.GET)
-	public String pcrForm() {
+	public String pcrForm(HttpServletRequest req) {
 		logger.info("pcrform 진입");
+		HttpSession session = req.getSession();
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin==null) {
+			return "needlogin";
+		}
+		
 		return "Pcr/pcrForm";
 	}
 	@RequestMapping(value="pcrInsert", method=RequestMethod.GET)
@@ -38,17 +44,15 @@ public class PcrController {
 		pvo.setIsoleb(req.getParameter("isoleb"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setPcontent(req.getParameter("pcontent"));
-		pvo.setDeleteyn("N");
+		pvo.setDeleteyn("Y");
 		int nCnt = pcrService.pcrInsert(pvo);
 		logger.info("ncnt-->>"+nCnt);
 		req.setAttribute("nCnt", nCnt);
-		if(nCnt>0) {return "Pcr/pcrInsert";}	 
+		if(nCnt>0) {return "redirect:/";}	 
 		else {return "Pcr/pcrForm";}
 	}
 	@RequestMapping(value="pcrSelectAll", method=RequestMethod.GET)
 	public String pcrSelectAll(PcrVO pvo, Model model) {
-		//여기는 세션처리가 아니고 조인 이용해야할듯?
-		
 		logger.info("contoller select all -------------");
 		List<PcrVO> listAll = pcrService.pcrSelectAll(pvo);
 		if(listAll.size()>0) {
@@ -60,8 +64,13 @@ public class PcrController {
 	}
 	@RequestMapping(value="PcrUpdateForm", method=RequestMethod.GET)
 	public String pcrUpdateForm(PcrVO pvo, Model model, HttpServletRequest req) {
+		
 		HttpSession session = req.getSession();
-		pvo.setEmnum((String)session.getAttribute("emnum"));
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin==null) {
+			return "needlogin";
+		}
+		pvo.setEmnum(checklogin);
 		List<PcrVO> list = pcrService.pcrUpdateForm(pvo);
 		if(list.size()>0) {
 			logger.info("list.size()->>>"+list.size());
@@ -74,6 +83,7 @@ public class PcrController {
 
 	@RequestMapping(value="pcrUpdate", method=RequestMethod.GET)
 	public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {
+		logger.info(req.getParameter("emnum"));
 		pvo.setEmnum(req.getParameter("emnum"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
@@ -83,7 +93,7 @@ public class PcrController {
 		int nCnt = pcrService.pcrUpdate(pvo);
 		if(nCnt>0) {
 			logger.info("update"+nCnt+"건 완료");
-		return "Pcr/pcrSelectAll";
+		return "redirect:/";
 	}else {
 		return "Pcr/pcrUpdateForm";
 	}

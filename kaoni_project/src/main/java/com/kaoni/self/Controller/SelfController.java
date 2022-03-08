@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,12 @@ public class SelfController {
 	private SelfService selfservice;
 	
 	@RequestMapping(value="selfForm")
-	public String selfForm() {
+	public String selfForm(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin==null) {
+			return "needlogin";
+		}
 		logger.info("self form --->");
 		return "self/selfForm";
 	}
@@ -33,10 +39,14 @@ public class SelfController {
 	public String selfInsert(HttpServletRequest request) {
 		logger.info("logger Controller insert--------");
 		SelfVO svo = new SelfVO();
-		//세션처리해라. 
-		svo.setEmnum("EM001");
-		ArrayList  list = new ArrayList();
 		
+		HttpSession session = request.getSession();
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin==null) {
+			return "needlogin";
+		}
+		svo.setEmnum(checklogin);
+		ArrayList  list = new ArrayList();
 		
 		String s1 = request.getParameter("Selfcheck1");
 		String s2 = request.getParameter("Selfcheck2");
@@ -61,9 +71,6 @@ public class SelfController {
 				logger.info(sCnt);
 			}
 		}
-		if(sCnt>3) {
-			return "self/warning";
-		}
 		
 		svo.setSelfcheck1(s1);
 		svo.setSelfcheck2(s2);
@@ -74,10 +81,14 @@ public class SelfController {
 		svo.setscnt(Integer.toString(sCnt));
 		int nCnt = selfservice.selfInsert(svo);
 		
+		if(sCnt>3) {
+			//return "self/warning";
+			return "redirect:/";
+		}
 		
 		
 		if(nCnt > 0) {
-			return "index";
+			return "redirect:/";
 		}else {
 		return "self/selfForm";
 		}
@@ -85,15 +96,20 @@ public class SelfController {
 	@RequestMapping(value="selfSelectAll")
 	public String selfSelectAll(HttpServletRequest request, Model model, SelfVO svo) {
 		//세션처리할것
-		svo.setEmnum("EM001");
+		HttpSession session = request.getSession();
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin==null) {
+			return "needlogin";
+		}
+		svo.setEmnum(checklogin);
 		List<SelfVO> listAll = selfservice.selfSelectAll(svo);
 		
 		model.addAttribute("listAll", listAll);
 		if(listAll.size()>0) {
-			return "self/selfSelectAll";
+			return "redirect:/";
 		}else {	
 			logger.info("selectall data error");
-			return "self/selfSelectAll";}
+			return "redirect:/";}
 
 	
 	
