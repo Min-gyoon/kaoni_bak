@@ -82,6 +82,9 @@ public class MemberController {
 		String userId = (String) request.getParameter("USER_ID");
 	    String userPw = (String) request.getParameter("USER_PW");
 	    
+	    logger.info("암호화 id : "+userId);
+	    logger.info("복호화 pw : "+userPw);
+	    
 		HttpSession session = request.getSession();	
 		// 세션에 저장된 개인키를 불러온다. 
 		PrivateKey privateKey = (PrivateKey) session.getAttribute(MemberController.RSA_WEB_KEY);
@@ -90,6 +93,9 @@ public class MemberController {
 		userId = decryptRsa(privateKey, userId);
 	    userPw = decryptRsa(privateKey, userPw);
  
+	    logger.info("암호화 id : "+userId);
+	    logger.info("복호화 pw : "+userPw);
+	    
 	    // 개인키 삭제
         session.removeAttribute(MemberController.RSA_WEB_KEY);
         
@@ -207,18 +213,26 @@ public class MemberController {
 	        try {
 	            generator = KeyPairGenerator.getInstance(MemberController.RSA_INSTANCE);
 	            generator.initialize(2048);
-	 
+	            
 	            KeyPair keyPair = generator.genKeyPair();
 	            KeyFactory keyFactory = KeyFactory.getInstance(MemberController.RSA_INSTANCE);
 	            PublicKey publicKey = keyPair.getPublic();
 	            PrivateKey privateKey = keyPair.getPrivate();
-	 
+	            
+	            logger.info("publicKey : "+publicKey);
+	            logger.info("privateKey : "+privateKey);
+	            
 	            session.setAttribute(MemberController.RSA_WEB_KEY, privateKey); // session에 RSA 개인키를 세션에 저장
 	 
 	            RSAPublicKeySpec publicSpec = (RSAPublicKeySpec) keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
+	            //공개키 및 개인키의 N 값
 	            String publicKeyModulus = publicSpec.getModulus().toString(16);
+	            //공개키 및 개인키의 E 값
 	            String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
 	 
+	            logger.info("publicKeyModulus(공개키 및 개인키의 N 값) : "+publicKeyModulus);
+	            logger.info("publicKeyExponent(공개키 및 개인키의 E 값) : "+publicKeyExponent);
+	            
 	            request.setAttribute("RSAModulus", publicKeyModulus); // rsa modulus 를 request 에 추가
 	            request.setAttribute("RSAExponent", publicKeyExponent); // rsa exponent 를 request 에 추가
 	        } catch (Exception e) {
