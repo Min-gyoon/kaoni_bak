@@ -62,7 +62,7 @@
 <a href="http://localhost:8080/selfSelectAll.kaoni">자가진단 결과리스트</a> 
 <a href="http://localhost:8080/logOut.kaoni">로그아웃</a> 
 </div> </header> 
-  </header> 
+  
     <main>메인 
       <div style="width: 1080px; height: auto;"> 
         <div> 
