@@ -1062,7 +1062,11 @@ color : #444444;
 .selfForm{
 	width : 90%;
 }
-
+/*selfselectall*/
+.selfselectall{
+	width : 90%;
+	height : 60%;
+}
 
 /*--------------------------------------------------------------
 # Breadcrumbs

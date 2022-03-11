@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kaoni.Member.VO.MemberVO;
+import com.kaoni.main.VO.MainVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -18,6 +19,12 @@ public class ChabunDAOImpl implements ChabunDAO {
 	public MemberVO getMemberChabun() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getMemberChabun");
+	}
+
+	@Override
+	public MainVO getMainChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getMainChabun");
 	}
 	
 

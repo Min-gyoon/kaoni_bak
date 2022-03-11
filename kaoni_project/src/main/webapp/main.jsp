@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-<title>코로나 진단표</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <title>kaoni_prject index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- bootswatch journal-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -36,48 +35,24 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script type="text/javascript">
-
-$(document).ready(function(){
-	$.datepicker.setDefaults({
-    	dateFormat: 'yy-mm-dd',
-    	prevText: '이전 달',
-    	nextText: '다음 달',
-    	monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    	dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-    	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-    	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-    	showMonthAfterYear: true,
-    	yearSuffix: '년'
-  });
-  $(function() {
-    $("#isolea, #isoleb").datepicker();
-  });
-$(document).on("click", "#pcrbtn", function(){
-	$("#jindan").attr({
-		"action":"pcrInsert.kaoni",
-		"method":"GET",
-		"enctype":"application/x-www-form-urlencoded"				
-	}).submit();
-});
-});
-function checkOnlyOne(element) {
-	  
-	  const checkboxes 
-	      = document.getElementsByName("poutcome");
-	  
-	  checkboxes.forEach((cb) => {
-	    cb.checked = false;
-	  })
-	  
-	  element.checked = true;
-	}
-
+  <script type="text/javascript">
+  //코로나현황 데이터 가져오기. 
+  $(document).ready(function(){
+	alert("test");
+			$.ajax({
+				url : 'pcrdata.kaoni',
+				dataType : 'json',
+				success : function(data){
+					document.getElementById('allmember').innerHTML=parseInt(data.allmember);
+					document.getElementById('nowmember').innerHTML = parseInt(data.nowmember);
+					document.getElementById('member').innerHTML = parseInt(data.member);
+					document.getElementById('isolemember').innerHTML = parseInt(data.isolemember);
+				},
+				error : function(error){
+					console.log(error);
+				}	
+			});
+  });//ready
 </script>
 </head>
 
@@ -106,42 +81,45 @@ function checkOnlyOne(element) {
     </div>
   </header><!-- End Header -->
 
-  <main id="main" style="padding-top:80px">
-<section id="pcrform" class="pcrform">
-	<form name="jindan" id="jindan">
-		<input type="hidden" name="emnum" id="emnum">
-		<table style="table-layout: fixed;" align="center" >
-			<thead>
-				<tr>
-					<th colspan="3" style="text-align:center">코로나 진단표</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>검사 결과</td>
-					<td><input type="checkbox" name="poutcome" class="abc" value="Y"
-						onclick='checkOnlyOne(this)'>양성</td>
-					<td><input type="checkbox" name="poutcome" class="abc" value="N"
-						onclick='checkOnlyOne(this)'>음성</td>
-				</tr>
-				<tr>
-					<td>격리기간</td>
-					<td>시작일: <input type="text" id="isolea" name="isolea" ></td>
-					<td>종료일: <input type="text" id="isoleb" name="isoleb"></td>
-				</tr>
-				<tr>
-					<td>특이사항</td>
-					<td colspan="2"><textarea rows="4" cols="50" id="pcontent" name="pcontent" placeholder="사내 식사 혹은 대화 여부를 적어주세요."></textarea></td>
-				</tr>
-			</tbody>
-		</table>
-		<div style='width: 80px; float: right;'>
-	  	<button type="button" style="align:left;" class="btn btn-success" id="pcrbtn"> 제출하기</button>
-	<!--  <input type="button" id="pcrbtn" value="제출하기">-->
-		</div>
-	</form>
-	</section>
-	
+  <main id="main" style="padding-top:50px">
+  <section id="forapi" class="d-flex align-items-center">
+	   <div class="container">
+	   <div class="kovid19" style="text-align: center;">
+	   <h2>국내 코로나 상황 넣을 곳 </h2>
+	   </div>
+	   </div>
+</section>
+      <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+ 	  <div class="row counters" >
+ 		<h5>사내 코로나 현황</h5>
+          <div class="col-lg-3 col-6 text-center">
+            <span id = "allmember" data-purecounter-start="0" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+            <p>총 확진자(누적)</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="nowmember" data-purecounter-start="0" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+            <p>현재 확진자</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="isolemember" data-purecounter-start="0" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+            <p>자가 격리자</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="member" data-purecounter-start="0" data-purecounter-end="" data-purecounter-duration="1" class="purecounter"></span>
+            <p>근무원 총원</p>            
+          </div>
+			<a href="http://localhost:8080/pcrSelectAll.kaoni">더 자세히보기</a>
+			
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -164,6 +142,7 @@ function checkOnlyOne(element) {
 
   </footer><!-- End Footer -->
 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
