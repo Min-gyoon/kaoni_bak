@@ -5,7 +5,7 @@
 		 id="WebApp_ID" version="3.1">
   <display-name>kaoni_project</display-name>
   <welcome-file-list>
-   <welcome-file>teststrap.jsp</welcome-file>
+   <welcome-file>main.jsp</welcome-file>
     <!--  <welcome-file>index.jsp</welcome-file>-->
   </welcome-file-list>
   <servlet>
@@ -22,11 +22,16 @@
   	<servlet-name>spring</servlet-name>
   	<url-pattern>*.kaoni</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.js</url-pattern>
   </servlet-mapping>
   
+
+  
+  <!--  
+>>>>>>> 9b25374c5d16c9d749032c1f8e1ac820b3c6dd59
   <filter>
 		<filter-name>encodingFilter</filter-name> 
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
@@ -43,7 +48,7 @@
 		<filter-name>encodingFilter</filter-name> 
 		<url-pattern>/*</url-pattern> 
 	</filter-mapping> 
-	
+	-->
   <!-- log4j setting -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>

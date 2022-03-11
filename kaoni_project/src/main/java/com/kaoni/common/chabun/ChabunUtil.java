@@ -2,6 +2,7 @@ package com.kaoni.common.chabun;
 
 public class ChabunUtil {
 	public static final String GUBUN_EM ="EM";
+	public static final String GUBUN_M ="M";
 	
 	
 public static String numPad(String t, String c){
@@ -17,6 +18,10 @@ public static String numPad(String t, String c){
 	
 	return GUBUN_EM.concat(ChabunUtil.numPad(type, memNum));
 }
+		public static String getMainChabun(String type, String memNum) {
+			
+			return GUBUN_M.concat(ChabunUtil.numPad(type, memNum));
+		}
 
 	
 }

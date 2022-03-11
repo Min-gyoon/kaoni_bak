@@ -72,7 +72,6 @@ public class MemberController {
 	public String memberLogin(HttpServletRequest request, HttpServletResponse response) throws Exception,NoSuchAlgorithmException{
 		// RSA 키 생성
         initRsa(request);
-        
 		return "member/memberLogin";
 	}
 	

@@ -32,7 +32,7 @@ public class PcrController {
 			return "needlogin";
 		}
 		
-		return "Pcr/pcrForm2";
+		return "Pcr/pcrForm";
 	}
 	@RequestMapping(value="pcrInsert", method=RequestMethod.GET)
 	public String pcrInsert(HttpServletRequest req) {
