@@ -11,6 +11,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- bootswatch journal-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -104,26 +106,26 @@ function checkOnlyOne(element) {
     </div>
   </header><!-- End Header -->
 
-  <main id="main" style="padding-top:90px">
-
+  <main id="main" style="padding-top:80px">
+<section id="pcrform" class="pcrform">
 	<form name="jindan" id="jindan">
 		<input type="hidden" name="emnum" id="emnum">
-		<table>
+		<table style="table-layout: fixed;" align="center" >
 			<thead>
 				<tr>
-					<th colspan="3">코로나 진단표</th>
+					<th colspan="3" style="text-align:center">코로나 진단표</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>검사 결과</td>
-					<td><input type="checkbox" name="poutcome" value="Y"
+					<td><input type="checkbox" name="poutcome" class="abc" value="Y"
 						onclick='checkOnlyOne(this)'>양성</td>
-					<td><input type="checkbox" name="poutcome" value="N"
+					<td><input type="checkbox" name="poutcome" class="abc" value="N"
 						onclick='checkOnlyOne(this)'>음성</td>
 				</tr>
 				<tr>
-					<td>자가격리기간</td>
+					<td>격리기간</td>
 					<td>시작일: <input type="text" id="isolea" name="isolea" ></td>
 					<td>종료일: <input type="text" id="isoleb" name="isoleb"></td>
 				</tr>
@@ -134,9 +136,12 @@ function checkOnlyOne(element) {
 			</tbody>
 		</table>
 		<div style='width: 80px; float: right;'>
-			<input type="button" id="pcrbtn" value="제출하기">
+	  	<button type="button" style="align:left;" class="btn btn-success" id="pcrbtn"> 제출하기</button>
+	<!--  <input type="button" id="pcrbtn" value="제출하기">-->
 		</div>
 	</form>
+	</section>
+	
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -159,7 +164,6 @@ function checkOnlyOne(element) {
 
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>

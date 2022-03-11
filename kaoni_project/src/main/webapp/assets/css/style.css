@@ -1025,6 +1025,45 @@ color : #444444;
   }
 }
 
+/*pcrform*/
+
+.pcrform {
+	font-family: "Raleway", sans-serif;
+	color: #444444;
+}
+.pcrform table{ 
+	border : 1px solid black;
+    border-collapse: collapse;
+  	border-radius: 10px;
+	font-family: "Raleway", sans-serif;
+	color: #444444;
+	width : 90%;
+ 	
+}
+.pcrform td,th{
+	border : 1px solid black;
+	font-family: "Raleway", sans-serif;
+	color: #444444;
+}
+.abc {
+	text-align: center;
+}
+
+/*pcr selectall*/
+.selectall {
+	width : 90%;
+	
+}
+/*pcrupdate*/
+.pcrupdatetable{
+	width : 90%;
+}
+/*selfForm*/
+.selfForm{
+	width : 90%;
+}
+
+
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
@@ -1078,17 +1117,27 @@ color : #444444;
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+#wrapper{
+	height: auto;
+	min-height:100%;
+	padding-bottom:36px;
+}
+
+
 #footer {
   background-color: #f3f4f6;
   color: #5f687b;
   font-size: 14px;
   position: relative;
+  height: 10%;
+  
 }
 #footer .footer-top {
   position: relative;
   z-index: 2;
   text-align: center;
   padding: 80px 0;
+ height: 20%;
 }
 #footer .footer-top h3 {
   font-size: 36px;

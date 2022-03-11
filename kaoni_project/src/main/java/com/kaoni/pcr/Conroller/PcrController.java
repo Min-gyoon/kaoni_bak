@@ -78,7 +78,7 @@ public class PcrController {
 			return "Pcr/pcrUpdateForm";
 		}
 		logger.info("list 제대로 못가져왔음 확이하셈. ");
-		return "Pcr/pcrSelectAll";		
+		return "needlogin";		
 	}
 
 	@RequestMapping(value="pcrUpdate", method=RequestMethod.GET)
