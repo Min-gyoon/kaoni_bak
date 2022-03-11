@@ -7,5 +7,8 @@
 <typeAlias type="com.kaoni.Member.VO.MemberVO" alias="MemberVO"/>
 <typeAlias type="com.kaoni.pcr.VO.PcrVO" alias="PcrVO"/>
 <typeAlias type="com.kaoni.self.VO.SelfVO" alias="SelfVO"/>
+<typeAlias type="com.kaoni.Board.VO.BoardVO" alias="BoardVO"/>
+
+
 </typeAliases>
 </configuration>
