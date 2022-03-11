@@ -3,4 +3,20 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kaoni.Board.DAO.BoardDAO">
 
+<select id="ShowAllPost" parameterType="BoardVO" resultType="BoardVO">
+SELECT * FROM BOARDTBL
+</select>
+
+<insert id="WritePost">
+INSERT INTO BOARDTBL
+(EMNUM,TITLE,CONTENT,REGDATE,IMPOR) 
+VALUES(
+'${emnum}',
+'${title}',
+'${content}',
+'${regdate}',
+${impor}
+
+)
+</insert>
 </mapper>

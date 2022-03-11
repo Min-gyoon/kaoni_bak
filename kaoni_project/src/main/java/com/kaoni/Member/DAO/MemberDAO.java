@@ -1,6 +1,5 @@
 package com.kaoni.Member.DAO;
 
-import java.util.List;
 
 import com.kaoni.Member.VO.MemberVO;
 
