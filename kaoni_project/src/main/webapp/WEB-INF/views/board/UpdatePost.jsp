@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="java.util.Date" %>
     <%@page import="java.text.SimpleDateFormat" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수정</title>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
@@ -60,25 +61,14 @@ $(document).ready(function() {
 <%
 SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd");
 String today = sf.format(now);
-String regdate = sf.format(now);
+String update = sf.format(now);
 %>
-<%=regdate %><br>
-<%
-sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-today = sf.format(now);
-%>
-<%=today %><br>
-<%
-sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh:mm:ss");
-today = sf.format(now);
-%>
-<%=today %><br>
-<form action="writePost1.kaoni" method="post">
-
+<%=update %><br>
+<form action="UpdatePost1.kaoni" method="post">
 <table>
         <tr>
             <td>제목 : </td>
-            <td><input type="text" id="title" name="title"></td>
+            <td><input type="text" id="title" name="title" value="${data.title}"></td>
             <td> 중요도 : 
                 <select name="impor">
                     <option value="0">0</option>
@@ -90,11 +80,11 @@ today = sf.format(now);
         </tr>
         <tr>
             <td>내용 : </td>
-            <td colspan="2"><textarea id="summernote" name="summernote"></textarea></td>
+            <td colspan="2"><textarea id="summernote" name="summernote" >${data.content}</textarea></td>
            
         </tr>
         <tr>
-            <td><input type="text" name="regdate" value=<%=regdate%>></td>
+            <td><input type="text" name="updatedate" value=<%=update%>></td>
             <td></td>
             <td><button type="submit">전송</button></td>
         </tr>
@@ -102,6 +92,4 @@ today = sf.format(now);
     </table>
 	</form>
 </body>
-
 </html>
-

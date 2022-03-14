@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kaoni.Board.VO.BoardVO;
+import com.kaoni.Board.VO.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -18,8 +19,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<BoardVO> ShowAllPost(BoardVO bvo) {
-		return sqlSession.selectList("ShowAllPost", bvo);
+	public List<BoardVO> ShowAllPost(Criteria cri) {
+		return sqlSession.selectList("ShowAllPost", cri);
 	}
 	
 	@Override
@@ -28,10 +29,30 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public String DeletePost(BoardVO bvo) {
-		return null;
+	public int UpdatePost(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("UpdatePost",bvo);
 	}
 
+	@Override
+	public int DeletePost(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("DeletePost",bvo);
+	}
+
+	@Override
+	public BoardVO DetailPost(int nbo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("DetailPost",nbo);
+	}
+
+	@Override
+	public int listCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("listCount");
+	}
+
+	
 	
 
 }

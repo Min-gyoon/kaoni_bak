@@ -184,19 +184,6 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
-	 
-	
-	// 복호화 함수 정의 
-//		private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
-//	        System.out.println("will decrypt : " + securedValue);
-//	        Cipher cipher = Cipher.getInstance("RSA");
-//	        byte[] encryptedBytes = hexToByteArray(securedValue);
-//	        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-//	        byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-//	        String decryptedValue = new String(decryptedBytes, "utf-8"); // 문자 인코딩 
-//	        return decryptedValue;
-//	    }
 		
 		private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
 	        Cipher cipher = Cipher.getInstance(MemberController.RSA_INSTANCE);

@@ -1,21 +1,19 @@
 package com.kaoni.Board.VO;
 
-import java.util.Date;
-
-
 public class BoardVO {
 
 	String emnum;
-	String nbo;
+	
 	String title;
 	String content;
 	String regdate;
 	String updatedate;
+	int nbo;
 	int impor;
 	
 	public BoardVO() {
 	}
-	public BoardVO(String emnum, String nbo, String title, String content, String regdate, String updatedate,
+	public BoardVO(String emnum, int nbo, String title, String content, String regdate, String updatedate,
 			int impor) {
 		this.emnum = emnum;
 		this.nbo = nbo;
@@ -31,10 +29,10 @@ public class BoardVO {
 	public void setEmnum(String emnum) {
 		this.emnum = emnum;
 	}
-	public String getNbo() {
+	public int getNbo() {
 		return nbo;
 	}
-	public void setNbo(String nbo) {
+	public void setNbo(int nbo) {
 		this.nbo = nbo;
 	}
 	public String getTitle() {
