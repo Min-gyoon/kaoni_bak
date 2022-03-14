@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
+import com.kaoni.pcr.VO.PcrVO;
 
 @Controller
 public class MemberController {
@@ -144,16 +147,32 @@ public class MemberController {
 
 	//	회원정보 수정 창
 	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
-	public String updateInfo() {
+	public String updateInfo(MemberVO mvo, Model model, HttpServletRequest req) {
+		logger.info("adminMemberlist 진입");
+		HttpSession session = req.getSession();
+		String checklogin = (String)session.getAttribute("emnum");
+		logger.info(checklogin);
+		if(checklogin.equals("admin")) {
+		}else {return "404";}
+		logger.info("update->>"+req.getParameter("emnum"));
+		mvo.setEmnum(req.getParameter("emnum"));
+		List<MemberVO> list = memberService.memberUpdateForm(mvo);
+		model.addAttribute("list", list);
 		return "member/updateInfo";
 	}
 	
 	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
 	public String updateInfo1(HttpServletRequest request,MemberVO mvo, HttpSession session) {
+		logger.info(request.getParameter("name"));
+		logger.info(request.getParameter("dname"));
+		logger.info(request.getParameter("position"));
+		logger.info(request.getParameter("id"));
+		logger.info(request.getParameter("passwd"));
+		mvo.setName(request.getParameter("name"));
+		mvo.setDname(request.getParameter("dname"));
 		mvo.setPosition(request.getParameter("position"));
+		mvo.setId(request.getParameter("id"));
 		mvo.setPasswd(request.getParameter("passwd"));
-		mvo.getId();
-		
 		memberService.updateInfo(mvo);
 		return "redirect:/";
 	}

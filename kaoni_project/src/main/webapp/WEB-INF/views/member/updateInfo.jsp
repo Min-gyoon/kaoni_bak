@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ page import="java.util.List" %>
+<%@ page import="com.kaoni.Member.VO.MemberVO"%>
 <html>
 
 <head>
@@ -10,7 +11,7 @@
 <title></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <!-- bootswatch journal-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
   <!-- Favicons -->
@@ -36,7 +37,24 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <%
+  Object obj = request.getAttribute("list");
+  List<MemberVO> list = (List)obj;
+	  MemberVO mvo = list.get(0);
+  out.print(mvo.getName());
+  out.print(mvo.getPosition());
+  %>
+  
 <script type="text/javascript">
+$(document).ready(function(){
+$(document).on("click", "#update", function(){
+	$("#updateform").attr({
+		"action":"updateInfo2.kaoni",
+		"method":"POST",
+		"enctype":"application/x-www-form-urlencoded"				
+	}).submit();
+});
+});
 </script>
 </head>
 
@@ -66,21 +84,21 @@
 
   <main id="main" style="padding-top:80px">
 	<h3>회원정보 수정</h3>
-    <form method="post" action="updateInfo2.kaoni">
+    <form id="updateform">
     <table>
         
               <tr>
                   <td>이름</td>
-                  <td></td>
+                  <td><%=mvo.getName() %></td>
               </tr>
               <tr>
                   <td>부서명</td>
-                  <td></td>
+                  <td><%=mvo.getDname() %></td>
               </tr>
               <tr>
                   <td>직책</td>
                   <td><select name="position">
-					    <option value=""></option>
+					    <option value="<%=mvo.getPosition()%>"></option>
 					    <option value="사원">사원</option>
 					    <option value="대리">대리</option>
 					    <option value="팀장">팀장</option>
@@ -89,20 +107,25 @@
               </tr>
               <tr>
                   <td>ID</td>
-                  <td><input type ="text" name ="id" readonly="readonly" value=${member}></td>
+                  <td><input type ="text" name ="id" readonly="readonly" value=<%=mvo.getId() %>></td>
               </tr>
               <tr>
                   <td>PW</td>
-                  <td><input type="password" name="passwd"></td>
+                  <td><input type="password" name="passwd" value=""></td>
               </tr>
               <tr>
                   <td>PW 확인</td> 
                   <td><input type="password" name="password"></td>
                   <td><input type="button" value="체크"></td>
+                  
               </tr>
+              
               <tr>
-                  <td></td>
-                  <td><button type="submit">수정완료</button></td>
+                  <td><input type="hidden" id="emnum" name="emnum" value="">
+                  	  <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
+                  	  <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
+                  </td>
+                  <td><input type="button" id="update" value="수정완료"></td>
                   
               </tr>
              

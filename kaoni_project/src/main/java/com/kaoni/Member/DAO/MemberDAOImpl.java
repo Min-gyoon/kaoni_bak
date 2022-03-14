@@ -1,6 +1,8 @@
 package com.kaoni.Member.DAO;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,16 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int updateInfo(MemberVO mvo) {
 		return sqlSession.update("updateInfo", mvo);
+	}
+	@Override
+	public List<MemberVO> memberSelectAll(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberSelectAll", mvo);
+	}
+	@Override
+	public List<MemberVO> memberUpdateForm(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberUpdateForm", mvo);
 	}
 
 

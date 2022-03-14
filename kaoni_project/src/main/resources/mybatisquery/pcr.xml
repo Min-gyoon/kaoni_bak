@@ -16,7 +16,8 @@
 		<collection property="memberVO" resultMap="MemberVO" />
 	</resultMap>
 <select id="pcrSelectAll" parameterType="PcrVO" resultMap="PcrVO">
-	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.NAME, M.DNAME, M.POSITION FROM PCRTBL P, MEMBERTBL M 
+	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
+	FROM PCRTBL P, MEMBERTBL M 
 	WHERE P.EMNUM = M.EMNUM
 </select>
 <insert id="pcrInsert" parameterType="PcrVO">

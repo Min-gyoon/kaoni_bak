@@ -67,9 +67,6 @@ public class PcrController {
 		
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
-		if(checklogin==null) {
-			return "needlogin";
-		}
 		pvo.setEmnum(checklogin);
 		List<PcrVO> list = pcrService.pcrUpdateForm(pvo);
 		if(list.size()>0) {
