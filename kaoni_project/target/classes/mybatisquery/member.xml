@@ -38,7 +38,16 @@
 <select id="findInfo">
 		SELECT * FROM MEMBERTBL WHERE ID ='${id}'
 </select>
+<select id="memberUpdateForm" resultType="MemberVO">
+		SELECT * FROM MEMBERTBL WHERE EMNUM ='${emnum}'
+</select>
+
 <update id="updateInfo" parameterType="MemberVO" >
-	UPDATE MEMBERTBL SET POSITION = '${position}',PASSWD = '${passwd}' WHERE ID = '${id}'
+	UPDATE MEMBERTBL SET 
+	POSITION = #{position, jdbcType=VARCHAR}, 
+	PASSWD = #{passwd, jdbcType=VARCHAR}, 
+	NAME=#{name, jdbcType=VARCHAR}, 
+	DNAME=#{dname, jdbcType=VARCHAR}  
+	WHERE EMNUM = #{emnum, jdbcType=VARCHAR}
 </update>
 </mapper>

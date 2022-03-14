@@ -3,23 +3,28 @@ package com.kaoni.pcr.VO;
 import com.kaoni.Member.VO.MemberVO;
 
 public class PcrVO {
-	String poutcome;
-	String emnum;
-	String isolea;
-	String isoleb;
-	String pcontent;
-	String deleteyn;
+	private String poutcome;
+	private String emnum;
+	private String isolea;
+	private String isoleb;
+	private String pcontent;
+	private String deleteyn;
 	private MemberVO memberVO;
 	
-	public PcrVO(){}
+	public PcrVO() {
+		
+
+	}
 	
-	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent, MemberVO memberVO) {
+	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent, 
+			MemberVO memberVO) {
 		this.memberVO = memberVO;
 		this.poutcome = poutcome;
 		this.emnum = emnum;
 		this.isolea = isolea;
 		this.isoleb = isoleb;
 		this.deleteyn = deleteyn;
+
 	}
 	public String getPoutcome() {
 		return poutcome;

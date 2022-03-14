@@ -33,5 +33,17 @@ public class MemberServiceImpl implements MemberService {
 		 return memberDAO.updateInfo(mvo);
 	}
 
+	@Override
+	public List<MemberVO> memberSelectAll(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return memberDAO.memberSelectAll(mvo);
+	}
+
+	@Override
+	public List<MemberVO> memberUpdateForm(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return memberDAO.memberUpdateForm(mvo);
+	}
+
 
 }
