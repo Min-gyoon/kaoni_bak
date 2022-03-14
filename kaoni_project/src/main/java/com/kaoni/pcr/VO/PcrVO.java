@@ -10,22 +10,32 @@ public class PcrVO {
 	private String pcontent;
 	private String deleteyn;
 	private MemberVO memberVO;
-	
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
 	public PcrVO() {
 		
 
 	}
 	
-	public PcrVO(String deleteyn, String poutcome, String emnum, String isolea, String isoleb, String pcontent, 
-			MemberVO memberVO) {
-		this.memberVO = memberVO;
+	public PcrVO(String poutcome, String emnum, String isolea, String isoleb, String pcontent, String deleteyn,
+			MemberVO memberVO, String pageSize, String groupSize, String curPage, String totalCount) {
+	
 		this.poutcome = poutcome;
 		this.emnum = emnum;
 		this.isolea = isolea;
 		this.isoleb = isoleb;
+		this.pcontent = pcontent;
 		this.deleteyn = deleteyn;
-
+		this.memberVO = memberVO;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 	}
+
+
 	public String getPoutcome() {
 		return poutcome;
 	}
@@ -73,6 +83,38 @@ public class PcrVO {
 
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
+	}
+
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
 	}
 	
 }
