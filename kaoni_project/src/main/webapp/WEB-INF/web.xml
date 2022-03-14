@@ -23,15 +23,16 @@
   	<url-pattern>*.kaoni</url-pattern>
   </servlet-mapping>
 
+<!--  
   <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.js</url-pattern>
   </servlet-mapping>
-  
+  -->
 
   
   <!--  
->>>>>>> 9b25374c5d16c9d749032c1f8e1ac820b3c6dd59
+
   <filter>
 		<filter-name>encodingFilter</filter-name> 
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
