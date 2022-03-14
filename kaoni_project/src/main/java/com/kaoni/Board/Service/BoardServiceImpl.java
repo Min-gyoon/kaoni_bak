@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kaoni.Board.DAO.BoardDAO;
 import com.kaoni.Board.VO.BoardVO;
+import com.kaoni.Board.VO.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -16,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> ShowAllPost(BoardVO bvo) {
-		return boardDAO.ShowAllPost(bvo);
+	public List<BoardVO> ShowAllPost(Criteria cri) {
+		return boardDAO.ShowAllPost(cri);
 	}
 
 	@Override
@@ -26,9 +27,29 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public String DeletePost(BoardVO bvo) {
+	public int UpdatePost(BoardVO bvo) {
 		// TODO Auto-generated method stub
-		return null;
+		return boardDAO.UpdatePost(bvo);
 	}
+
+	@Override
+	public int DeletePost(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return boardDAO.DeletePost(bvo);
+	}
+
+	@Override
+	public BoardVO DetailPost(int nbo) {
+		// TODO Auto-generated method stub
+		return boardDAO.DetailPost(nbo);
+	}
+
+	@Override
+	public int listCount() {
+		// TODO Auto-generated method stub
+		return boardDAO.listCount(); //게시물 촛 갱수
+	}
+
+	
 
 }

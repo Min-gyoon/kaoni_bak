@@ -4,19 +4,51 @@
 <mapper namespace="com.kaoni.Board.DAO.BoardDAO">
 
 <select id="ShowAllPost" parameterType="BoardVO" resultType="BoardVO">
-SELECT * FROM BOARDTBL
+SELECT  EMNUM,
+			NBO, 
+		    TITLE, 
+		    CONTENT,
+		    REGDATE,
+		    UPDATEDATE,
+		    IMPOR    
+		 FROM ( 
+		 SELECT EMNUM,
+			NBO, 
+		    TITLE, 
+		    CONTENT,
+		    REGDATE,
+		    UPDATEDATE,
+		    IMPOR ,  
+            ROW_NUMBER() OVER(ORDER BY NBO DESC) AS RNUM
+		         FROM BOARDTBL ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY NBO DESC
 </select>
 
 <insert id="WritePost">
 INSERT INTO BOARDTBL
-(EMNUM,TITLE,CONTENT,REGDATE,IMPOR) 
+(NBO,EMNUM,TITLE,CONTENT,REGDATE,IMPOR) 
 VALUES(
+boardtbl_SEQ.nextval,
 '${emnum}',
 '${title}',
 '${content}',
 '${regdate}',
 ${impor}
-
 )
 </insert>
+
+<update id="UpdatePost">
+UPDATE BOARDTBL SET
+TITLE = '${title}',CONTENT = '${content}',UPDATEDATE = '${updatedate}',IMPOR = ${impor}
+WHERE IMPOR = ${impor}
+</update>
+<delete id="DeletePost">
+DELETE FROM BOARDTBL
+WHERE NBO = #{nbo}
+</delete>
+
+<select id="DetailPost" parameterType="BoardVO" resultType="BoardVO">
+SELECT * FROM BOARDTBL WHERE NBO = #{nbo}
+</select>
 </mapper>
