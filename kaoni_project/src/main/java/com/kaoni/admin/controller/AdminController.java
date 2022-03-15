@@ -36,7 +36,7 @@ public class AdminController {
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		logger.info(checklogin);
-		if(checklogin.equals("admin")) {
+		if(checklogin.equals("00")) {
 		}else {return "404";}
 		List<PcrVO> listAll = pcrservice.pcrSelectAll(pvo);
 		model.addAttribute("listAll", listAll);
@@ -66,7 +66,7 @@ public class AdminController {
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		logger.info(checklogin);
-		if(checklogin.equals("admin")) {
+		if(checklogin.equals("00")) {
 		}else {return "404";}
 		List<MemberVO> list = memberservice.memberSelectAll(mvo);
 		model.addAttribute("list", list);
@@ -90,6 +90,7 @@ public class AdminController {
 	logger.info("admin select 오류 발생");
 	return "404띄우자";		
 }
+	//BOARD추가할것. 
 	
 }
 	

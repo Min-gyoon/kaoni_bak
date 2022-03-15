@@ -28,7 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+	<!-- hamberger -->
   <!-- =======================================================
   * Template Name: eNno - v4.7.0
   * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
@@ -36,7 +36,31 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 <head>
+<script>
+$(function() {
+    function slideMenu() {
+        var activeState = $("#menu-container .menu-list").hasClass("active");
+        $("#menu-container .menu-list").animate({right: activeState ? "0%" : "-100%"}, 400);
+    }
+    $("#menu-wrapper").click(function(event) {
+        event.stopPropagation();
+        $("#hamburger-menu").toggleClass("open");
+        $("#menu-container .menu-list").toggleClass("active");
+        slideMenu();
 
+        $("body").toggleClass("overflow-hidden");
+    });
+
+    $(".menu-list").find(".accordion-toggle").click(function() {
+        $(this).next().toggleClass("open").slideToggle("fast");
+        $(this).toggleClass("active-tab").find(".menu-link").toggleClass("active");
+
+        $(".menu-list .accordion-content").not($(this).next()).slideUp("fast").removeClass("open");
+        $(".menu-list .accordion-toggle").not(jQuery(this)).removeClass("active-tab").find(".menu-link").removeClass("active");
+    });
+}); // jQuery load
+
+</script>
 <style type="text/css">
 div li{
 float: left;
@@ -85,11 +109,38 @@ float: left;
           <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">Login</a></li>
 		 </c:otherwise>
 		  </c:choose>
-         
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
+      
+		<div id="menu-container">
+            <div id="menu-wrapper">
+                <div id="hamburger-menu"><span></span><span></span><span></span></div>
+                <!-- hamburger-menu -->
+            </div>
+            <!-- menu-wrapper -->
+            <ul class="menu-list accordion">
+                <li id="nav1" class="toggle accordion-toggle"> 
+                    <span class="icon-plus"></span>
+                    <a class="menu-link" href="http://localhost:8080/pcrSelectAll.kaoni">내정보수정</a>
+                </li>
+               
+                <li id="nav2" class="toggle accordion-toggle"> 
+                    <span class="icon-plus"></span>
+                    <a class="menu-link" href="http://localhost:8080/pcrSelectAll.kaoni">내PCR검사수정하기</a>
+                </li>
+               
+                <li id="nav3" class="toggle accordion-toggle"> 
+                    <span class="icon-plus"></span>
+                    <a class="menu-link" href="http://localhost:8080/pcrSelectAll.kaoni">어쩔저쩔어쩔저쩔</a>
+                </li>
+                
+            </ul>
+            <!-- menu-list accordion-->
+        </div>
+      
+      
+		
     </div>
   </header><!-- End Header -->
 

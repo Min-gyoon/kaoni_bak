@@ -23,6 +23,7 @@
 		 ,PASSWD
 		 ,GENDER
 		 ,DNAME
+		 ,DELETEYN
 		 ) 
 		 VALUES 
 		 (
@@ -33,6 +34,7 @@
 		 ,'${passwd}'
 		 ,'${gender}'
 		 ,'${Dname}'
+		 ,'Y'
 		 )
 </insert> 
 <select id="findInfo">

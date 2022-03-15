@@ -38,7 +38,7 @@ $(document).on("click", "#pcrbtn", function(){
 });
 $(document).on("click", "#curebtn", function(){
 	 document.getElementById("poutcome").value="N"; 
-	 document.getElementById("deleteyn").value="Y";
+	 document.getElementById("deleteyn").value="Y"; 
 	 $("#jindan").attr({
 			"action":"pcrUpdate.kaoni",
 			"method":"GET",

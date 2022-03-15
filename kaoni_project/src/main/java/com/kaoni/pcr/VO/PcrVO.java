@@ -14,13 +14,16 @@ public class PcrVO {
 	private String groupSize;
 	private String curPage;
 	private String totalCount;
+	private String pnum;
+	
+
 	public PcrVO() {
 		
 
 	}
 	
 	public PcrVO(String poutcome, String emnum, String isolea, String isoleb, String pcontent, String deleteyn,
-			MemberVO memberVO, String pageSize, String groupSize, String curPage, String totalCount) {
+			MemberVO memberVO, String pageSize, String groupSize, String curPage, String totalCount, String pnum) {
 	
 		this.poutcome = poutcome;
 		this.emnum = emnum;
@@ -33,9 +36,16 @@ public class PcrVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
+		this.pnum = pnum;
 	}
 
+	public String getPnum() {
+		return pnum;
+	}
 
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
 	public String getPoutcome() {
 		return poutcome;
 	}

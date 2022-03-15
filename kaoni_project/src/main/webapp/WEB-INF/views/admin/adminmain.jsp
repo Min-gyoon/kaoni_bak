@@ -76,7 +76,7 @@ function selectMember(emnum){
         
           <li><a class="nav-link scrollto" href="http://localhost:8080/adminMemberlist.kaoni">사원관리하기</a></li>
           <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원pcr정보관리하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/board.kaoni">공지사항</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

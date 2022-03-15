@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.DAO.ChabunDAO;
 import com.kaoni.main.VO.MainVO;
+import com.kaoni.pcr.VO.PcrVO;
 
 @Service
 @Transactional
@@ -27,6 +28,12 @@ public class ChabunServiceImpl implements ChabunService {
 	public MainVO getMainChabun() {
 		// TODO Auto-generated method stub
 		return chabunDAO.getMainChabun();
+	}
+
+	@Override
+	public PcrVO getPcrChabun() {
+		// TODO Auto-generated method stub
+		return chabunDAO.getPcrChabun();
 	}
 
 }

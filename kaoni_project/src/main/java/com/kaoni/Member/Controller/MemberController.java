@@ -60,12 +60,15 @@ public class MemberController {
 				}
 			return "member/memberSignUp";
 		}else {
-//		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
-		String emnum = "EM0006";
+		logger.info("test1");
+		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+		logger.info("test2");
+		logger.info(emnum);
+		//String emnum = "EM0006";
 		mvo.setEmnum(emnum);
 		
 		memberService.memberSignUp(mvo);
-		logger.info(emnum);
+		
 		logger.info("가입 실행");
 		return "redirect:/";
 		}

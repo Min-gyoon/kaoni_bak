@@ -20,7 +20,7 @@
 	,CEIL(ROW_NUMBER() OVER(ORDER BY M.EMNUM)/ #{pageSize, jdbcType=VARCHAR}) PAGESIZE
 	,COUNT(M.EMNUM) OVER() AS TOTALCOUNT
 	FROM PCRTBL P, MEMBERTBL M 
-	WHERE P.EMNUM = M.EMNUM
+	WHERE P.EMNUM = M.EMNUM AND P.ISOLEB > TO_CHAR(SYSDATE, 'YY/MM/DD')
 </select>
  
 <select id="pcrMain" parameterType="PcrVO" resultMap="PcrVO">
@@ -62,5 +62,8 @@
 	WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 
 </update>
+<select id="pcrMine" parameterType="PcrVO" resultType="PcrVO">
+ SELECT * FROM PCRTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 
+</select>
 </mapper>

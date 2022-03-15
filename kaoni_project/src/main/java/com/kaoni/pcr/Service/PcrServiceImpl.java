@@ -49,6 +49,13 @@ public class PcrServiceImpl implements PcrService {
 	
 	  @Override public List<PcrVO> pcrMain(PcrVO pvo) { 
 	  return pcrdao.pcrMain(pvo); }
+
+
+	@Override
+	public List<PcrVO> pcrMine(PcrVO pvo) {
+		// TODO Auto-generated method stub
+		 return pcrdao.pcrMine(pvo);
+	}
 	 
 
 }
