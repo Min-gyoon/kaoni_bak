@@ -8,32 +8,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <title>kaoni_prject index</title>
 
-<<<<<<< HEAD
-=======
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: eNno - v4.7.0
-  * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
->>>>>>> e5f71f0734597a59880361ddb67932dc4c5150e3
   <script type="text/javascript">
   //코로나현황 데이터 가져오기. 
   $(document).ready(function(){
@@ -80,7 +54,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 <%@include file ="/WEB-INF/views/header.jsp" %>
 	<section>
 	<div>
@@ -102,19 +75,7 @@
   		
   		</table>
 </div>
-=======
 
-  <!-- ======= Header ======= -->
-   <%@include file ="/WEB-INF/views/header.jsp" %>
-
-  <main id="main" style="padding-top:100px">
-  <section id="forapi" class="d-flex align-items-center">
-	   <div class="container">
-	   <div class="kovid19" style="text-align: center;">
-	   <h2>국내 코로나 상황 넣을 곳 </h2>
-	   </div>
-	   </div>
->>>>>>> e5f71f0734597a59880361ddb67932dc4c5150e3
 </section>
       <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
@@ -146,30 +107,11 @@
 
       </div>
     </section><!-- End Counts Section -->
-<<<<<<< HEAD
+
 </main>
   	
 <%@include file ="/WEB-INF/views/footer.jsp" %>
-=======
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <%@include file ="/WEB-INF/views/footer.jsp" %>
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
->>>>>>> e5f71f0734597a59880361ddb67932dc4c5150e3
 
 </body>
 
