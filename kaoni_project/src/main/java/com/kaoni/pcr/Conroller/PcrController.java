@@ -54,8 +54,19 @@ public class PcrController {
 	@RequestMapping(value="pcrSelectAll", method=RequestMethod.GET)
 	public String pcrSelectAll(PcrVO pvo, Model model) {
 		logger.info("contoller select all -------------");
+		int pageSize = 10;
+		int groupSize = 5;
+		int curPage = 1;
+		int totalCount = 0; 
+		pvo.setCurPage(String.valueOf(curPage));
+		pvo.setGroupSize(String.valueOf(groupSize));
+		pvo.setPageSize(String.valueOf(pageSize));
+		pvo.setTotalCount(String.valueOf(totalCount));
 		List<PcrVO> listAll = pcrService.pcrSelectAll(pvo);
+		logger.info(pvo.getCurPage());
+		logger.info(pvo.getGroupSize());
 		if(listAll.size()>0) {
+			model.addAttribute("pagingVO", pvo);
 			model.addAttribute("listAll", listAll);
 			return "Pcr/pcrSelectAll";
 		}

@@ -3,14 +3,7 @@
 <%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
 <%@ page import="com.kaoni.Member.VO.MemberVO"%>
 
-<% 
 
-Object obj = request.getAttribute("listAll");
-List<PcrVO> list = (List)obj;
-
-MemberVO mvo;
-
-%>
 <!DOCTYPE html>
 <html>
 
@@ -22,6 +15,25 @@ MemberVO mvo;
 </head>
 
 <body>
+<% 
+int pageSize = 0;
+int groupSize = 0;
+int curPage = 0;
+int totalCount = 0;
+
+
+Object obj = request.getAttribute("listAll");
+List<PcrVO> list = (List)obj;
+
+Object obj2 = request.getAttribute("pagingVO");
+PcrVO pvo2 = (PcrVO)obj2;
+MemberVO mvo;
+
+pageSize = Integer.parseInt(pvo2.getPageSize());
+groupSize = Integer.parseInt(pvo2.getGroupSize());
+curPage = Integer.parseInt(pvo2.getCurPage());
+totalCount = Integer.parseInt(pvo2.getTotalCount());
+%>
   <main id="main" style="padding-top:85px">
   <div id="wrapper">
 <table  align="center" class="selectall">
@@ -34,13 +46,17 @@ MemberVO mvo;
     <th>확진여부</th>
   </tr>
   <%
+
 for(int i = 0; i < list.size(); i++){
 
-PcrVO pvo = list.get(i);
-mvo = pvo.getMemberVO();
-String isolea = pvo.getIsolea().split("\\s+")[0];
-String isoleb = pvo.getIsoleb().split("\\s+")[0];
-String outcome = pvo.getPoutcome();
+PcrVO pvo1 = list.get(i);
+mvo = pvo1.getMemberVO();
+String isolea = pvo1.getIsolea().split("\\s+")[0];
+String isoleb = pvo1.getIsoleb().split("\\s+")[0];
+String outcome = pvo1.getPoutcome();
+
+
+
 
 %>
   <tr class="table-success">
@@ -53,6 +69,18 @@ String outcome = pvo.getPoutcome();
 <%
 }
 %>
+<tr>
+<td colspan="6">
+				<jsp:include page="pcrPaging.jsp" flush="true">
+					<jsp:param name="url" value="pcrSelectAll.kaoni" />
+					<jsp:param name="str" value=""/>
+					<jsp:param name="curPage" value="<%=curPage %>" />
+					<jsp:param name="pageSize" value="<%=pageSize %>" />
+					<jsp:param name="groupSize" value="<%=groupSize %>" />
+					<jsp:param name="totalCount" value="<%=totalCount %>" />
+				</jsp:include>
+</td>
+</tr>
 </table>
 <!-- /WEB-INF/views/Pcr/pcrPaging.jsp? -->
 

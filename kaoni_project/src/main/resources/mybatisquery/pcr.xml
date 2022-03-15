@@ -17,6 +17,8 @@
 	</resultMap>
 <select id="pcrSelectAll" parameterType="PcrVO" resultMap="PcrVO">
 	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
+	,CEIL(ROW_NUMBER() OVER(ORDER BY M.EMNUM)/ #{pageSize, jdbcType=VARCHAR}) PAGESIZE
+	,COUNT(M.EMNUM) OVER() AS TOTALCOUNT
 	FROM PCRTBL P, MEMBERTBL M 
 	WHERE P.EMNUM = M.EMNUM
 </select>
