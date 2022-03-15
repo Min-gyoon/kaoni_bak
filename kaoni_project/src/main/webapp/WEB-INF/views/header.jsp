@@ -36,6 +36,12 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 <head>
+
+<style type="text/css">
+div li{
+float: left;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -50,13 +56,36 @@
 	<!-- 헤더 -->
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">pcrselectall</a></li>
-          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">pcrform</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">selffrom</a></li>
-
-          <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">signup</a></li>
-          <!-- 로그인 부분 JSTL처리  -->
-          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">login</a></li>
+          <li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">PcrSelectAll</a></li>
+          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">Pcrform</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">SelfForm</a></li>
+		  <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">Notice</a></li>
+		  <c:choose> 
+		  <c:when test="${emnum eq 'admin'}">
+		  <%-- 관리자 계정 --%>
+		  <div style="width: 430px; padding-left:20px;">
+		  <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li>
+		  <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">관리자페이지</a></li>
+		  <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
+		  </div>
+		  </c:when>
+		  
+		  <c:when test="${not empty emnum}">
+		  <%-- 일반 계정 --%>
+		     <div style="width: 430px; padding-left:20px;">
+		     <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li>
+		     <li><a class="nav-link scrollto" href="http://localhost:8080/">내 정보 수정</a></li>
+		     <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
+		  </div>
+		  </c:when>
+		  <c:otherwise>
+		  
+		  <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">Signup</a></li>
+          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">Login</a></li>
+		 </c:otherwise>
+		  </c:choose>
+         
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

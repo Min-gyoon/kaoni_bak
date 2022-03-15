@@ -60,7 +60,8 @@ public class MemberController {
 				}
 			return "member/memberSignUp";
 		}else {
-		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+//		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+		String emnum = "EM0006";
 		mvo.setEmnum(emnum);
 		
 		memberService.memberSignUp(mvo);
