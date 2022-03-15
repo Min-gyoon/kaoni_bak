@@ -11,8 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kaoni.Member.VO.MemberVO;
+import com.kaoni.common.chabun.ChabunUtil;
+import com.kaoni.main.VO.MainVO;
 import com.kaoni.pcr.Service.PcrService;
 import com.kaoni.pcr.VO.PcrVO;
 
@@ -107,4 +111,22 @@ public class PcrController {
 	}
 	
 }
+	
+	@ResponseBody
+	@RequestMapping(value="pcrMain", method=RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String pcrMain(PcrVO pvo, Model model) {
+		logger.info("pcrMain -------------");
+
+		List<PcrVO> listmain = pcrService.pcrMain(pvo);;
+		String jsontest = new Gson().toJson(listmain);
+		
+		logger.info(jsontest);
+		
+		if(listmain.size()>0) {
+			return jsontest;
+		}
+		logger.info("list 제대로 가져오지 못했음. ");
+		return ":/redirect";
+	}
+	
 }

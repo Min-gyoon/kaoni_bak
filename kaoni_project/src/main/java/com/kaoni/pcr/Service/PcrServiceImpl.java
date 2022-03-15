@@ -45,4 +45,10 @@ public class PcrServiceImpl implements PcrService {
 		return pcrdao.pcrUpdateForm(pvo);
 	}
 
+
+	
+	  @Override public List<PcrVO> pcrMain(PcrVO pvo) { 
+	  return pcrdao.pcrMain(pvo); }
+	 
+
 }

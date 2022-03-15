@@ -12,8 +12,8 @@ public class MemberVO {
 		 String id;
 		 
 		 @NotBlank(message = "비밀번호 공백")
-		 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
-		 , message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
+		 //@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
+		 //, message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
 		 String passwd;
 		 
 		 String position;

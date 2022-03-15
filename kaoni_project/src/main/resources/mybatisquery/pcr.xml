@@ -22,6 +22,14 @@
 	FROM PCRTBL P, MEMBERTBL M 
 	WHERE P.EMNUM = M.EMNUM
 </select>
+ 
+<select id="pcrMain" parameterType="PcrVO" resultMap="PcrVO">
+	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
+	FROM PCRTBL P, MEMBERTBL M 
+	<![CDATA[WHERE P.EMNUM = M.EMNUM AND ROWNUM <=10 ]]>
+	ORDER BY ISOLEA DESC
+</select>
+
 <insert id="pcrInsert" parameterType="PcrVO">
 	INSERT INTO PCRTBL(
 					EMNUM,

@@ -3,6 +3,7 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kaoni.main.DAO.MainDAO">
 
+
 <select id="pcrdata" parameterType="MainVO" resultType="MainVO">
 	SELECT * FROM (SELECT * FROM MAINTBL ORDER BY MAINNUM DESC)
 WHERE ROWNUM=1

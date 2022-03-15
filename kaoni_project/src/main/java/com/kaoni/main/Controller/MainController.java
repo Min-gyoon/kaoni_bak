@@ -15,6 +15,7 @@ import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
 import com.kaoni.main.Service.MainService;
 import com.kaoni.main.VO.MainVO;
+import com.kaoni.pcr.Service.PcrService;
 
 @Controller
 public class MainController {
@@ -25,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	private ChabunService chabunService;
+	
+	@Autowired
+	private PcrService pcrservice;
 	
 	//String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 	@ResponseBody
@@ -41,7 +45,7 @@ public class MainController {
 		List<MainVO> pcrlist = mainservice.pcrdata(mvo);
 		mvo = pcrlist.get(0);
 		 String json = new Gson().toJson(mvo);
-		 logger.info(json);
+		 
 		
 		
 		if(pcrlist.size()>0) {
@@ -50,4 +54,5 @@ public class MainController {
 		logger.info("list 제대로 가져오지 못했음. ");
 		return ":/redirect";
 	}
+	
 }
