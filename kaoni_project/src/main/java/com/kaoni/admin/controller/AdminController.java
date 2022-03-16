@@ -85,7 +85,7 @@ public class AdminController {
 		String checklogin = (String)session.getAttribute("emnum");
 		logger.info(checklogin);
 		logger.info("adminpcrinsert nCnt-->"+nCnt);
-		return "admin/adminmain";
+		return "redirect:/adminmain.kaoni";
 	}
 	
 	@RequestMapping(value="adminPcrSelect", method=RequestMethod.GET)
