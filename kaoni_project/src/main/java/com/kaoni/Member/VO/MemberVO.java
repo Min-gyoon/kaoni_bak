@@ -12,17 +12,20 @@ public class MemberVO {
 		 String id;
 		 
 		 @NotBlank(message = "비밀번호 공백")
-//		 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
-//		 , message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
+ 
+		 //@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
+		 //, message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
+
 		 String passwd;
 		 
 		 String position;
 		 String gender;
 		 String Dname;
+		 String deleteyn;
 		
 		public MemberVO() {
 		}
-		public MemberVO(String emnum, String name, String position, String id, String passwd, String gender, String dname) {
+		public MemberVO(String emnum, String name, String position, String id, String passwd, String gender, String dname, String deleteyn) {
 			this.emnum = emnum;
 			this.name = name;
 			this.position = position;
@@ -30,6 +33,7 @@ public class MemberVO {
 			this.passwd = passwd;
 			this.gender = gender;
 			this.Dname = dname;
+			this.deleteyn = deleteyn;
 		}
 		public String getEmnum() {
 			return emnum;
@@ -72,6 +76,12 @@ public class MemberVO {
 		}
 		public void setDname(String dname) {
 			Dname = dname;
+		}
+		public String getDeleteyn() {
+			return deleteyn;
+		}
+		public void setDeleteyn(String deleteyn) {
+			this.deleteyn = deleteyn;
 		}
 		
 }

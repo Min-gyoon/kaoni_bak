@@ -34,7 +34,7 @@ groupSize = Integer.parseInt(pvo2.getGroupSize());
 curPage = Integer.parseInt(pvo2.getCurPage());
 totalCount = Integer.parseInt(pvo2.getTotalCount());
 %>
-  <main id="main" style="padding-top:85px">
+  <main id="main" style="padding-top:90px">
   <div id="wrapper">
 <table  align="center" class="selectall">
 <thead>
@@ -69,6 +69,7 @@ String outcome = pvo1.getPoutcome();
 <%
 }
 %>
+<!--  
 <tr>
 <td colspan="6">
 				<jsp:include page="pcrPaging.jsp" flush="true">
@@ -81,6 +82,7 @@ String outcome = pvo1.getPoutcome();
 				</jsp:include>
 </td>
 </tr>
+-->
 </table>
 <!-- /WEB-INF/views/Pcr/pcrPaging.jsp? -->
 

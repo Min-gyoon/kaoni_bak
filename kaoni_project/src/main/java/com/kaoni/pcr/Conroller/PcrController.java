@@ -11,8 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kaoni.Member.VO.MemberVO;
+import com.kaoni.common.chabun.ChabunUtil;
+import com.kaoni.common.chabun.Service.ChabunService;
+import com.kaoni.main.VO.MainVO;
 import com.kaoni.pcr.Service.PcrService;
 import com.kaoni.pcr.VO.PcrVO;
 
@@ -22,6 +27,8 @@ public class PcrController {
 	
 	@Autowired(required=false)
 	private PcrService pcrService;
+	@Autowired
+	private ChabunService chabunService;
 
 	@RequestMapping(value="pcrForm", method=RequestMethod.GET)
 	public String pcrForm(HttpServletRequest req) {
@@ -36,9 +43,12 @@ public class PcrController {
 	}
 	@RequestMapping(value="pcrInsert", method=RequestMethod.GET)
 	public String pcrInsert(HttpServletRequest req) {
+		String pnum = ChabunUtil.getPcrChabun("P", chabunService.getPcrChabun().getPnum());
+		logger.info("pnum--->"+pnum);
 		HttpSession session = req.getSession();
 		PcrVO pvo = null;
 		pvo = new PcrVO();
+		pvo.setPnum(pnum);
 		pvo.setEmnum((String)session.getAttribute("emnum"));
 		pvo.setIsolea(req.getParameter("isolea"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
@@ -75,10 +85,9 @@ public class PcrController {
 	}
 	@RequestMapping(value="PcrUpdateForm", method=RequestMethod.GET)
 	public String pcrUpdateForm(PcrVO pvo, Model model, HttpServletRequest req) {
-		
-		HttpSession session = req.getSession();
-		String checklogin = (String)session.getAttribute("emnum");
-		pvo.setEmnum(checklogin);
+		String pnum = req.getParameter("pnum");
+		pvo.setEmnum(req.getParameter("emnum"));
+		pvo.setPnum(pnum);
 		List<PcrVO> list = pcrService.pcrUpdateForm(pvo);
 		if(list.size()>0) {
 			logger.info("list.size()->>>"+list.size());
@@ -91,7 +100,13 @@ public class PcrController {
 
 	@RequestMapping(value="pcrUpdate", method=RequestMethod.GET)
 	public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {
-		logger.info(req.getParameter("emnum"));
+		logger.info("pcrupdate 진입");
+		HttpSession session = req.getSession();
+		String emnum = (String)session.getAttribute("emnum");
+		if(emnum.equals(null)) {logger.info("emnum 널임");}
+		logger.info(emnum);
+		logger.info("pnum--->"+req.getParameter("pnum"));
+		pvo.setEmnum(req.getParameter("pnum"));
 		pvo.setEmnum(req.getParameter("emnum"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
@@ -107,4 +122,36 @@ public class PcrController {
 	}
 	
 }
+	
+	@ResponseBody
+	@RequestMapping(value="pcrMain", method=RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String pcrMain(PcrVO pvo, Model model) {
+		logger.info("pcrMain -------------");
+
+		List<PcrVO> listmain = pcrService.pcrMain(pvo);;
+		String jsontest = new Gson().toJson(listmain);
+		
+		logger.info(jsontest);
+		
+		if(listmain.size()>0) {
+			return jsontest;
+		}
+		logger.info("list 제대로 가져오지 못했음. ");
+		return ":/redirect";
+	}
+	@RequestMapping(value="pcrMine", method=RequestMethod.GET)
+	public String pcrMine(PcrVO pvo, Model model,HttpServletRequest req) {
+		logger.info("pcrMine -------------");
+		HttpSession session = req.getSession();
+		String emnum = (String)session.getAttribute("emnum");
+		pvo.setEmnum(emnum);
+		List<PcrVO> listmine = pcrService.pcrMine(pvo);
+		if(listmine.size()>0) {
+			model.addAttribute("listmine", listmine);
+			return "Pcr/pcrMine";
+		}else {
+		logger.info("리스트 못가져옴");
+		return ":/redirect";}
+	}
+	
 }

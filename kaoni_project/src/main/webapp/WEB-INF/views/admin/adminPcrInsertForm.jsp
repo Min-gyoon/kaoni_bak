@@ -2,10 +2,8 @@
 
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
-<html>
 
+<html>
 <head> 
   <meta charset="utf-8"> 
   <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
@@ -85,7 +83,6 @@ float: left;
 <title>Insert title here</title>
 </head>
 <body>
-
  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
@@ -165,22 +162,16 @@ float: left;
 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                        <div class="card-header" style="font-size: 1.1rem">PCR수정하기</div>
+                        <div class="card-header" style="font-size: 1.1rem">PCR정보입력</div>
                             <div class="card-body">
         <form name="jindan" id="jindan">
+        
         <div class="form-group">
-<%
-Object obj = request.getAttribute("list");
-List<PcrVO> list = (List)obj;
-PcrVO pvo = list.get(0);
-String isolea = pvo.getIsolea().split("\\s+")[0];
-String isoleb = pvo.getIsoleb().split("\\s+")[0];
-%>
             <label for="name" class="cols-sm-2 control-label">검사결과</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
             &nbsp;&nbsp;<input type="checkbox" name="poutcome" value="Y" onclick='checkOnlyOne(this)'>양성&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<input type="checkbox" name="poutcome"  value="N" onclick='checkOnlyOne(this)'>음성
+                    <input type="checkbox" name="poutcome"  value="N" onclick='checkOnlyOne(this)'>음성
             		</div>
             	</div>
             </div>  
@@ -189,8 +180,8 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             <label for="name" class="cols-sm-2 control-label">자가격리기간</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            시작일: <input type="text" autocomplete="off" name="isolea" id="isolea" class="form-control" value="<%=isolea %>">
-            종료일: <input type="text" onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" class="form-control" value="<%=isolea %>">
+            시작일: <input type="text" autocomplete="off" name="isolea" id="isolea" class="form-control">
+            종료일: <input type="text" onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" class="form-control">
             		</div>
             	</div>
             </div>
@@ -199,17 +190,20 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             <label for="name" class="cols-sm-2 control-label">특이사항</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            <textarea name="pcontent" id="pcontent" maxlength="1000" class="form-control" placeholder="특이사항을 입력하시오"><%=pvo.getPcontent() %></textarea>
+            <textarea name="pcontent" id="pcontent" maxlength="1000" class="form-control" placeholder="특이사항을 입력하시오"> </textarea>
+            	</div>
+            </div>
+            <!-- emnum 입력 -->
+               <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">사원번호입력</label>
+            	<div class="cols-sm-10">
+            		<div class="input-group">
+            <input type="text" name="emnum" id="emnum" class="form-control" placeholder="사원번호 입력" value=""> 
             		</div>
             	</div>
             </div>
        		 <input type="button" id="pcrbtn" value="제출하기" class="btn btn-primary">
-			<input type="button" id="curebtn" value="치료완료" class="btn btn-primary">
-			<input type="hidden" id="deleteyn" name="deleteyn" value="<%=pvo.getDeleteyn() %>">
-			<input type="hidden" id="pnum" name="pnum" value="<%=pvo.getPnum() %>">
-			<input type="hidden" id="emnum" name="emnum" value="<%=pvo.getEmnum() %>">
-			
-		</div>
+        
         </form>                   
                      
 	</div>
@@ -242,22 +236,11 @@ $(document).ready(function(){
   });
 $(document).on("click", "#pcrbtn", function(){
 	$("#jindan").attr({
-		"action":"pcrUpdate.kaoni",
+		"action":"adminPcrInsert.kaoni",
 		"method":"GET",
 		"enctype":"application/x-www-form-urlencoded"				
 	}).submit();
 });
-$(document).on("click", "#curebtn", function(){
-	 document.getElementById("poutcome").value="N"; 
-	 document.getElementById("deleteyn").value="Y"; 
-	 $("#jindan").attr({
-			"action":"pcrUpdate.kaoni",
-			"method":"GET",
-			"enctype":"application/x-www-form-urlencoded"				
-		}).submit();
-	alert("완치로 저장하겠습니다.");
-	
-});//curebtn click
 });
 function checkOnlyOne(element) {
 	  

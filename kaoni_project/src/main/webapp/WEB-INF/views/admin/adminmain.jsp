@@ -75,8 +75,9 @@ function selectMember(emnum){
         <ul>
         
           <li><a class="nav-link scrollto" href="http://localhost:8080/adminMemberlist.kaoni">사원관리하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원pcr정보관리하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/board.kaoni">공지사항</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원PCR정보보기</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/adminPcrInsertForm.kaoni">사원 PCR정보 입력하기</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -107,6 +108,7 @@ mvo = pvo.getMemberVO();
 String isolea = pvo.getIsolea().split("\\s+")[0];
 String isoleb = pvo.getIsoleb().split("\\s+")[0];
 String outcome = pvo.getPoutcome();
+System.out.println("adminmain-->"+pvo.getPnum());
 
 %>
 
@@ -117,13 +119,16 @@ String outcome = pvo.getPoutcome();
     <td><%=mvo.getDname() %></td>
     <td><%=isolea %> ~ <%=isoleb %></td>
     <td><%= outcome%></td>
-    <td><input type="hidden" id="emnum" name="emnum" value=""></td>
-  </tr>
+    
+    </tr>
+    <tr><td>
+    <input type="hidden" id="emnum" name="emnum" value="">
+	<input type="hidden" id="pnum" name="pnum" value="<%=pvo.getPnum()%>">
+</td></tr>
   
 <%
 }
 %>
-
 </table>
 
 </form>

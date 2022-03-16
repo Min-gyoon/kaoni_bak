@@ -39,5 +39,19 @@ public class PcrDAOImpl implements PcrDAO {
 		// TODO Auto-generated method stub
 		return sqlssesion.selectOne("pcrUpdateForm", pvo);
 	}
+
+
+	
+	  @Override public List<PcrVO> pcrMain(PcrVO pvo) { 
+		  
+	   return sqlssesion.selectList("pcrMain", pvo); }
+
+
+	@Override
+	public List<PcrVO> pcrMine(PcrVO pvo) {
+		// TODO Auto-generated method stub
+		return sqlssesion.selectList("pcrMine", pvo); 
+	}
+	 
 	
 }

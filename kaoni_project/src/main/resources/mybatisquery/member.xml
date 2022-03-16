@@ -29,6 +29,7 @@ WHERE ID='${id}'
 		 ,PASSWD
 		 ,GENDER
 		 ,DNAME
+		 ,DELETEYN
 		 ) 
 		 VALUES 
 		 (
@@ -39,6 +40,7 @@ WHERE ID='${id}'
 		 ,'${passwd}'
 		 ,'${gender}'
 		 ,'${Dname}'
+		 ,'Y'
 		 )
 </insert> 
 <select id="findInfo">

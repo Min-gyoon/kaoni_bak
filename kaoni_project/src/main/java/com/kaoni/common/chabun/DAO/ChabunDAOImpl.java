@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.main.VO.MainVO;
+import com.kaoni.pcr.VO.PcrVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -25,6 +26,12 @@ public class ChabunDAOImpl implements ChabunDAO {
 	public MainVO getMainChabun() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getMainChabun");
+	}
+
+	@Override
+	public PcrVO getPcrChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getPcrChabun");
 	}
 	
 

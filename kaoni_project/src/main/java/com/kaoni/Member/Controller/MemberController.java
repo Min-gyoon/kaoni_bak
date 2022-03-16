@@ -52,7 +52,6 @@ public class MemberController {
 	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
 		System.out.println("BindingResult : "+ result);
-		
 		int idCheck = memberService.idCheck(mvo);
 		if(idCheck == 1) {
 			return "redirect:memberSignUp.kaoni";
@@ -73,9 +72,9 @@ public class MemberController {
 				logger.info("가입 실행");
 				return "redirect:/";
 				}
+
 		}
 		return "redirect:/";
-		
 	}
 	
 //	로그인, 세션
@@ -160,8 +159,8 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		logger.info(checklogin);
-		if(checklogin.equals("admin")) {
-		}else {return "404";}
+		//if(checklogin.equals("admin")) {
+		//}else {return "404";}
 		logger.info("update->>"+req.getParameter("emnum"));
 		mvo.setEmnum(req.getParameter("emnum"));
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);

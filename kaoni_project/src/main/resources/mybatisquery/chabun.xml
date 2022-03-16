@@ -8,4 +8,8 @@
 	<select id="getMainChabun" resultType="MainVO" >
 		SELECT NVL(MAX(SUBSTR(A.MAINNUM, -4)),0)+1 MAINNUM FROM MAINTBL A
 	</select>
+	<select id="getPcrChabun" resultType="PcrVO" >
+		SELECT NVL(MAX(SUBSTR(A.PNUM, -4)),0)+1 PNUM FROM PCRTBL A
+	</select>
+	
 	</mapper>
