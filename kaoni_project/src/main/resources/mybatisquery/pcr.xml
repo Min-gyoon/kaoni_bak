@@ -13,12 +13,11 @@
 		<result column="ISOLEA" property="isolea" />
 		<result column="ISOLEB" property="isoleb" />
 		<result column="POUTCOME" property="poutcome" />
+		<result column="PNUM" property="pnum"/>
 		<collection property="memberVO" resultMap="MemberVO" />
 	</resultMap>
 <select id="pcrSelectAll" parameterType="PcrVO" resultMap="PcrVO">
-	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
-	,CEIL(ROW_NUMBER() OVER(ORDER BY M.EMNUM)/ #{pageSize, jdbcType=VARCHAR}) PAGESIZE
-	,COUNT(M.EMNUM) OVER() AS TOTALCOUNT
+	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, P.PNUM, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
 	FROM PCRTBL P, MEMBERTBL M 
 	WHERE P.EMNUM = M.EMNUM AND P.ISOLEB > TO_CHAR(SYSDATE, 'YY/MM/DD')
 </select>
@@ -37,19 +36,21 @@
 					ISOLEA,
 					ISOLEB,
 					PCONTENT,
-					DELETEYN
+					DELETEYN,
+					PNUM
 	)VALUES(
 					#{emnum, jdbcType=VARCHAR}	<!-- 1 -->
 				   ,#{poutcome, jdbcType=VARCHAR}	<!-- 2 -->
 				   ,#{isolea, jdbcType=VARCHAR}	<!-- 3 -->
 				   ,#{isoleb, jdbcType=VARCHAR}	<!-- 4 -->
 				   ,#{pcontent, jdbcType=VARCHAR}	<!-- 5 -->
-				     ,#{deleteyn, jdbcType=VARCHAR}
+				    ,#{deleteyn, jdbcType=VARCHAR}
+				    ,#{pnum, jdbcType=VARCHAR}
 	
 	)
 </insert>
 <select id="pcrUpdateForm" parameterType="PcrVO" resultType="PcrVO">
-	SELECT * FROM PCRTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
+	SELECT * FROM PCRTBL WHERE PNUM =#{pnum, jdbcType=VARCHAR}
 	
 </select>
 
@@ -60,10 +61,12 @@
 	PCONTENT=#{pcontent, jdbcType=VARCHAR}, 
 	DELETEYN=#{deleteyn, jdbcType=VARCHAR}
 	WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
+	AND PNUM =#{pnum, jdbcType=VARCHAR}
 
 </update>
 <select id="pcrMine" parameterType="PcrVO" resultType="PcrVO">
- SELECT * FROM PCRTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
+ SELECT * FROM PCRTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR} 
+ ORDER BY PNUM
 
 </select>
 </mapper>

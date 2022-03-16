@@ -1070,7 +1070,12 @@ color : #444444;
 .pcrmine{
 	width : 90%;
 }
-
+div.refreshfix{
+	position: fixed;
+	bottom: 50%;
+	right:7%;
+	
+}
 
 /*--------------------------------------------------------------
 # Breadcrumbs

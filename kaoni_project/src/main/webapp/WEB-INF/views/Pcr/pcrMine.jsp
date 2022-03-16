@@ -9,6 +9,21 @@
 Object obj = request.getAttribute("listmine");
 List<PcrVO> list = (List)obj;
 %>
+<script>
+function selectMember(pnum){
+	
+	var id = pnum.id;
+	alert(id);
+	$("#pnum").val(id);
+	
+	$("#mineform").attr({
+		"action":"/PcrUpdateForm.kaoni",
+		"method":"GET",
+		"enctype":"application/x-www-form-urlencoded"
+	}).submit();
+}
+
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file ="/WEB-INF/views/header.jsp" %>
@@ -16,6 +31,7 @@ List<PcrVO> list = (List)obj;
 </head>
 <body>
 <main style="padding-top:110px">
+<form id="mineform" name="mineform">
 <table  align="center" class="pcrmine">
 
   <tr class="table-info">
@@ -29,15 +45,20 @@ for(int i=0; i <list.size(); i++){
 	String isolea = pvo.getIsolea().split("\\s+")[0];
 	String isoleb = pvo.getIsoleb().split("\\s+")[0];
 %>
-  <tr class="table-success" onclick="">
+  <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" class="table-success" onclick="selectMember(this)">
   	<td><%=i+1 %></td>
   	<td><%=isolea%> ~ <%=isoleb %></td>
   	<td><%=pvo.getPoutcome() %></td>
   </tr>
+  
   <%
 }
   %>
+  <tr>
+  <td><input type="hidden" id ="pnum" name="pnum"></td>
+  </tr>
   </table>
+  </form>
 </main>
 <%@include file ="/WEB-INF/views/footer.jsp" %>
 </body>

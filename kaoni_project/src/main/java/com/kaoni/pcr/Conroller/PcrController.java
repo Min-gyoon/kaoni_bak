@@ -44,6 +44,7 @@ public class PcrController {
 	@RequestMapping(value="pcrInsert", method=RequestMethod.GET)
 	public String pcrInsert(HttpServletRequest req) {
 		String pnum = ChabunUtil.getPcrChabun("P", chabunService.getPcrChabun().getPnum());
+		logger.info("pnum--->"+pnum);
 		HttpSession session = req.getSession();
 		PcrVO pvo = null;
 		pvo = new PcrVO();
@@ -84,10 +85,9 @@ public class PcrController {
 	}
 	@RequestMapping(value="PcrUpdateForm", method=RequestMethod.GET)
 	public String pcrUpdateForm(PcrVO pvo, Model model, HttpServletRequest req) {
-		
-		HttpSession session = req.getSession();
-		String checklogin = (String)session.getAttribute("emnum");
-		pvo.setEmnum(checklogin);
+		String pnum = req.getParameter("pnum");
+		pvo.setEmnum(req.getParameter("emnum"));
+		pvo.setPnum(pnum);
 		List<PcrVO> list = pcrService.pcrUpdateForm(pvo);
 		if(list.size()>0) {
 			logger.info("list.size()->>>"+list.size());
@@ -100,7 +100,13 @@ public class PcrController {
 
 	@RequestMapping(value="pcrUpdate", method=RequestMethod.GET)
 	public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {
-		logger.info(req.getParameter("emnum"));
+		logger.info("pcrupdate 진입");
+		HttpSession session = req.getSession();
+		String emnum = (String)session.getAttribute("emnum");
+		if(emnum.equals(null)) {logger.info("emnum 널임");}
+		logger.info(emnum);
+		logger.info("pnum--->"+req.getParameter("pnum"));
+		pvo.setEmnum(req.getParameter("pnum"));
 		pvo.setEmnum(req.getParameter("emnum"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
@@ -143,9 +149,9 @@ public class PcrController {
 		if(listmine.size()>0) {
 			model.addAttribute("listmine", listmine);
 			return "Pcr/pcrMine";
-		}
+		}else {
 		logger.info("리스트 못가져옴");
-		return ":/redirect";
+		return ":/redirect";}
 	}
 	
 }

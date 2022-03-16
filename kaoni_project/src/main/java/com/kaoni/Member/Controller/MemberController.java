@@ -156,8 +156,8 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		logger.info(checklogin);
-		if(checklogin.equals("admin")) {
-		}else {return "404";}
+		//if(checklogin.equals("admin")) {
+		//}else {return "404";}
 		logger.info("update->>"+req.getParameter("emnum"));
 		mvo.setEmnum(req.getParameter("emnum"));
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);
