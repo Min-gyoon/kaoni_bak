@@ -154,12 +154,12 @@ function checkPwd() {
     var pw1 = $('#passwd1').val();
     
     var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    if(pw != pw1 && false === reg.test(pw)) {
+   /*  if(pw != pw1 && false === reg.test(pw)) {
     	document.getElementById('pwCheck').innerHTML = "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.";#
     	
     	}else {
     	console.log("통과");
-    	}
+    	} */
 
     if(pw == pw1){
     	 $("#passwd1").css("background-color", "#B0F6AC");
