@@ -41,6 +41,12 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberUpdateForm", mvo);
 	}
+	@Override
+	public Integer idCheck(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("DAO");
+		return sqlSession.selectOne("idCheck",mvo);
+	}
 
 
 

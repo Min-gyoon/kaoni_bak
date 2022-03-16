@@ -45,5 +45,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.memberUpdateForm(mvo);
 	}
 
+	@Override
+	public int idCheck(MemberVO mvo) {
+		logger.info("Serivce");
+		return memberDAO.idCheck(mvo);
+	}
+
 
 }

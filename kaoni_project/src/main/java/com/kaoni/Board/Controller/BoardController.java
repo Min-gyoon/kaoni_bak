@@ -61,7 +61,7 @@ public class BoardController {
 		l.info(summernote);
 		l.info(bvo.getContent());
 		
-		return "board/writePost";
+		return "redirect:ShowAllPost.kaoni";
 	}
 	
 	
@@ -70,9 +70,6 @@ public class BoardController {
 	public String UpdatePost(Model model,String nbo){
 		BoardVO data = boardService.DetailPost(Integer.parseInt(nbo));
 		model.addAttribute("data",data);
-		l.info("수정");
-		l.info(data.getNbo());
-		l.info(data.getTitle());
 		return "board/UpdatePost";
 		
 	}
@@ -82,13 +79,14 @@ public class BoardController {
 		String summernote = request.getParameter("summernote");
 		String content = summernote.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "").replaceAll("\r|\n|&nbsp;","");
 		
+		bvo.setNbo(Integer.parseInt(request.getParameter("nbo")));
 		bvo.setTitle(request.getParameter("title"));
 		bvo.setContent(content);
 		bvo.setImpor(Integer.parseInt(request.getParameter("impor")));
 		bvo.setUpdatedate(request.getParameter("updatedate"));
 		boardService.UpdatePost(bvo);
 		
-		return "board/UpdatePost";
+		return "redirect:ShowAllPost.kaoni";
 	}
 	
 	//	게시글 삭제

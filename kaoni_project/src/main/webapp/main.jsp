@@ -26,6 +26,7 @@
          });
      }
   $(document).ready(function(){
+
          $.ajax({
             url : 'pcrMain.kaoni',
             dataType : 'json',
@@ -49,6 +50,7 @@
                console.log(error);
             }   
          });               
+
   });//ready
 </script>
 </head>

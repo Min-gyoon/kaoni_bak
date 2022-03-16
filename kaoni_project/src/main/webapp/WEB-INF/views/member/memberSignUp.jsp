@@ -13,6 +13,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
 <body>
 <%@include file ="/WEB-INF/views/header.jsp" %>
 <main id="main" style="padding-top:120px;">
@@ -30,8 +31,11 @@
             <label for="name" class="cols-sm-2 control-label">ID</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            <input type="text" name="id" maxlength="20" class="form-control" placeholder="Enter your ID">
-            		</div>
+            <input type="text" name="id" id ="id" maxlength="20" class="form-control" placeholder="Enter your ID">
+            		</div> 
+            		<button type="button" onclick="fn_idCheck();" class="btn btn-primary"
+            		style="margin-top: 8px;"
+            		>중복 확인</button>
             	</div>
             </div>
             
@@ -39,8 +43,10 @@
             <label for="name" class="cols-sm-2 control-label">Password</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            <input type="password" name="passwd" maxlength="15" class="form-control" placeholder="Enter your Password">
-            		</div>
+            <input type="password" id="passwd" name="passwd" maxlength="15" class="form-control" 
+            oninput="checkPwd()" placeholder="Enter your Password">
+           
+            		</div> <div class="pwCheck">a</div>
             	</div>
             </div>
                 
@@ -48,7 +54,8 @@
             <label for="name" class="cols-sm-2 control-label">Password Check</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            <input type="password" name="passwd1" maxlength="15" class="form-control" placeholder="Enter your Password">
+            <input type="password" id="passwd1" name="passwd1" maxlength="15" class="form-control" 
+            oninput="checkPwd()" placeholder="Enter your Password" >
             		</div>
             	</div>
             </div>
@@ -102,7 +109,7 @@
             		</div>
             	</div>
             </div>  
-        <input type="submit" value="가입" class="btn btn-primary"/>  
+        <input type="submit" value="가입" class="btn btn-primary" id="signupbtn"/>  
         <input type="button" value="취소" class="btn btn-primary">
     </form>
       </div>
@@ -115,5 +122,55 @@
   </main><!-- End #main -->
 <%@include file ="/WEB-INF/views/footer.jsp" %>
 </body>
+<script type="text/javascript">
 
+
+function fn_idCheck() {
+	
+	var id = $("#id").val();
+		console.log(id);
+		
+		$.ajax({
+			url : 'idCheck.kaoni',
+			type :'POST',
+			dataType :'json',
+			data : {id},
+			success : function(data){
+				if(data == 1){
+					alert("중복된 아이디입니다");
+					 $("#signupbtn").prop("disabled", true);
+				        $("#signupbtn").css("background-color", "#aaaaaa");
+				}else if(data == 0){
+					alert("사용가능한 아이디입니다");
+					 $("#signupbtn").prop("disabled", false);
+				        $("#signupbtn").css("background-color", "#0D6EFD");
+				}
+			}
+		})
+	}
+	
+function checkPwd() {
+    var pw = $('#passwd').val();
+    var pw1 = $('#passwd1').val();
+    
+    var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+   /*  if(pw != pw1 && false === reg.test(pw)) {
+    	document.getElementById('pwCheck').innerHTML = "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.";#
+    	
+    	}else {
+    	console.log("통과");
+    	} */
+
+    if(pw == pw1){
+    	 $("#passwd1").css("background-color", "#B0F6AC");
+         $("#signupbtn").prop("disabled", false);
+         $("#signupbtn").css("background-color", "#0D6EFD");
+    }
+     else if (pw != pw1 ) {
+        $("#signupbtn").prop("disabled", true);
+        $("#signupbtn").css("background-color", "#aaaaaa");
+        $("#passwd1").css("background-color", "#FFCECE");
+    } 
+    }
+</script>
 </html>

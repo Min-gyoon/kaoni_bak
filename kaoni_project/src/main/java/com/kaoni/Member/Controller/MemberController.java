@@ -23,12 +23,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
-import com.kaoni.pcr.VO.PcrVO;
 
 @Controller
 public class MemberController {
@@ -52,26 +52,29 @@ public class MemberController {
 	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
 		System.out.println("BindingResult : "+ result);
-		if(result.hasErrors()) {
-			for(ObjectError obj : result.getAllErrors()) {
-				System.out.println("메세지 :"+obj.getDefaultMessage());
-				System.out.println("코드 :"+ obj.getCode());
-				System.out.println("ObjectName :"+obj.getObjectName());
+		int idCheck = memberService.idCheck(mvo);
+		if(idCheck == 1) {
+			return "redirect:memberSignUp.kaoni";
+		}else if (idCheck ==0) {
+			if(result.hasErrors()) {
+				for(ObjectError obj : result.getAllErrors()) {
+					System.out.println("메세지 :"+obj.getDefaultMessage());
+					System.out.println("코드 :"+ obj.getCode());
+					System.out.println("ObjectName :"+obj.getObjectName());
+					}
+				return "member/memberSignUp";
+			}else {
+				logger.info("아이디 중복");
+				String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+				mvo.setEmnum(emnum);
+				memberService.memberSignUp(mvo);
+				logger.info(emnum);
+				logger.info("가입 실행");
+				return "redirect:/";
 				}
-			return "member/memberSignUp";
-		}else {
-		logger.info("test1");
-		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
-		logger.info("test2");
-		logger.info(emnum);
-		//String emnum = "EM0006";
-		mvo.setEmnum(emnum);
-		
-		memberService.memberSignUp(mvo);
-		
-		logger.info("가입 실행");
-		return "redirect:/";
+
 		}
+		return "redirect:/";
 	}
 	
 //	로그인, 세션
@@ -138,6 +141,7 @@ public class MemberController {
 		
 		mvo.setId((String)session.getAttribute("member"));
 		mvo.setPasswd((String)session.getAttribute("passwd"));
+		mvo.setEmnum((String) session.getAttribute("emnum"));
 		
 		memberService.memberLogin(memberVO);
 		memberService.memberLogin(mvo);
@@ -153,15 +157,19 @@ public class MemberController {
 	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
 	public String updateInfo(MemberVO mvo, Model model, HttpServletRequest req) {
 		logger.info("adminMemberlist 진입");
+		
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
+		
 		logger.info(checklogin);
 		//if(checklogin.equals("admin")) {
 		//}else {return "404";}
 		logger.info("update->>"+req.getParameter("emnum"));
+		
 		mvo.setEmnum(req.getParameter("emnum"));
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);
 		model.addAttribute("list", list);
+		
 		return "member/updateInfo";
 	}
 	
@@ -187,6 +195,17 @@ public class MemberController {
 		session = request.getSession();
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
+	public int idCheck(MemberVO mvo,HttpServletRequest request,String id2) {
+		logger.info(mvo.getId());
+		int result = memberService.idCheck(mvo);
+		logger.info(result);
+		
+		return result;
 	}
 		
 		private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {

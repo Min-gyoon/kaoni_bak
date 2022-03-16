@@ -12,4 +12,5 @@ public interface MemberService {
 	public List<MemberVO> memberUpdateForm(MemberVO mvo);
 	public int updateInfo(MemberVO mvo);
 	public List<MemberVO> memberSelectAll(MemberVO mvo);
+	public int idCheck(MemberVO mvo);
 }

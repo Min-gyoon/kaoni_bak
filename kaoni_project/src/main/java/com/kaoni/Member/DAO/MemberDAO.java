@@ -12,4 +12,5 @@ public interface MemberDAO {
 	public int updateInfo(MemberVO mvo);
 	public List<MemberVO> memberSelectAll(MemberVO mvo);
 	public List<MemberVO> memberUpdateForm(MemberVO mvo);
+	public Integer idCheck(MemberVO mvo);
 }
