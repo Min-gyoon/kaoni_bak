@@ -38,7 +38,6 @@
   <script type="text/javascript">
   //코로나현황 데이터 가져오기. 
   $(document).ready(function(){
-	alert("test");
 			$.ajax({
 				url : 'pcrdata.kaoni',
 				dataType : 'json',

@@ -13,6 +13,12 @@
          WHERE ID = '${id}'
          AND PASSWD = '${passwd}'
 </select>
+
+<select id="idCheck" parameterType="MemberVO" resultType="Integer">
+SELECT COUNT(*) FROM MEMBERTBL 
+WHERE ID='${id}'
+</select>
+
  <insert id="memberSignUp"> 
 		 INSERT INTO MEMBERTBL
 		 (

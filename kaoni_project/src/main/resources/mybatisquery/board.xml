@@ -41,7 +41,7 @@ ${impor}
 <update id="UpdatePost">
 UPDATE BOARDTBL SET
 TITLE = '${title}',CONTENT = '${content}',UPDATEDATE = '${updatedate}',IMPOR = ${impor}
-WHERE IMPOR = ${impor}
+WHERE NBO = ${nbo}
 </update>
 <delete id="DeletePost">
 DELETE FROM BOARDTBL

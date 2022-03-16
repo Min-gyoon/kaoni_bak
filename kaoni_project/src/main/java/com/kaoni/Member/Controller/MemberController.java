@@ -23,12 +23,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kaoni.Member.Service.MemberService;
 import com.kaoni.Member.VO.MemberVO;
 import com.kaoni.common.chabun.ChabunUtil;
 import com.kaoni.common.chabun.Service.ChabunService;
-import com.kaoni.pcr.VO.PcrVO;
 
 @Controller
 public class MemberController {
@@ -52,23 +52,30 @@ public class MemberController {
 	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
 		System.out.println("BindingResult : "+ result);
-		if(result.hasErrors()) {
-			for(ObjectError obj : result.getAllErrors()) {
-				System.out.println("메세지 :"+obj.getDefaultMessage());
-				System.out.println("코드 :"+ obj.getCode());
-				System.out.println("ObjectName :"+obj.getObjectName());
-				}
-			return "member/memberSignUp";
-		}else {
-//		String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
-		String emnum = "EM0006";
-		mvo.setEmnum(emnum);
 		
-		memberService.memberSignUp(mvo);
-		logger.info(emnum);
-		logger.info("가입 실행");
-		return "redirect:/";
+		int idCheck = memberService.idCheck(mvo);
+		if(idCheck == 1) {
+			return "redirect:memberSignUp.kaoni";
+		}else if (idCheck ==0) {
+			if(result.hasErrors()) {
+				for(ObjectError obj : result.getAllErrors()) {
+					System.out.println("메세지 :"+obj.getDefaultMessage());
+					System.out.println("코드 :"+ obj.getCode());
+					System.out.println("ObjectName :"+obj.getObjectName());
+					}
+				return "member/memberSignUp";
+			}else {
+				logger.info("아이디 중복");
+				String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
+				mvo.setEmnum(emnum);
+				memberService.memberSignUp(mvo);
+				logger.info(emnum);
+				logger.info("가입 실행");
+				return "redirect:/";
+				}
 		}
+		return "redirect:/";
+		
 	}
 	
 //	로그인, 세션
@@ -184,6 +191,17 @@ public class MemberController {
 		session = request.getSession();
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
+	public int idCheck(MemberVO mvo,HttpServletRequest request,String id2) {
+		logger.info(mvo.getId());
+		int result = memberService.idCheck(mvo);
+		logger.info(result);
+		
+		return result;
 	}
 		
 		private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
