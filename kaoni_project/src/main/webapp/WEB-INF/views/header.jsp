@@ -124,7 +124,7 @@ float: left;
             <ul class="menu-list accordion"> 
                 <li id="nav1" class="toggle accordion-toggle">  
                     <span class="icon-plus"></span> 
-                    <a class="menu-link" href="http://localhost:8080/pcrSelectAll.kaoni">내정보수정</a> 
+                    <a class="menu-link" href="http://localhost:8080/updateInfo_pwCheck.kaoni">내정보수정</a> 
                 </li> 
                 
                 <li id="nav2" class="toggle accordion-toggle">  

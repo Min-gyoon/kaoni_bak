@@ -141,6 +141,7 @@ public class MemberController {
 		
 		mvo.setId((String)session.getAttribute("member"));
 		mvo.setPasswd((String)session.getAttribute("passwd"));
+		mvo.setEmnum((String) session.getAttribute("emnum"));
 		
 		memberService.memberLogin(memberVO);
 		memberService.memberLogin(mvo);
@@ -156,15 +157,19 @@ public class MemberController {
 	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
 	public String updateInfo(MemberVO mvo, Model model, HttpServletRequest req) {
 		logger.info("adminMemberlist 진입");
+		
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
+		
 		logger.info(checklogin);
 		//if(checklogin.equals("admin")) {
 		//}else {return "404";}
 		logger.info("update->>"+req.getParameter("emnum"));
+		
 		mvo.setEmnum(req.getParameter("emnum"));
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);
 		model.addAttribute("list", list);
+		
 		return "member/updateInfo";
 	}
 	
