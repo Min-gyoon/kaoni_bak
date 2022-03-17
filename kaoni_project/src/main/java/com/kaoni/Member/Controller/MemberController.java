@@ -50,7 +50,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
-	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
+	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request
+			,Model model){
 		System.out.println("BindingResult : "+ result);
 		
 		int idCheck = memberService.idCheck(mvo);
@@ -58,11 +59,16 @@ public class MemberController {
 			return "redirect:memberSignUp.kaoni";
 		}else if (idCheck ==0) {
 			if(result.hasErrors()) {
+				
 				for(ObjectError obj : result.getAllErrors()) {
 					System.out.println("메세지 :"+obj.getDefaultMessage());
 					System.out.println("코드 :"+ obj.getCode());
 					System.out.println("ObjectName :"+obj.getObjectName());
+					model.addAttribute("obj",obj);
+					logger.info("obj : "+obj);
+					logger.info(obj.getDefaultMessage());
 					}
+				
 				return "member/memberSignUp";
 			}else {
 				logger.info("아이디 중복");
