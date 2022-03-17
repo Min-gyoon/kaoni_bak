@@ -66,7 +66,7 @@ public class SelfController {
 	int sCnt = 0; 
 	for(int i =0; i<list.size(); i++) { 
 	String count = (String) list.get(i); 
-	logger.info(count); 
+	logger.info("scnt"+count); 
 	if(count.equals("Y")) { 
 	sCnt++; 
 	logger.info(sCnt); 
@@ -83,12 +83,14 @@ public class SelfController {
 	int nCnt = selfservice.selfInsert(svo); 
 	 
 	if(sCnt>3) { 
+		logger.info("scnt결과로");
 	//return "self/warning"; 
-	return "redirect:/"; 
+	return "self/selfResult"; 
 	} 
 	 
 	 
 	if(nCnt > 0) { 
+		logger.info("ncnt결과로 ");
 	return "redirect:/"; 
 	}else { 
 	return "self/selfForm"; 
@@ -110,7 +112,7 @@ public class SelfController {
 			return "self/selfSelectAll";
 		}else {	
 			logger.info("selectall data error");
-			return "redirect:/";}
+			return "error";}
 	
 }
 

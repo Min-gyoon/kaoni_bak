@@ -63,6 +63,19 @@ function selectMember(emnum){
 
 
 </script>
+<style type="text/css">
+
+
+table tr td {
+border: 1px solid rgba(255, 0, 0, 2);
+border-right: none;
+border-top: none;
+border-left: none;
+border-color: black 
+}
+
+
+</style>
 </head>
 <body>
  <!-- ======= Header ======= -->
@@ -112,8 +125,8 @@ System.out.println("adminmain-->"+pvo.getPnum());
 
 %>
 
-  <tr class="table-success">
-  	<td id="<%= mvo.getEmnum() %>" onclick="selectMember(this)"><%= mvo.getEmnum() %></td>
+  <tr id="<%= mvo.getEmnum() %>" style="cursor: pointer;" onclick="selectMember(this)">
+  	<td><%= mvo.getEmnum() %></td>
     <td><%=mvo.getName() %></td>
     <td><%=mvo.getPosition() %></td>
     <td><%=mvo.getDname() %></td>

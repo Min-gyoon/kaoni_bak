@@ -15,10 +15,10 @@
             url : 'pcrdata.kaoni',
             dataType : 'json',
             success : function(data){
-               document.getElementById('allmember').innerHTML=parseInt(data.allmember);
-               document.getElementById('nowmember').innerHTML = parseInt(data.nowmember);
-               document.getElementById('member').innerHTML = parseInt(data.member);
-               document.getElementById('isolemember').innerHTML = parseInt(data.isolemember);
+               document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
+               document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
+               document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+               document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
             },
             error : function(error){
                console.log(error);
@@ -26,7 +26,22 @@
          });
      }
   $(document).ready(function(){
-	  alert("text-->"+ document.getElementById('hj').innerHTML);
+      
+          $.ajax({
+             url : 'pcrdata.kaoni',
+             dataType : 'json',
+             success : function(data){
+                document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
+                document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
+                document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+                document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
+             },
+             error : function(error){
+                console.log(error);
+             }   
+          });
+      
+	  
          $.ajax({
             url : 'pcrMain.kaoni',
             dataType : 'json',
@@ -57,16 +72,16 @@
              success : function(data){
           	   console.log(typeof(data));
           	   var day = data.TbCorona19CountStatus.row[0].S_DT;
-                 var hj = data.TbCorona19CountStatus.row[0].S_HJ;
+                 var hj = data.TbCorona19CountStatus.row[0].SN_HJ;
                  var death = data.TbCorona19CountStatus.row[0].S_DEATH;
-                 var jhj = data.TbCorona19CountStatus.row[0].T_HJ;
+                 var jhj = data.TbCorona19CountStatus.row[0].N_HJ;
                  var jdeath =data.TbCorona19CountStatus.row[0].DEATH;
                 console.log(jdeath);
-                document.getElementById('hj').innerHTML=parseInt(hj);
-                document.getElementById('death').innerHTML = parseInt(death);
-                document.getElementById('jhj').innerHTML = parseInt(jhj);
-                document.getElementById('jdeath').innerText = parseInt(jdeath);
-                document.getElementById('day').innerText = day;
+                document.getElementById('hj').innerHTML=hj+"명";
+                document.getElementById('death').innerHTML = death+"명";
+                document.getElementById('jhj').innerHTML = jhj+"명";
+                document.getElementById('jdeath').innerText = jdeath+"명";
+                document.getElementById('day').innerText = day+"기준";
              },
              error : function(error){
                 console.log(error);
@@ -95,7 +110,7 @@ border-color: black
    <div>
       <main id="main" style="padding-top:85px" >
       
-        <table align ="center" style="width:85%">
+        <table align ="center" style="width:80%">
       <thead>
         <tr class="table-info">
           <th>이름</th>
@@ -111,7 +126,7 @@ border-color: black
         
         </table>
 </div>
-<section id="counts" class="counts" style="padding-top:85px">
+<section id="counts" class="counts" style="padding-top:85px; padding-bottom:10px;"  >
       <div class="container">
       <div class="row counters" >
       
@@ -123,7 +138,7 @@ border-color: black
 
           <div class="col-lg-3 col-6 text-center">
             <span id="death" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-            <p>서울 사망</p>
+            <p>(누적)서울 사망</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
@@ -133,8 +148,11 @@ border-color: black
 
           <div class="col-lg-3 col-6 text-center">
             <span id="jdeath" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-            <p>전국 사망</p>            
-          </div>	
+            <p>(누적)전국 사망</p>            
+          </div>
+          <div>
+         	<span style="font-size: 1.1rem; color: black;" id="day" align ="right"></span>
+         </div>	
         </div>
 
       </div>
@@ -146,7 +164,7 @@ border-color: black
       <div class="container">
       <div class="row counters" >
       
-       <h5 align ="left">사내 코로나 현황 </h5> 
+       <h5 align ="left" style="cursor: pointer;" onclick="clickrefresh()">사내 코로나 현황 </h5> 
           <div class="col-lg-3 col-6 text-center">
             <span id = "allmember" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
             <p>총 확진자(누적)</p>
@@ -166,10 +184,8 @@ border-color: black
             <span id="member" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
             <p>근무원 총원</p>            
           </div>
-         <div class="refreshfix"><img src="assets/img/refresh2.png"  align ="right" style="width:2%;height:2%;cursor: pointer;" onclick="clickrefresh()"></div>
-                      <div>
-         	<span style="font-size: 1.1rem; color: black;" id="day" align ="right"></span>
-         </div>
+         
+                      
 
          
         </div>

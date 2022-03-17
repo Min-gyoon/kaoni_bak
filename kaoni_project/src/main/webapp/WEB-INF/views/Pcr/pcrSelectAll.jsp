@@ -26,7 +26,19 @@ $(document).ready(function(){
 	});
 
 </script>
+<style type="text/css">
 
+
+table tr td {
+border: 1px solid rgba(255, 0, 0, 2);
+border-right: none;
+border-top: none;
+border-left: none;
+border-color: black 
+}
+
+
+</style>
 
 <body>
 <% 
@@ -49,24 +61,26 @@ curPage = Integer.parseInt(pvo2.getCurPage());
 totalCount = Integer.parseInt(pvo2.getTotalCount());
 %>
 <!-- 폼태그 넘기는 함수 하나 만들고 컨트롤러 하나 만들고 받아온 리스트 넘기는 jsp 하나 만들기.  -->
-  <main id="main" style="padding-top:90px">
-  <div id="wrapper">
+  <main id="main" style="padding-top:95px">
+  <div id="wrap">
   <form id ="searchform" >
-<table  align="center" class="selectall">
+  
+<table  align="center" class="selectall" style="width:80%;text-align:center;" >
 <thead>
 
 <tr>
 	<td  colspan="2"></td>
-	<td  colspan="2"><input type="text" id="search" name="search"></td>
-	<td> <input type="button" id="searchbtn" value="검색"></td>
+	<td  colspan="2"></td>
+	<td style="text-align:right"> <input type="text" id="search" name="search"></td>
+	<td><input type="button" id="searchbtn" value="검색"></td>
 	</tr>
 	
   <tr class="table-info">
-    <th>이름</th>
-    <th>직책</th>
-    <th>부서</th>
-    <th>자가격리기간</th>
-    <th>확진여부</th>
+    <th style="width:20%;">이름</th>
+    <th style="width:20%;">직책</th>
+    <th style="width:20%;">부서</th>
+    <th style="width:25%;">자가격리기간</th>
+    <th style="width:15%;">확진여부</th>
   </tr>
   
   <%
@@ -83,7 +97,7 @@ String outcome = pvo1.getPoutcome();
 
 
 %>
-  <tr class="table-success">
+  <tr>
     <td><%=mvo.getName() %></td>
     <td><%=mvo.getPosition() %></td>
     <td><%=mvo.getDname() %></td>
@@ -96,8 +110,8 @@ String outcome = pvo1.getPoutcome();
 
 </table>
 </form>
-
-	</div>
+</div>
+	
   </main><!-- End #main -->
 <%@include file ="/WEB-INF/views/footer.jsp" %>
 

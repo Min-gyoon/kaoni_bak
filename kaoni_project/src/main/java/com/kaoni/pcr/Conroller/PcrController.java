@@ -73,8 +73,6 @@ public class PcrController {
 		pvo.setPageSize(String.valueOf(pageSize));
 		pvo.setTotalCount(String.valueOf(totalCount));
 		List<PcrVO> listAll = pcrService.pcrSelectAll(pvo);
-		logger.info(pvo.getCurPage());
-		logger.info(pvo.getGroupSize());
 		if(listAll.size()>0) {
 			model.addAttribute("pagingVO", pvo);
 			model.addAttribute("listAll", listAll);
@@ -90,7 +88,6 @@ public class PcrController {
 		pvo.setPnum(pnum);
 		List<PcrVO> list = pcrService.pcrUpdateForm(pvo);
 		if(list.size()>0) {
-			logger.info("list.size()->>>"+list.size());
 			model.addAttribute("list", list);
 			return "Pcr/pcrUpdateForm";
 		}
@@ -104,15 +101,12 @@ public class PcrController {
 		HttpSession session = req.getSession();
 		String emnum = (String)session.getAttribute("emnum");
 		if(emnum.equals(null)) {logger.info("emnum 널임");}
-		logger.info(emnum);
-		logger.info("pnum--->"+req.getParameter("pnum"));
 		pvo.setEmnum(req.getParameter("pnum"));
 		pvo.setEmnum(req.getParameter("emnum"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
 		pvo.setIsoleb(req.getParameter("isoleb"));
 		pvo.setPcontent(req.getParameter("pcontent"));
-		pvo.setDeleteyn(req.getParameter("deleteyn"));
-		logger.info("emnum-->>"+pvo.getEmnum());	
+		pvo.setDeleteyn(req.getParameter("deleteyn"));	
 		int nCnt = pcrService.pcrUpdate(pvo);
 		if(nCnt>0) {
 			logger.info("update"+nCnt+"건 완료");
@@ -137,7 +131,7 @@ public class PcrController {
 			return jsontest;
 		}
 		logger.info("list 제대로 가져오지 못했음. ");
-		return ":/redirect";
+		return "error";
 	}
 	@RequestMapping(value="pcrMine", method=RequestMethod.GET)
 	public String pcrMine(PcrVO pvo, Model model,HttpServletRequest req) {
@@ -167,7 +161,7 @@ public class PcrController {
 			return "Pcr/pcrSearchResult";
 		}else {
 		logger.info("리스트 못가져옴");
-		return "Pcr/pcrSearchResult";}
+		return "error";}
 	}
 	
 	

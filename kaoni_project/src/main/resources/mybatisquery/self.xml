@@ -30,7 +30,7 @@
 </insert>
 <select id="selfSelectAll" parameterType="SelfVO" resultType="SelfVO">
 SELECT * FROM SELFTBL 
-WHERE EMNUM = #{emnum, jdbcType=VARCHAR} AND ROWNUM =1 
+WHERE EMNUM = #{emnum, jdbcType=VARCHAR} 
 ORDER BY INSERTDATE DESC
 </select>
 

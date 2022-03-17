@@ -25,7 +25,7 @@
 <select id="pcrMain" parameterType="PcrVO" resultMap="PcrVO">
 	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
 	FROM PCRTBL P, MEMBERTBL M 
-	<![CDATA[WHERE P.EMNUM = M.EMNUM AND ROWNUM <=10 ]]>
+	<![CDATA[WHERE P.EMNUM = M.EMNUM AND ROWNUM <=6 ]]>
 	ORDER BY ISOLEA DESC
 </select>
 <select id="pcrSearch" parameterType="PcrVO" resultMap="PcrVO">

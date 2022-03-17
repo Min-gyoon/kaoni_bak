@@ -67,6 +67,19 @@ function addmemeber(){
 
 
 </script>
+<style type="text/css">
+
+
+table tr td {
+border: 1px solid rgba(255, 0, 0, 2);
+border-right: none;
+border-top: none;
+border-left: none;
+border-color: black 
+}
+
+
+</style>
 </head>
 <body>
  <!-- ======= Header ======= -->
@@ -77,9 +90,9 @@ function addmemeber(){
 	<!-- 헤더 -->
       <nav id="navbar" class="navbar">
         <ul>
-        
           <li><a class="nav-link scrollto" href="http://localhost:8080/adminMemberlist.kaoni">사원관리하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원pcr정보관리하기</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원PCR정보보기</a></li>
+          <li><a class="nav-link scrollto" href="http://localhost:8080/adminPcrInsertForm.kaoni">사원 PCR정보 입력하기</a></li>
           <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -110,7 +123,7 @@ MemberVO mvo = list.get(i);
 
 %>
 
-  <tr class="table-success" style="cursor: pointer;" id="<%= mvo.getEmnum() %>" onclick="selectMember(this)">
+  <tr style="cursor: pointer;" id="<%= mvo.getEmnum() %>" onclick="selectMember(this)">
   	<td><%= mvo.getEmnum() %></td>
     <td><%=mvo.getName() %></td>
     <td><%=mvo.getPosition() %></td>

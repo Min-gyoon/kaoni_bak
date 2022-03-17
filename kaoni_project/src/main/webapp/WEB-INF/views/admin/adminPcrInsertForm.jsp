@@ -157,7 +157,7 @@ float: left;
     </div>
   </header><!-- End Header -->
 
-  <main id="main" style="padding-top:80px">
+  <main id="main" style="padding-top:90px">
 <div class="container">
 <div class="row justify-content-center">
                     <div class="col-md-8">

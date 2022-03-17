@@ -39,15 +39,13 @@ public class AdminController {
 		logger.info("adminmain 진입");
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
-		logger.info(checklogin);
 		//if(checklogin.equals("")) {
 		//}else {return "404";}
 		List<PcrVO> listAll = pcrservice.pcrSelectAll(pvo);
 		model.addAttribute("listAll", listAll);
-		logger.info("listsize-->"+listAll.size());
 		if(listAll.size() > 0) {
 			return "admin/adminmain";
-		}else{return "404띄우자 ";}
+		}else{return "error";}
 	
 }
 	
@@ -58,7 +56,6 @@ public class AdminController {
 		logger.info("adminPcrInsertForm 진입");
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
-		logger.info(checklogin);
 		/*
 		 * if(checklogin.equals("admin")) { }else {return "404";}
 		 */
@@ -70,7 +67,6 @@ public class AdminController {
 	@RequestMapping(value="adminPcrInsert", method=RequestMethod.GET)
 	public String adminPcrInsert(HttpServletRequest req) {
 		String pnum = ChabunUtil.getPcrChabun("P", chabun.getPcrChabun().getPnum());
-		logger.info("pnum--->"+pnum);
 		PcrVO pvo = null;
 		pvo = new PcrVO();
 		pvo.setPnum(pnum);
@@ -83,8 +79,6 @@ public class AdminController {
 		int nCnt = pcrservice.pcrInsert(pvo);
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
-		logger.info(checklogin);
-		logger.info("adminpcrinsert nCnt-->"+nCnt);
 		return "redirect:/adminmain.kaoni";
 	}
 	
@@ -96,7 +90,6 @@ public class AdminController {
 		logger.info("login?"+req.getParameter("pnum"));
 		List<PcrVO> list = pcrservice.pcrUpdateForm(pvo);
 		if(list.size()>0) {
-			logger.info("list.size()->>>"+list.size());
 			model.addAttribute("list", list);
 			return "Pcr/pcrUpdateForm";
 		}
@@ -116,14 +109,13 @@ public class AdminController {
 		model.addAttribute("list", list);
 		if(list.size()>0) {
 			return "admin/adminmember";
-		}return "404띄우자 ";
+		}return "error";
 
 }
 	@RequestMapping(value="adminMemberSelect", method=RequestMethod.GET)
 	public String adminMemberSelect(MemberVO mvo, Model model, HttpServletRequest req) {
 	logger.info("관리자 멘버선택 진입");
 		mvo.setEmnum(req.getParameter("emnum"));
-	logger.info(req.getParameter("emnum"));
 	//쿼리 where절에 emnum
 	List<MemberVO> list = memberservice.memberUpdateForm(mvo);
 
@@ -133,7 +125,7 @@ public class AdminController {
 		return "member/updateInfo";
 	}
 	logger.info("admin select 오류 발생");
-	return "404띄우자";		
+	return "error";		
 }
 	//BOARD추가할것. 
 	

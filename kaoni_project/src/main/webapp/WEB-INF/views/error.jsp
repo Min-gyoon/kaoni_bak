@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>warning</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<h2>error발생</h2>
 </body>
 </html>

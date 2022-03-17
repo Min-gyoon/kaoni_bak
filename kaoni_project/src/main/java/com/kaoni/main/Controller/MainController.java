@@ -54,14 +54,11 @@ public class MainController {
 		List<MainVO> pcrlist = mainservice.pcrdata(mvo);
 		mvo = pcrlist.get(0);
 		 String json = new Gson().toJson(mvo);
-		 logger.info("pcrdata-->"+json);
-		
-		
 		if(pcrlist.size()>0) {
 			return json;
 		}
 		logger.info("list 제대로 가져오지 못했음. ");
-		return ":/redirect";
+		return "error";
 	}
 	@ResponseBody
 	@RequestMapping(value="jungukdata", method=RequestMethod.GET)
@@ -82,14 +79,13 @@ public class MainController {
 				result = result + line + "\n";
 			}
 			response.getWriter().append(result);
-			logger.info("api에서 가져온 값들-->"+result);
 			 String json = new Gson().toJson(result);
 			 response.getWriter().close();
 			return json;
 	}catch(Exception  e){
 		logger.info("api 연결오류 "+e);
 	}
-		return ":redirect/";
+		return "error";
 	}
 
 	
