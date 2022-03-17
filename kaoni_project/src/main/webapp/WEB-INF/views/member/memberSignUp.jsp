@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,11 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+strong{
+color: red;
+}
+</style>
 </head>
 
 <body>
@@ -38,7 +44,14 @@
             		>중복 확인</button>
             	</div>
             </div>
-             ${obj.getDefaultMessage()} 
+           
+           <spring:hasBindErrors name="memberVO">
+
+            <c:if test="${errors.hasFieldErrors('id') }">                                     
+               <strong>${errors.getFieldError( 'id' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
+             
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Password</label>
             	<div class="cols-sm-10">
@@ -49,7 +62,12 @@
             		</div> <div class="pwCheck"></div>
             	</div>
             </div>
-               ${obj.getDefaultMessage()} 
+               <spring:hasBindErrors name="memberVO">
+
+            <c:if test="${errors.hasFieldErrors('passwd') }">                                     
+               <strong>${errors.getFieldError( 'passwd' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Password Check</label>
             	<div class="cols-sm-10">
@@ -68,7 +86,12 @@
             		</div>
             	</div>
             </div>  
-            
+             <spring:hasBindErrors name="memberVO">
+
+            <c:if test="${errors.hasFieldErrors('name') }">                                     
+               <strong>${errors.getFieldError( 'name' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
             
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Gender</label>
@@ -79,7 +102,7 @@
             		</div>
             	</div>
             </div>  
-            
+             
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Department</label>
             	<div class="cols-sm-10">
@@ -94,7 +117,11 @@
             		</div>
             	</div>
             </div>  
-            
+             <spring:hasBindErrors name="memberVO">
+            <c:if test="${errors.hasFieldErrors('Dname') }">                                     
+               <strong>${errors.getFieldError( 'Dname' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Position</label>
             	<div class="cols-sm-10">
@@ -108,8 +135,14 @@
                 </select>
             		</div>
             	</div>
+            	 <spring:hasBindErrors name="memberVO">
+
+            <c:if test="${errors.hasFieldErrors('position') }">                                     
+               <strong>${errors.getFieldError( 'position' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
             </div>  
-        <input type="submit" value="가입" class="btn btn-primary" id="signupbtn"/>  
+        <input type="submit" value="가입" class="btn btn-primary" id="signupbtn" disabled="true"/>  
         <input type="button" value="취소" class="btn btn-primary">
     </form>
       </div>
@@ -152,15 +185,7 @@ function fn_idCheck() {
 function checkPwd() {
     var pw = $('#passwd').val();
     var pw1 = $('#passwd1').val();
-    
-    var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-   /*  if(pw != pw1 && false === reg.test(pw)) {
-    	document.getElementById('pwCheck').innerHTML = "비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.";#
-    	
-    	}else {
-    	console.log("통과");
-    	} */
-
+  
     if(pw == pw1){
     	 $("#passwd1").css("background-color", "#B0F6AC");
          $("#signupbtn").prop("disabled", false);

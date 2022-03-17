@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kaoni.Member.VO.MemberVO"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 
 <head>
@@ -111,21 +112,26 @@ $(document).on("click", "#update", function(){
       <div class="form-group">
         <label class="col-sm-3 control-label" for="card-number">PassWord</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" name="passwd" value="">
+          <input type="password" class="form-control" name="passwd" value="" id="passwd" oninput="checkPwd()">
         </div>
       </div>
       
       <div class="form-group">
         <label class="col-sm-3 control-label" for="card-number">PassWord Check</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" name="passwd1" value="">
+          <input type="password" class="form-control" name="passwd1" value="" id="passwd1" oninput="checkPwd()">
         </div>
       </div>
-                  <input type="button" value="체크" class="btn btn-primary">
+       <spring:hasBindErrors name="memberVO">
+
+            <c:if test="${errors.hasFieldErrors('passwd') }">                                     
+               <strong>${errors.getFieldError( 'passwd' ).defaultMessage }</strong>
+			</c:if>
+			</spring:hasBindErrors>
+
                   <input type="hidden" id="emnum" name="emnum" value="<%=mvo.getEmnum()%>">
-                  	  <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
-                  	  <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
-                
+                  <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
+                  <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
                   <input type="button" id="update" value="수정완료" class="btn btn-primary">
         </form>
 	</div>
@@ -145,6 +151,25 @@ $(document).on("click", "#update", function(){
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+<script type="text/javascript">
+function checkPwd() {
+    var pw = $('#passwd').val();
+    var pw1 = $('#passwd1').val();
+  
+    if(pw == pw1){
+    	 $("#passwd1").css("background-color", "#B0F6AC");
+         $("#update").prop("disabled", false);
+         $("#update").css("background-color", "#0D6EFD");
+    }
+     else if (pw != pw1 ) {
+        $("#update").prop("disabled", true);
+        $("#update").css("background-color", "#aaaaaa");
+        $("#passwd1").css("background-color", "#FFCECE");
+    } 
+    }
+
+</script>
 
 </body>
 

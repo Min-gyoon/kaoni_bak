@@ -38,9 +38,25 @@ ul{
                      <!--  <form id="getNbo"> -->
                          <c:forEach items="${list}" var="BoardVO">
                             <tr>
-                                <td>${BoardVO.getNbo()}</td>
+                            	<c:choose>
+                            	<c:when test="${BoardVO.getImpor() eq 3}">
+                            	<td style="color: red;">${BoardVO.getNbo()}</td>
+                                <td style="color: red;">${BoardVO.getEmnum()}</td>
+                                <td ><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}" style="color: red;">${BoardVO.getTitle()}</a></td> 
+                            	</c:when>
+                            	
+                            	<c:when test="${BoardVO.getImpor() eq 2}">
+                            	<td style="color: blue;">${BoardVO.getNbo()}</td>
+                                <td style="color: blue;">${BoardVO.getEmnum()}</td>
+                                <td ><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}" style="color: blue;">${BoardVO.getTitle()}</a></td> 
+                            	</c:when>
+                            	<c:otherwise>
+                            	<td>${BoardVO.getNbo()}</td>
                                 <td>${BoardVO.getEmnum()}</td>
-                                <td><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}">${BoardVO.getTitle()}</a></td> 
+                                <td style="color: blue;"><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}">${BoardVO.getTitle()}</a></td> 
+                            	</c:otherwise>
+                            	</c:choose>
+                                
                                 <c:choose>
                                 <c:when test="${BoardVO.getUpdatedate() eq BoardVO.getRegdate()}">
                                	<td>${BoardVO.getUpdatedate()}</td>
