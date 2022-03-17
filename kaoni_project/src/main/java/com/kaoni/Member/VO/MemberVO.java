@@ -3,24 +3,27 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 public class MemberVO {
+	
 		 String emnum;
-		 
-		 @NotBlank(message = "이름 공백")
-		 String name;
-		 
-		 @NotBlank(message = "ID 공백")
+		 @NotBlank(message = "ID가 공백입니다")
+		 @Pattern(regexp = "^[a-zA-z0-9]{4,12}$"
+		 , message = "아이디는 영문 대소문자와 숫자 4~12자리로 입력해야 합니다`")
 		 String id;
-		 
-		 @NotBlank(message = "비밀번호 공백")
- 
+		 @NotBlank(message = "비밀번호 공백입니다")
 		 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
-		 , message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자")
-
+		 , message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자여야 합니다")
 		 String passwd;
 		 
-		 String position;
+		 @NotBlank(message = "이름이 공백입니다")
+		 String name;
+		 @NotBlank(message = "성별을 선택해야 합니다")
 		 String gender;
+		 @NotBlank(message = "부서를 선택해야 합니다")
 		 String Dname;
+		 @NotBlank(message = "직위를 선택해야 합니다")
+		 String position;
+		
+		
 		 String deleteyn;
 		
 		public MemberVO() {

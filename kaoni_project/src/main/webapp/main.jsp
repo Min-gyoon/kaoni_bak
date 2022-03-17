@@ -74,6 +74,19 @@
           });  
   });//ready
 </script>
+<style type="text/css">
+
+
+table tr td {
+border: 1px solid rgba(255, 0, 0, 2);
+border-right: none;
+border-top: none;
+border-left: none;
+border-color: black 
+}
+
+
+</style>
 </head>
 
 <body>

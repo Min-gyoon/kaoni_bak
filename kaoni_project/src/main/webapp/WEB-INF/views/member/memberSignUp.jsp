@@ -38,7 +38,7 @@
             		>중복 확인</button>
             	</div>
             </div>
-            
+             ${obj.getDefaultMessage()} 
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Password</label>
             	<div class="cols-sm-10">
@@ -49,7 +49,7 @@
             		</div> <div class="pwCheck"></div>
             	</div>
             </div>
-                
+               ${obj.getDefaultMessage()} 
             <div class="form-group">
             <label for="name" class="cols-sm-2 control-label">Password Check</label>
             	<div class="cols-sm-10">
