@@ -110,8 +110,8 @@ MemberVO mvo = list.get(i);
 
 %>
 
-  <tr class="table-success">
-  	<td id="<%= mvo.getEmnum() %>" onclick="selectMember(this)"><%= mvo.getEmnum() %></td>
+  <tr class="table-success" style="cursor: pointer;" id="<%= mvo.getEmnum() %>" onclick="selectMember(this)">
+  	<td><%= mvo.getEmnum() %></td>
     <td><%=mvo.getName() %></td>
     <td><%=mvo.getPosition() %></td>
     <td><%=mvo.getDname() %></td>

@@ -26,7 +26,7 @@
          });
      }
   $(document).ready(function(){
-
+	  alert("text-->"+ document.getElementById('hj').innerHTML);
          $.ajax({
             url : 'pcrMain.kaoni',
             dataType : 'json',
@@ -65,8 +65,8 @@
                 document.getElementById('hj').innerHTML=parseInt(hj);
                 document.getElementById('death').innerHTML = parseInt(death);
                 document.getElementById('jhj').innerHTML = parseInt(jhj);
-                document.getElementById('jdeath').innerHTML = parseInt(jdeath);
-                document.getElementById('day').innerHTML = day;
+                document.getElementById('jdeath').innerText = parseInt(jdeath);
+                document.getElementById('day').innerText = day;
              },
              error : function(error){
                 console.log(error);
@@ -155,7 +155,7 @@
           </div>
          <div class="refreshfix"><img src="assets/img/refresh2.png"  align ="right" style="width:2%;height:2%;cursor: pointer;" onclick="clickrefresh()"></div>
                       <div>
-         	<span style="all:none;" id="day" align ="right"></span>
+         	<span style="font-size: 1.1rem; color: black;" id="day" align ="right"></span>
          </div>
 
          
