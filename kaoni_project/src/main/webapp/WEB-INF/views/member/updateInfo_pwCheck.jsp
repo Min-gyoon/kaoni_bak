@@ -43,26 +43,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-	<!-- 헤더 -->
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">pcrselectall</a></li>
-          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">pcrform</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">selffrom</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">signup</a></li>
-          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+<header><%@include file ="/WEB-INF/views/header.jsp" %></header>
 
   <main id="main" style="padding-top:100px">
 	<form method="post" action="updateInfo_pwCheck1.kaoni">
@@ -94,24 +75,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-
-      <div class="container">
-
-<!-- footer내용 넣기 -->
-        <div class="row  justify-content-center">
-          <div class="col-lg-6">
-            <h3>Kaoni</h3>
-            <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
+ <footer><%@include file ="/WEB-INF/views/footer.jsp" %></footer>
 
 
   <!-- Vendor JS Files -->
