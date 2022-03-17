@@ -7,7 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.servlet.http.HttpServletRequest;
@@ -54,24 +56,20 @@ public class MemberController {
 			,Model model){
 		System.out.println("BindingResult : "+ result);
 		
+		// 에러를 List로 저장
+		List<ObjectError> list = result.getAllErrors();
+				
 		int idCheck = memberService.idCheck(mvo);
 		if(idCheck == 1) {
 			return "redirect:memberSignUp.kaoni";
 		}else if (idCheck ==0) {
 			if(result.hasErrors()) {
-				
-				for(ObjectError obj : result.getAllErrors()) {
-					System.out.println("메세지 :"+obj.getDefaultMessage());
-					System.out.println("코드 :"+ obj.getCode());
-					System.out.println("ObjectName :"+obj.getObjectName());
-					model.addAttribute("obj",obj);
-					logger.info("obj : "+obj);
-					logger.info(obj.getDefaultMessage());
-					}
-				
+				for( ObjectError error : list ) {
+					System.out.println(error);
+				}
 				return "member/memberSignUp";
 			}else {
-				logger.info("아이디 중복");
+				
 				String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 				mvo.setEmnum(emnum);
 				memberService.memberSignUp(mvo);
@@ -182,7 +180,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
-	public String updateInfo1(HttpServletRequest request,MemberVO mvo, HttpSession session) {
+	public String updateInfo1( MemberVO mvo, HttpServletRequest request, HttpSession session) {
+		
 		mvo.setName(request.getParameter("name"));
 		mvo.setDname(request.getParameter("dname"));
 		mvo.setPosition(request.getParameter("position"));

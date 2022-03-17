@@ -113,6 +113,14 @@ float: left;
         <i class="bi bi-list mobile-nav-toggle"></i> 
       </nav><!-- .navbar --> 
        
+       
+       <c:choose>
+       <c:when test="${empty emnum} }">
+       
+       </c:when>
+       <c:when test="${not empty emnum}">
+       
+       
 <div id="menu-container"> 
             <div id="menu-wrapper"> 
                 <div id="hamburger-menu"><span></span><span></span><span></span></div> 
@@ -158,7 +166,9 @@ float: left;
             </ul> 
             <!-- menu-list accordion--> 
         </div> 
-       
+        
+        </c:when>
+       </c:choose>
        
  
     </div> 

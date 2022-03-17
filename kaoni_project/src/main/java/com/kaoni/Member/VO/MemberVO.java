@@ -10,13 +10,12 @@ public class MemberVO {
 		 , message = "아이디는 영문 대소문자와 숫자 4~12자리로 입력해야 합니다`")
 		 String id;
 		 @NotBlank(message = "비밀번호 공백입니다")
-		 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$\r\n"
-		 , message = "최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자여야 합니다")
+		 @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$"
+		 , message = "'숫자', '문자', '특수문자' 무조건 1개 이상, 비밀번호 '최소 8자에서 최대 16자'까지 허용")
 		 String passwd;
 		 
 		 @NotBlank(message = "이름이 공백입니다")
 		 String name;
-		 @NotBlank(message = "성별을 선택해야 합니다")
 		 String gender;
 		 @NotBlank(message = "부서를 선택해야 합니다")
 		 String Dname;
