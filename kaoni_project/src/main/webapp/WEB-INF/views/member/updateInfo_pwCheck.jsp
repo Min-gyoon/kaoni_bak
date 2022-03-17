@@ -44,35 +44,32 @@
 
   <!-- ======= Header ======= -->
 <header><%@include file ="/WEB-INF/views/header.jsp" %></header>
-
+<div class="container" style="margin-top: 100px; margin-bottom: 50px; margin-left: 700px;">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
   <main id="main" style="padding-top:100px">
 	<form method="post" action="updateInfo_pwCheck1.kaoni">
-	<table>
- 	
-        <tr>
-            <td>
-                    ID
-            </td>
-            <td>
-                <h5><input type="text" value=${member} name="id"></h5>
-            </td>
-        </tr>
-        <tr>
-            <td>PW</td>
-            <td>
-                <input type="password" name="passwd">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="확인">
-            </td>
-        </tr>
-    
-    </table>
-</form>
+	 <div class="panel-heading">
+			<h3 class="panel-title">PassWord Check</h3>
+			 </div>
 	
-  </main><!-- End #main -->
+	
+	<div class="panel-body">
+	<div class="form-group">
+        <input type="text" placeholder="Id" id="id" name="id" class="form-control" style="font-size: 15px;" value="${member}" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+        <input type="password" placeholder="Please Password Check" id="password" name="passwd" class="form-control" style="font-size: 15px;"/>
+        </div></div>
+                    <input type="submit" value="Check" class="btn btn-lg btn-success btn-block">
+</form></main>
+	
+			</div>
+		</div>
+	</div>
+</div>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
  <footer><%@include file ="/WEB-INF/views/footer.jsp" %></footer>

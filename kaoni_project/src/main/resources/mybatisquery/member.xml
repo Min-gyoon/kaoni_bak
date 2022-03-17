@@ -46,8 +46,8 @@ WHERE ID='${id}'
 <select id="findInfo">
 		SELECT * FROM MEMBERTBL WHERE ID ='${id}'
 </select>
-<select id="memberUpdateForm" resultType="MemberVO">
-		SELECT * FROM MEMBERTBL WHERE EMNUM ='${emnum}'
+<select id="memberUpdateForm" resultType="MemberVO" parameterType="MemberVO">
+		SELECT * FROM MEMBERTBL WHERE EMNUM =#{emnum, jdbcType=VARCHAR}
 </select>
 
 <update id="updateInfo" parameterType="MemberVO" >

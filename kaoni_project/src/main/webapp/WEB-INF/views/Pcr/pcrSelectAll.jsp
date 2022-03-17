@@ -13,6 +13,20 @@
 <title>코로나 진단표</title>
  <%@include file ="/WEB-INF/views/header.jsp" %>
 </head>
+<script>
+$(document).ready(function(){
+	$(document).on("click", "#searchbtn", function(){
+		console.log("click searchbtn");
+		$("#searchform").attr({
+			"action":"pcrSearch.kaoni",
+			"method":"GET",
+			"enctype":"application/x-www-form-urlencoded"				
+		}).submit();
+	});
+	});
+
+</script>
+
 
 <body>
 <% 
@@ -34,10 +48,19 @@ groupSize = Integer.parseInt(pvo2.getGroupSize());
 curPage = Integer.parseInt(pvo2.getCurPage());
 totalCount = Integer.parseInt(pvo2.getTotalCount());
 %>
+<!-- 폼태그 넘기는 함수 하나 만들고 컨트롤러 하나 만들고 받아온 리스트 넘기는 jsp 하나 만들기.  -->
   <main id="main" style="padding-top:90px">
   <div id="wrapper">
+  <form id ="searchform" >
 <table  align="center" class="selectall">
 <thead>
+
+<tr>
+	<td  colspan="2"></td>
+	<td  colspan="2"><input type="text" id="search" name="search"></td>
+	<td> <input type="button" id="searchbtn" value="검색"></td>
+	</tr>
+	
   <tr class="table-info">
     <th>이름</th>
     <th>직책</th>
@@ -45,6 +68,7 @@ totalCount = Integer.parseInt(pvo2.getTotalCount());
     <th>자가격리기간</th>
     <th>확진여부</th>
   </tr>
+  
   <%
 
 for(int i = 0; i < list.size(); i++){
@@ -69,22 +93,9 @@ String outcome = pvo1.getPoutcome();
 <%
 }
 %>
-<!--  
-<tr>
-<td colspan="6">
-				<jsp:include page="pcrPaging.jsp" flush="true">
-					<jsp:param name="url" value="pcrSelectAll.kaoni" />
-					<jsp:param name="str" value=""/>
-					<jsp:param name="curPage" value="<%=curPage %>" />
-					<jsp:param name="pageSize" value="<%=pageSize %>" />
-					<jsp:param name="groupSize" value="<%=groupSize %>" />
-					<jsp:param name="totalCount" value="<%=totalCount %>" />
-				</jsp:include>
-</td>
-</tr>
--->
+
 </table>
-<!-- /WEB-INF/views/Pcr/pcrPaging.jsp? -->
+</form>
 
 	</div>
   </main><!-- End #main -->

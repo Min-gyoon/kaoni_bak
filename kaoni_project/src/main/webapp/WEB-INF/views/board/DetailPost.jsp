@@ -86,13 +86,31 @@
                         <div class="board_info_box">
                         <span class="board_author">
                         <c:out value="${data.emnum}"/></span>
-                        <span class="board_date"><c:out value="${data.regdate}"/></span>
+                        
+                        <c:choose>
+                        <c:when test="${data.regdate eq data.updatedate}">
+                        등록일 : <c:out value="${data.regdate}"></c:out>
+                       
+                        </c:when>
+                         <c:otherwise>
+                        등록일 : <c:out value="${data.regdate}"></c:out> &nbsp;&nbsp;
+                        수정일 : <c:out value="${data.updatedate}"></c:out>
+                        </c:otherwise>
+                        </c:choose>
+                       
+                        
                         </div>
                             <div class="board_content"><c:out value="${data.content}"/></div>
                             
                             <span class="upde">
-                    <a href="/UpdatePost.kaoni?nbo=${data.nbo}">수정</a>&nbsp;&nbsp;
-                    <a href="/DeletePost.kaoni?nbo=${data.nbo}">삭제</a>
+                            
+                            <c:choose>
+                            <c:when test="${emnum eq 'admin'}"> 
+                            <a href="/UpdatePost.kaoni?nbo=${data.nbo}">수정</a>&nbsp;&nbsp;
+                            <a href="/DeletePost.kaoni?nbo=${data.nbo}">삭제</a>&nbsp;&nbsp;
+                            </c:when>
+                            </c:choose>
+                    		<a href="/ShowAllPost.kaoni">돌아가기</a>
                            </span>
                     </div>    
         </div>

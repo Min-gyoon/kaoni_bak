@@ -46,7 +46,7 @@
             <input type="password" id="passwd" name="passwd" maxlength="15" class="form-control" 
             oninput="checkPwd()" placeholder="Enter your Password">
            
-            		</div> <div class="pwCheck">a</div>
+            		</div> <div class="pwCheck"></div>
             	</div>
             </div>
                 

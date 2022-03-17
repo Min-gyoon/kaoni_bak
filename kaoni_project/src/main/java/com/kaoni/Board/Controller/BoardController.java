@@ -1,6 +1,9 @@
 package com.kaoni.Board.Controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -48,9 +51,17 @@ public class BoardController {
 	@RequestMapping(value="writePost1", method=RequestMethod.POST)
 	public String WritePost1(HttpServletRequest request,HttpSession session,BoardVO bvo){
 		session = request.getSession();
+		Date now = new Date();
+		 
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String today = sf.format(now);
+		 
 		String emnum = (String) session.getAttribute("emnum");
 		String summernote = request.getParameter("summernote");
 		String content = summernote.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "").replaceAll("\r|\n|&nbsp;","");
+		
+		bvo.setRegdate(today);
+		bvo.setUpdatedate(today);
 		bvo.setEmnum(emnum);
 		bvo.setContent(content);
 		boardService.WritePost(bvo);
@@ -76,14 +87,19 @@ public class BoardController {
 	
 	@RequestMapping(value="UpdatePost1", method=RequestMethod.POST)
 	public String UpdatePost1(BoardVO bvo,HttpServletRequest request){
+		Date now = new Date();
+		
 		String summernote = request.getParameter("summernote");
 		String content = summernote.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "").replaceAll("\r|\n|&nbsp;","");
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String today = sf.format(now);
+		
 		
 		bvo.setNbo(Integer.parseInt(request.getParameter("nbo")));
 		bvo.setTitle(request.getParameter("title"));
 		bvo.setContent(content);
 		bvo.setImpor(Integer.parseInt(request.getParameter("impor")));
-		bvo.setUpdatedate(request.getParameter("updatedate"));
+		bvo.setUpdatedate(today);
 		boardService.UpdatePost(bvo);
 		
 		return "redirect:ShowAllPost.kaoni";

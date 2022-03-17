@@ -38,6 +38,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   <%
+  System.out.println("updateinfojsp");
   Object obj = request.getAttribute("list");
   List<MemberVO> list = (List)obj;
 	  MemberVO mvo = list.get(0);
@@ -61,101 +62,77 @@ $(document).on("click", "#update", function(){
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-	<!-- 헤더 -->
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">pcrselectall</a></li>
-          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">pcrform</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">selffrom</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">signup</a></li>
-          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  <header><%@include file ="/WEB-INF/views/header.jsp" %></header>
+<div class="container">
 
   <main id="main" style="padding-top:80px">
-	<h3>회원정보 수정</h3>
+  <legend>회원정보 수정</legend>
     <form id="updateform">
-    <table>
-        
-              <tr>
-                  <td>이름</td>
-                  <td><%=mvo.getName() %></td>
-              </tr>
-              <tr>
-                  <td>부서명</td>
-                  <td><%=mvo.getDname() %></td>
-              </tr>
-              <tr>
-                  <td>직책</td>
-                  <td><select name="position">
-					    <option value="<%=mvo.getPosition()%>"></option>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-holder-name">Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name" value="<%=mvo.getName() %>" readonly="readonly">
+        </div>
+      </div>
+      
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">Depart</label>
+        <div class="col-sm-9">
+          <select name="Dname" class="form-control col-sm-2">
+                    <option value=""><%=mvo.getDname() %></option>
+                    <option value="SS개발부">SS개발부</option>
+                    <option value="ES개발부">ES개발부</option>
+                    <option value="경영지원실">경영지원실</option>
+                    <option value="사업부">사업부</option>
+                </select>
+        </div>
+      </div>
+      
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">Position</label>
+        <div class="col-sm-9">
+         <select class="form-control col-sm-2" name="position">
+					    <option value=""><%=mvo.getPosition()%></option>
 					    <option value="사원">사원</option>
 					    <option value="대리">대리</option>
 					    <option value="팀장">팀장</option>
 					    <option value="과장">과장</option>
-					</select></td>
-              </tr>
-              <tr>
-                  <td>ID</td>
-                  <td><input type ="text" name ="id" readonly="readonly" value=<%=mvo.getId() %>></td>
-              </tr>
-              <tr>
-                  <td>PW</td>
-                  <td><input type="password" name="passwd" value=""></td>
-              </tr>
-              <tr>
-                  <td>PW 확인</td> 
-                  <td><input type="password" name="password"></td>
-                  <td><input type="button" value="체크"></td>
-                  
-              </tr>
-              
-              <tr>
-                  <td><input type="hidden" id="emnum" name="emnum" value="">
+					</select>
+        </div>
+      </div>
+      
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">ID</label>
+        <div class="col-sm-9">
+          <input type ="text"  class="form-control" name ="id" readonly="readonly" value="<%=mvo.getId() %>"> 
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">PassWord</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="passwd" value="">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="card-number">PassWord Check</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="passwd1" value="">
+        </div>
+      </div>
+                  <input type="button" value="체크" class="btn btn-primary">
+                  <input type="hidden" id="emnum" name="emnum" value="<%=mvo.getEmnum()%>">
                   	  <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
                   	  <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
-                  </td>
-                  <td><input type="button" id="update" value="수정완료"></td>
-                  
-              </tr>
-             
-        
-        </table>
+                
+                  <input type="button" id="update" value="수정완료" class="btn btn-primary">
         </form>
-	
-
-	
-  </main><!-- End #main -->
+	</div>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-
-      <div class="container">
-
-<!-- footer내용 넣기 -->
-        <div class="row  justify-content-center">
-          <div class="col-lg-6">
-            <h3>Kaoni</h3>
-            <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
+  <footer><%@include file ="/WEB-INF/views/footer.jsp" %></footer>
 
 
   <!-- Vendor JS Files -->

@@ -15,7 +15,7 @@ public class PcrVO {
 	private String curPage;
 	private String totalCount;
 	private String pnum;
-	
+	private String search;
 
 	public PcrVO() {
 		
@@ -23,7 +23,7 @@ public class PcrVO {
 	}
 	
 	public PcrVO(String poutcome, String emnum, String isolea, String isoleb, String pcontent, String deleteyn,
-			MemberVO memberVO, String pageSize, String groupSize, String curPage, String totalCount, String pnum) {
+			MemberVO memberVO, String pageSize, String groupSize, String curPage, String totalCount, String pnum, String search) {
 	
 		this.poutcome = poutcome;
 		this.emnum = emnum;
@@ -37,6 +37,7 @@ public class PcrVO {
 		this.curPage = curPage;
 		this.totalCount = totalCount;
 		this.pnum = pnum;
+		this.search = search;
 	}
 
 	public String getPnum() {
@@ -125,6 +126,14 @@ public class PcrVO {
 
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	
 }

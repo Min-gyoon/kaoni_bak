@@ -56,6 +56,13 @@ public class PcrServiceImpl implements PcrService {
 		// TODO Auto-generated method stub
 		 return pcrdao.pcrMine(pvo);
 	}
+
+
+	@Override
+	public List<PcrVO> pcrSearch(PcrVO pvo) {
+		// TODO Auto-generated method stub
+		return pcrdao.pcrSearch(pvo);
+	}
 	 
 
 }

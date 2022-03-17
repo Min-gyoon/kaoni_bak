@@ -28,23 +28,12 @@ top: 0px;
  <%@include file ="/WEB-INF/views/header.jsp" %>
 </header>
 
-<% Date now = new Date(); %>
-<%
-SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd");
-String today = sf.format(now);
-String regdate = sf.format(now);
-%>
-<%=regdate %><br>
 
-sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", 또는 "yyyy년MM월dd일 E요일 a hh:mm:ss");
-today = sf.format(now);
-%>
-<%=today %><br> 
- 
+
 <div class="container" style="margin-top: 150px;">
 	<div class="row">
 	<form action="writePost1.kaoni" method="post" id="contact-form" class="contact-form">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-md-6">
             	<span class="form-group" >
             		제목 : 
@@ -74,7 +63,7 @@ today = sf.format(now);
             	style="margin-left: 1000px; width: 100px; margin-bottom: 15px; margin-top: 15px;" >
             	등록</button>
             	<button type="button" onclick="location='ShowAllPost.kaoni'" style="width: 100px;" class="btn btn-primary">취소</button>
-            	 <input type="hidden" name="regdate" value=<%=regdate%> >
+            
         	</div>
         </div>
 	</form>

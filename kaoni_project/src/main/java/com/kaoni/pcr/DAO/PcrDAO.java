@@ -12,5 +12,6 @@ public interface PcrDAO {
 	public List<PcrVO> pcrSelectAll(PcrVO pvo);
 	public List<PcrVO> pcrMain(PcrVO pvo); 
 	public List<PcrVO> pcrMine(PcrVO pvo); 
+	public List<PcrVO> pcrSearch(PcrVO pvo); 
 	
 }

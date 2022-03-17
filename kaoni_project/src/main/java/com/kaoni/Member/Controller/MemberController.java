@@ -52,6 +52,7 @@ public class MemberController {
 	@RequestMapping(value="memberSignUp1", method=RequestMethod.POST)
 	public String memberSignUpSuccess(@Valid MemberVO mvo, BindingResult result,HttpServletRequest request){
 		System.out.println("BindingResult : "+ result);
+		
 		int idCheck = memberService.idCheck(mvo);
 		if(idCheck == 1) {
 			return "redirect:memberSignUp.kaoni";
@@ -136,18 +137,21 @@ public class MemberController {
 		HttpSession session = request.getSession(true);
 		MemberVO memberVO = new MemberVO(); 
 		
+		//pwcheck에서 받아온 값
 		memberVO.setId(request.getParameter("id"));
 		memberVO.setPasswd(request.getParameter("passwd"));
+		memberVO.setEmnum((String) session.getAttribute("emnum"));
 		
+		//세션으로 가져온 값
 		mvo.setId((String)session.getAttribute("member"));
 		mvo.setPasswd((String)session.getAttribute("passwd"));
 		mvo.setEmnum((String) session.getAttribute("emnum"));
-		
 		memberService.memberLogin(memberVO);
 		memberService.memberLogin(mvo);
 		
 		if(memberVO.getPasswd().equals(mvo.getPasswd())) {
-			return "member/updateInfo";
+			logger.info("1");
+			return "redirect:/updateInfo.kaoni";
 		}else{
 		return "redirect:/";
 		}
@@ -156,17 +160,15 @@ public class MemberController {
 	//	회원정보 수정 창
 	@RequestMapping(value = "updateInfo",method = RequestMethod.GET)
 	public String updateInfo(MemberVO mvo, Model model, HttpServletRequest req) {
-		logger.info("adminMemberlist 진입");
+		logger.info("updateinfo 진입");
 		
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		
-		logger.info(checklogin);
 		//if(checklogin.equals("admin")) {
 		//}else {return "404";}
-		logger.info("update->>"+req.getParameter("emnum"));
-		
-		mvo.setEmnum(req.getParameter("emnum"));
+		logger.info("update->>"+checklogin);
+		mvo.setEmnum(checklogin);
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);
 		model.addAttribute("list", list);
 		
@@ -175,16 +177,12 @@ public class MemberController {
 	
 	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
 	public String updateInfo1(HttpServletRequest request,MemberVO mvo, HttpSession session) {
-		logger.info(request.getParameter("name"));
-		logger.info(request.getParameter("dname"));
-		logger.info(request.getParameter("position"));
-		logger.info(request.getParameter("id"));
-		logger.info(request.getParameter("passwd"));
 		mvo.setName(request.getParameter("name"));
 		mvo.setDname(request.getParameter("dname"));
 		mvo.setPosition(request.getParameter("position"));
 		mvo.setId(request.getParameter("id"));
 		mvo.setPasswd(request.getParameter("passwd"));
+		mvo.setEmnum(request.getParameter("emnum"));
 		memberService.updateInfo(mvo);
 		return "redirect:/";
 	}
