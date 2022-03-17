@@ -154,4 +154,36 @@ public class PcrController {
 		return ":/redirect";}
 	}
 	
+	
+	@RequestMapping(value="pcrSearch", method=RequestMethod.GET)
+	public String pcrSearch(PcrVO pvo, Model model,HttpServletRequest req) {
+		logger.info("pcrSearch -------------");
+
+		pvo.setSearch(req.getParameter("search"));
+		List<PcrVO> listsearch = pcrService.pcrSearch(pvo);
+		logger.info("listsearch.size()"+listsearch.size());
+		if(listsearch.size()>0) {
+			model.addAttribute("listsearch", listsearch);
+			return "Pcr/pcrSearchResult";
+		}else {
+		logger.info("리스트 못가져옴");
+		return "Pcr/pcrSearchResult";}
+	}
+	
+	/*
+	@RequestMapping(value="pcrSearchResult", method=RequestMethod.GET)
+	public String pcrSearchResult(PcrVO pvo, Model model,HttpServletRequest req) {
+		logger.info("pcrSearch -------------");
+
+		pvo.setSearch(req.getParameter("search"));
+		List<PcrVO> listsearch = pcrService.pcrSearch(pvo);
+		if(listsearch.size()>0) {
+			model.addAttribute("listsearch", listsearch);
+			return "Pcr/pcrSearch";
+		}else {
+		logger.info("리스트 못가져옴");
+		return ":/redirect";}
+	}
+	*/
+	
 }

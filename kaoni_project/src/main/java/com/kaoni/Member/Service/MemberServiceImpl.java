@@ -42,6 +42,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> memberUpdateForm(MemberVO mvo) {
 		// TODO Auto-generated method stub
+		logger.info("memberupdateform진입");
 		return memberDAO.memberUpdateForm(mvo);
 	}
 

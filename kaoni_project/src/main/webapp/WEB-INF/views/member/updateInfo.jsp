@@ -38,6 +38,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   <%
+  System.out.println("updateinfojsp");
   Object obj = request.getAttribute("list");
   List<MemberVO> list = (List)obj;
 	  MemberVO mvo = list.get(0);
@@ -121,7 +122,7 @@ $(document).on("click", "#update", function(){
               </tr>
               
               <tr>
-                  <td><input type="hidden" id="emnum" name="emnum" value="">
+                  <td><input type="hidden" id="emnum" name="emnum" value="<%=mvo.getEmnum()%>">
                   	  <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
                   	  <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
                   </td>

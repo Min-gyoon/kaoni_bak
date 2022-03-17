@@ -39,12 +39,12 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<MemberVO> memberUpdateForm(MemberVO mvo) {
 		// TODO Auto-generated method stub
+		logger.info("memberupateform entry");
 		return sqlSession.selectOne("memberUpdateForm", mvo);
 	}
 	@Override
 	public Integer idCheck(MemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("DAO");
 		return sqlSession.selectOne("idCheck",mvo);
 	}
 
