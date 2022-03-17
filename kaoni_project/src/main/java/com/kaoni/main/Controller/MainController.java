@@ -1,6 +1,15 @@
 package com.kaoni.main.Controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +54,7 @@ public class MainController {
 		List<MainVO> pcrlist = mainservice.pcrdata(mvo);
 		mvo = pcrlist.get(0);
 		 String json = new Gson().toJson(mvo);
-		 
+		 logger.info("pcrdata-->"+json);
 		
 		
 		if(pcrlist.size()>0) {
@@ -54,5 +63,34 @@ public class MainController {
 		logger.info("list 제대로 가져오지 못했음. ");
 		return ":/redirect";
 	}
+	@ResponseBody
+	@RequestMapping(value="jungukdata", method=RequestMethod.GET)
+	public String jungukdata(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/xml;charset=UTF-8");
+		BufferedReader br = null;
+		try {
+			String urlstr = "http://openapi.seoul.go.kr:8088/61534d4f74736e6237357968725667/json/TbCorona19CountStatus/1/1/";
+			URL url = new URL(urlstr);
+			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+			urlconnection.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+			String result = "";
+			String line;
+			while ((line = br.readLine()) != null) {
+				result = result + line + "\n";
+			}
+			response.getWriter().append(result);
+			logger.info("api에서 가져온 값들-->"+result);
+			 String json = new Gson().toJson(result);
+			 response.getWriter().close();
+			return json;
+	}catch(Exception  e){
+		logger.info("api 연결오류 "+e);
+	}
+		return ":redirect/";
+	}
+
 	
 }

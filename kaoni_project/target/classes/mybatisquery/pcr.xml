@@ -19,7 +19,7 @@
 <select id="pcrSelectAll" parameterType="PcrVO" resultMap="PcrVO">
 	SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, P.PNUM, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
 	FROM PCRTBL P, MEMBERTBL M 
-	WHERE P.EMNUM = M.EMNUM AND P.ISOLEB > TO_CHAR(SYSDATE, 'YY/MM/DD')
+	WHERE P.EMNUM = M.EMNUM AND TO_DATE(ISOLEB, 'YY/MM/DD') > SYSDATE
 </select>
  
 <select id="pcrMain" parameterType="PcrVO" resultMap="PcrVO">

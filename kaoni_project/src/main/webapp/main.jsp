@@ -49,8 +49,29 @@
             error : function(error){
                console.log(error);
             }   
-         });               
-
+         });         
+         	//api data
+         $.ajax({
+             url : 'jungukdata.kaoni',
+             dataType : 'json',
+             success : function(data){
+          	   console.log(typeof(data));
+          	   var day = data.TbCorona19CountStatus.row[0].S_DT;
+                 var hj = data.TbCorona19CountStatus.row[0].S_HJ;
+                 var death = data.TbCorona19CountStatus.row[0].S_DEATH;
+                 var jhj = data.TbCorona19CountStatus.row[0].T_HJ;
+                 var jdeath =data.TbCorona19CountStatus.row[0].DEATH;
+                console.log(jdeath);
+                document.getElementById('hj').innerHTML=parseInt(hj);
+                document.getElementById('death').innerHTML = parseInt(death);
+                document.getElementById('jhj').innerHTML = parseInt(jhj);
+                document.getElementById('jdeath').innerHTML = parseInt(jdeath);
+                document.getElementById('day').innerHTML = day;
+             },
+             error : function(error){
+                console.log(error);
+             }   
+          });  
   });//ready
 </script>
 </head>
@@ -77,6 +98,34 @@
         
         </table>
 </div>
+<section id="counts" class="counts" style="padding-top:85px">
+      <div class="container">
+      <div class="row counters" >
+      
+       <h5 align ="left">전국 코로나 현황 </h5> 
+          <div class="col-lg-3 col-6 text-center">
+            <span id = "hj" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>서울 확진</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="death" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>서울 사망</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="jhj" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>전국 확진</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span id="jdeath" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>전국 사망</p>            
+          </div>	
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
 
 </section>
       <!-- ======= Counts Section ======= -->
@@ -105,14 +154,17 @@
             <p>근무원 총원</p>            
           </div>
          <div class="refreshfix"><img src="assets/img/refresh2.png"  align ="right" style="width:2%;height:2%;cursor: pointer;" onclick="clickrefresh()"></div>
-             
+                      <div>
+         	<span style="all:none;" id="day" align ="right"></span>
+         </div>
 
          
         </div>
 
       </div>
     </section><!-- End Counts Section -->
-
+	
+	
 </main>
      
 <%@include file ="/WEB-INF/views/footer.jsp" %>
