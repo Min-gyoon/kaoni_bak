@@ -11,13 +11,7 @@
 </head>
 <body>
 <header> <%@include file ="/WEB-INF/views/header.jsp" %></header>
-<% Date now = new Date(); %>
-<%
-SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd");
-String today = sf.format(now);
-String update = sf.format(now);
-%>
-<%=update%><br>
+
 <div style="margin-top: 150px;">
 
 <div class="container" style="margin-top: 150px;">
@@ -54,7 +48,6 @@ String update = sf.format(now);
             	style="margin-left: 1000px; width: 100px; margin-bottom: 15px; margin-top: 15px;" >
             	수정</button>
             	<button type="button" onclick="location='ShowAllPost.kaoni'" style="width: 100px;" class="btn btn-primary">취소</button>
-    		 <input type="text" name="updatedate" value=<%=update%>>
         	</span>
         </span>
 	</form>

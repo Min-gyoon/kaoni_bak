@@ -80,7 +80,7 @@ float: left;
       <!-- Uncomment below if you prefer to use an image logo --> 
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>--> 
 <!-- 헤더 --> 
-      <nav id="navbar" class="navbar"> 
+      <nav id="navbar" class="navbar" style="margin-left: 250px; width: 700px;"> 
         <ul> 
           <li> 
           <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">Pcr정보모두보기</a></li> 
@@ -92,8 +92,7 @@ float: left;
   <%-- 관리자 계정 --%> 
   <div style="width: 430px; padding-left:20px;"> 
   <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
-  <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">관리자페이지</a></li> 
-  <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
+  
   </div> 
   </c:when> 
    
@@ -101,8 +100,7 @@ float: left;
   <%-- 일반 계정 --%> 
      <div style="width: 430px; padding-left:20px;"> 
      <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
-     <li><a class="nav-link scrollto" href="http://localhost:8080/">내 정보 수정</a></li> 
-     <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
+    
   </div> 
   </c:when> 
   <c:otherwise> 
@@ -122,16 +120,41 @@ float: left;
             </div> 
             <!-- menu-wrapper --> 
             <ul class="menu-list accordion"> 
-                <li id="nav1" class="toggle accordion-toggle">  
-                    <span class="icon-plus"></span> 
-                    <a class="menu-link" href="http://localhost:8080/updateInfo_pwCheck.kaoni">내정보수정</a> 
-                </li> 
-                
-                <li id="nav2" class="toggle accordion-toggle">  
-                    <span class="icon-plus"></span> 
-                    <a class="menu-link" href="http://localhost:8080/pcrMine.kaoni">내PCR검사수정하기</a> 
-                </li> 
-                 
+            
+<c:choose>  
+  <c:when test="${emnum eq 'admin'}"> 
+  <%-- 관리자 계정 --%> 
+  
+     <li id="nav1" class="toggle accordion-toggle">
+     <span class="icon-plus"></span> 
+     <a class="menu-link" href="http://localhost:8080/adminmain.kaoni">관리자 페이지</a></li> 
+   
+      <li id="nav2" class="toggle accordion-toggle">  
+      <span class="icon-plus"></span> 
+      <a class="menu-link" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
+      
+  </c:when> 
+  
+  <c:when test="${not empty emnum}"> 
+  <%-- 일반 계정 --%> 
+     
+     <li id="nav1" class="toggle accordion-toggle">
+     <span class="icon-plus"></span> 
+     <a class="menu-link" href="http://localhost:8080/updateInfo_pwCheck.kaoni">내 정보 수정</a></li> 
+     	
+      <li id="nav2" class="toggle accordion-toggle">  
+      <span class="icon-plus"></span> 
+      <a class="menu-link" href="http://localhost:8080/pcrMine.kaoni">내PCR검사수정하기</a></li>
+                     
+     <li id="nav3" class="toggle accordion-toggle">
+     <span class="icon-plus"></span> 
+     <a class="menu-link" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
+ 
+  </c:when> 
+  <c:otherwise> 
+  <h5>로그인 후 이용해주세요</h5>
+ </c:otherwise> 
+  </c:choose> 
             </ul> 
             <!-- menu-list accordion--> 
         </div> 

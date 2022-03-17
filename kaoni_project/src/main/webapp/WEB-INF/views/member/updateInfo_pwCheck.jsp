@@ -43,75 +43,36 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-	<!-- 헤더 -->
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">pcrselectall</a></li>
-          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">pcrform</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">selffrom</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">signup</a></li>
-          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
+<header><%@include file ="/WEB-INF/views/header.jsp" %></header>
+<div class="container" style="margin-top: 100px; margin-bottom: 50px; margin-left: 700px;">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
   <main id="main" style="padding-top:100px">
 	<form method="post" action="updateInfo_pwCheck1.kaoni">
-	<table>
- 	
-        <tr>
-            <td>
-                    ID
-            </td>
-            <td>
-                <h5><input type="text" value=${member} name="id"></h5>
-            </td>
-        </tr>
-        <tr>
-            <td>PW</td>
-            <td>
-                <input type="password" name="passwd">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="확인">
-            </td>
-        </tr>
-    
-    </table>
-</form>
+	 <div class="panel-heading">
+			<h3 class="panel-title">PassWord Check</h3>
+			 </div>
 	
-  </main><!-- End #main -->
+	
+	<div class="panel-body">
+	<div class="form-group">
+        <input type="text" placeholder="Id" id="id" name="id" class="form-control" style="font-size: 15px;" value="${member}" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+        <input type="password" placeholder="Please Password Check" id="password" name="passwd" class="form-control" style="font-size: 15px;"/>
+        </div></div>
+                    <input type="submit" value="Check" class="btn btn-lg btn-success btn-block">
+</form></main>
+	
+			</div>
+		</div>
+	</div>
+</div>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-
-      <div class="container">
-
-<!-- footer내용 넣기 -->
-        <div class="row  justify-content-center">
-          <div class="col-lg-6">
-            <h3>Kaoni</h3>
-            <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
+ <footer><%@include file ="/WEB-INF/views/footer.jsp" %></footer>
 
 
   <!-- Vendor JS Files -->

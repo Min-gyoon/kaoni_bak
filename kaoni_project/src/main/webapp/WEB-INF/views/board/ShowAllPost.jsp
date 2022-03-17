@@ -28,8 +28,8 @@ ul{
                         <thead>
                             <tr style="background-color: #d2d2d2;">
                                 <th>번호</th>
-                                <th>제목</th>
                                 <th>작성자</th>
+                                <th>제목</th>
                                 <th>작성일</th>
                             </tr>
                         </thead>
@@ -40,8 +40,14 @@ ul{
                                 <td>${BoardVO.getNbo()}</td>
                                 <td>${BoardVO.getEmnum()}</td>
                                 <td><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}">${BoardVO.getTitle()}</a></td> 
-                                <td>${BoardVO.getRegdate()}</td>
-                                
+                                <c:choose>
+                                <c:when test="${BoardVO.getUpdatedate() eq BoardVO.getRegdate()}">
+                               	<td>${BoardVO.getUpdatedate()}</td>
+                                </c:when>
+                                <c:otherwise>
+                                <td> ${BoardVO.getUpdatedate()} (수정)</td>
+                                </c:otherwise>
+                                </c:choose>
                             </tr>
                         </c:forEach>
                       <!--  </form>  -->
@@ -66,7 +72,11 @@ ul{
     	<li style="font-size: 1.5rem;"><a href="/ShowAllPost.kaoni${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
-  <button onclick="location='writePost.kaoni'" style="margin-left: 800px; width: 100px; margin-bottom: 15px;" class="btn btn-primary">글쓰기</button>
+       <c:choose>
+                     <c:when test="${emnum eq 'admin'}"> 
+                           <button onclick="location='writePost.kaoni'" style="margin-left: 800px; width: 100px; margin-bottom: 15px;" class="btn btn-primary">글쓰기</button>
+                     </c:when></c:choose>
+  
 </div>
                   </div>
 	</div>
