@@ -88,11 +88,11 @@ float: left;
           <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">자가진단해보기</a></li> 
   <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li> 
   <c:choose>  
-  <c:when test="${emnum eq 'admin'}"> 
+  <c:when test="${emnum eq 'EM0000'}"> 
   <%-- 관리자 계정 --%> 
   <div style="width: 430px; padding-left:20px;"> 
   <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
-  
+  <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
   </div> 
   </c:when> 
    
@@ -100,7 +100,7 @@ float: left;
   <%-- 일반 계정 --%> 
      <div style="width: 430px; padding-left:20px;"> 
      <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
-    
+    <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
   </div> 
   </c:when> 
   <c:otherwise> 
@@ -130,17 +130,13 @@ float: left;
             <ul class="menu-list accordion"> 
             
 <c:choose>  
-  <c:when test="${emnum eq 'admin'}"> 
+  <c:when test="${emnum eq 'EM0000'}">
   <%-- 관리자 계정 --%> 
   
      <li id="nav1" class="toggle accordion-toggle">
      <span class="icon-plus"></span> 
      <a class="menu-link" href="http://localhost:8080/adminmain.kaoni">관리자 페이지</a></li> 
    
-      <li id="nav2" class="toggle accordion-toggle">  
-      <span class="icon-plus"></span> 
-      <a class="menu-link" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
-      
   </c:when> 
   
   <c:when test="${not empty emnum}"> 
@@ -153,10 +149,14 @@ float: left;
       <li id="nav2" class="toggle accordion-toggle">  
       <span class="icon-plus"></span> 
       <a class="menu-link" href="http://localhost:8080/pcrMine.kaoni">내PCR검사수정하기</a></li>
-                     
-     <li id="nav3" class="toggle accordion-toggle">
+     
+ 	<li id="nav3" class="toggle accordion-toggle">
      <span class="icon-plus"></span> 
-     <a class="menu-link" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
+     <a class="menu-link" href="http://localhost:8080/selfSelectAll.kaoni">자가 진단 확인</a></li> 
+     
+     <li id="nav4" class="toggle accordion-toggle">
+     <span class="icon-plus"></span> 
+     </li> 
  
   </c:when> 
   <c:otherwise> 

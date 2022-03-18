@@ -36,7 +36,6 @@ public class AdminController {
 	//결국엔 admin 전용 selectall
 	@RequestMapping(value="adminmain", method=RequestMethod.GET)
 	public String adminmain(HttpServletRequest req, Model model, PcrVO pvo) {
-		logger.info("adminmain 진입");
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		//if(checklogin.equals("")) {
@@ -53,7 +52,6 @@ public class AdminController {
 	
 	@RequestMapping(value="adminPcrInsertForm", method=RequestMethod.GET)
 	public String adminPcrInsertForm(HttpServletRequest req) {
-		logger.info("adminPcrInsertForm 진입");
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
 		/*
@@ -85,15 +83,12 @@ public class AdminController {
 	@RequestMapping(value="adminPcrSelect", method=RequestMethod.GET)
 	public String adminPcrSelect(PcrVO pvo, Model model, HttpServletRequest req) {
 		pvo.setEmnum(req.getParameter("emnum"));
-		logger.info(req.getParameter("emnum"));
 		pvo.setPnum(req.getParameter("pnum"));
-		logger.info("login?"+req.getParameter("pnum"));
 		List<PcrVO> list = pcrservice.pcrUpdateForm(pvo);
 		if(list.size()>0) {
 			model.addAttribute("list", list);
 			return "Pcr/pcrUpdateForm";
 		}
-		logger.info("admin select 오류 발생");
 		return "needlogin";		
 	}
 	@RequestMapping(value="adminMemberlist", method=RequestMethod.GET)
@@ -101,7 +96,6 @@ public class AdminController {
 		logger.info("adminMemberlist 진입");
 		HttpSession session = req.getSession();
 		String checklogin = (String)session.getAttribute("emnum");
-		logger.info(checklogin);
 		/*
 		 * if(checklogin.equals("00")) { }else {return "404";}
 		 */
@@ -120,11 +114,9 @@ public class AdminController {
 	List<MemberVO> list = memberservice.memberUpdateForm(mvo);
 
 	if(list.size()>0) {
-		logger.info("list.size()->>>"+list.size());
 		model.addAttribute("list", list);
 		return "member/updateInfo";
 	}
-	logger.info("admin select 오류 발생");
 	return "error";		
 }
 	//BOARD추가할것. 

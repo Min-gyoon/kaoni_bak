@@ -31,8 +31,6 @@ public class BoardController {
 	@RequestMapping(value="ShowAllPost", method=RequestMethod.GET)
 	public String ShowAllPost(BoardVO bvo, Model model,Criteria cri){
 		model.addAttribute("list", boardService.ShowAllPost(cri));
-		l.info(cri.getRowStart());
-		l.info(cri.getRowEnd());
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardService.listCount());
@@ -66,12 +64,6 @@ public class BoardController {
 		bvo.setContent(content);
 		boardService.WritePost(bvo);
 		
-		l.info(bvo.getTitle());
-		l.info(bvo.getImpor());
-		l.info(bvo.getRegdate());
-		l.info(summernote);
-		l.info(bvo.getContent());
-		
 		return "redirect:ShowAllPost.kaoni";
 	}
 	
@@ -94,7 +86,6 @@ public class BoardController {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String today = sf.format(now);
 		
-		
 		bvo.setNbo(Integer.parseInt(request.getParameter("nbo")));
 		bvo.setTitle(request.getParameter("title"));
 		bvo.setContent(content);
@@ -108,17 +99,14 @@ public class BoardController {
 	//	게시글 삭제
 	@RequestMapping(value="DeletePost", method=RequestMethod.GET)
 	public String DeletePost(Model model, String nbo,HttpServletRequest request,BoardVO bvo){
-		l.info("nbo 번호 : "+nbo);
 		bvo.setNbo(Integer.parseInt(nbo));
 		boardService.DeletePost(bvo);
-		l.info("삭제완료");
-		return "redirect:/";
+		return "redirect:ShowAllPost.kaoni";
 	}
 	
 	//게시글 상세보기
 	@RequestMapping(value="DetailPost", method=RequestMethod.GET)
 	public String DetailPost(Model model, String nbo,HttpServletRequest request,BoardVO bvo){
-		l.info("nbo Value : "+nbo);
 		BoardVO data = boardService.DetailPost(Integer.parseInt(nbo));
 		model.addAttribute("data",data);
 		return "board/DetailPost";
