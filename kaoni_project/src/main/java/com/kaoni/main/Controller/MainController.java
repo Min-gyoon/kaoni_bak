@@ -45,7 +45,6 @@ public class MainController {
 	public String pcrdata(MainVO mvo, Model model) {
 		logger.info("welcome pcrdata");
 		String mainnum = ChabunUtil.getMainChabun("M", chabunService.getMainChabun().getMainnum());
-		logger.info(mainnum);
 		MainVO mvoinsert = new MainVO();
 		mvoinsert.setMainnum(mainnum);
 		int nCnt =mainservice.pcrdatainsert(mvoinsert);

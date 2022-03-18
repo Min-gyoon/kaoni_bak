@@ -160,7 +160,7 @@ float: left;
     </div>
   </header><!-- End Header -->
 
-  <main id="main" style="padding-top:80px">
+  <main id="main" style="padding-top:95px">
 <div class="container">
 <div class="row justify-content-center">
                     <div class="col-md-8">
@@ -179,8 +179,8 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             <label for="name" class="cols-sm-2 control-label">검사결과</label>
             	<div class="cols-sm-10">
             		<div class="input-group">
-            &nbsp;&nbsp;<input type="checkbox" name="poutcome" value="Y" onclick='checkOnlyOne(this)'>양성&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<input type="checkbox" name="poutcome"  value="N" onclick='checkOnlyOne(this)'>음성
+            &nbsp;&nbsp;<input type="checkbox" name="poutcome" id="poutcome" value="Y" onclick='checkOnlyOne(this)'>양성&nbsp;&nbsp;&nbsp;&nbsp;
+                    	<input type="checkbox" name="poutcome" id="poutcome2" value="N" onclick='checkOnlyOne(this)'>음성
             		</div>
             	</div>
             </div>  
@@ -203,8 +203,7 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             		</div>
             	</div>
             </div>
-       		 <input type="button" id="pcrbtn" value="제출하기" class="btn btn-primary">
-			<input type="button" id="curebtn" value="치료완료" class="btn btn-primary">
+       		 <input type="button" id="pcrbtn" value="수정하기" class="btn btn-primary">
 			<input type="hidden" id="deleteyn" name="deleteyn" value="<%=pvo.getDeleteyn() %>">
 			<input type="hidden" id="pnum" name="pnum" value="<%=pvo.getPnum() %>">
 			<input type="hidden" id="emnum" name="emnum" value="<%=pvo.getEmnum() %>">
@@ -237,6 +236,7 @@ $(document).ready(function(){
     	showMonthAfterYear: true,
     	yearSuffix: '년'
   });
+
   $(function() {
     $("#isolea, #isoleb").datepicker();
   });
@@ -247,6 +247,7 @@ $(document).on("click", "#pcrbtn", function(){
 		"enctype":"application/x-www-form-urlencoded"				
 	}).submit();
 });
+/*
 $(document).on("click", "#curebtn", function(){
 	 document.getElementById("poutcome").value="N"; 
 	 document.getElementById("deleteyn").value="Y"; 
@@ -257,7 +258,7 @@ $(document).on("click", "#curebtn", function(){
 		}).submit();
 	alert("완치로 저장하겠습니다.");
 	
-});//curebtn click
+});//curebtn click*/
 });
 function checkOnlyOne(element) {
 	  

@@ -17,7 +17,7 @@
             success : function(data){
                document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
                document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
-               document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+               //document.getElementById('member').innerHTML = parseInt(data.member)+"명";
                document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
             },
             error : function(error){
@@ -33,8 +33,9 @@
              success : function(data){
                 document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
                 document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
-                document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+               // document.getElementById('member').innerHTML = parseInt(data.member)+"명";
                 document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
+                
              },
              error : function(error){
                 console.log(error);
@@ -181,7 +182,7 @@ border-color: black
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span id="member" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <span id="member" data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
             <p>근무원 총원</p>            
           </div>
          

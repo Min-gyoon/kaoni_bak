@@ -245,7 +245,7 @@ function checkOnlyOne(element) {
 	  element.checked = true;
 	}
 function checkday(){
-	console.log("checkdaty---");
+	console.log("checkdat---");
 	var a = document.getElementById("isolea").value;
 	var b = document.getElementById("isoleb").value;
 	date1 = new Date(a);

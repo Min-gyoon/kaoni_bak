@@ -9,6 +9,19 @@
 Object obj = request.getAttribute("listmine");
 List<PcrVO> list = (List)obj;
 %>
+<style type="text/css">
+
+
+table tr td {
+border: 1px solid rgba(255, 0, 0, 2);
+border-right: none;
+border-top: none;
+border-left: none;
+border-color: black 
+}
+
+
+</style>
 <script>
 function selectMember(pnum){
 	
@@ -32,7 +45,7 @@ function selectMember(pnum){
 <body>
 <main style="padding-top:110px">
 <form id="mineform" name="mineform">
-<table  align="center" class="pcrmine">
+<table  align="center" class="pcrmine" style="width:70%; text-align:center;">
 
   <tr class="table-info">
     <th>번호</th>
@@ -45,7 +58,7 @@ for(int i=0; i <list.size(); i++){
 	String isolea = pvo.getIsolea().split("\\s+")[0];
 	String isoleb = pvo.getIsoleb().split("\\s+")[0];
 %>
-  <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" class="table-success" onclick="selectMember(this)">
+  <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" onclick="selectMember(this)">
   	<td><%=i+1 %></td>
   	<td><%=isolea%> ~ <%=isoleb %></td>
   	<td><%=pvo.getPoutcome() %></td>
