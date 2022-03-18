@@ -190,7 +190,7 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             	<div class="cols-sm-10">
             		<div class="input-group">
             시작일: <input type="text" autocomplete="off" name="isolea" id="isolea" class="form-control" value="<%=isolea %>">
-            종료일: <input type="text" onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" class="form-control" value="<%=isolea %>">
+            종료일: <input type="text" onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" class="form-control" value="<%=isoleb %>">
             		</div>
             	</div>
             </div>
@@ -204,7 +204,6 @@ String isoleb = pvo.getIsoleb().split("\\s+")[0];
             	</div>
             </div>
        		 <input type="button" id="pcrbtn" value="제출하기" class="btn btn-primary">
-			<input type="button" id="curebtn" value="치료완료" class="btn btn-primary">
 			<input type="hidden" id="deleteyn" name="deleteyn" value="<%=pvo.getDeleteyn() %>">
 			<input type="hidden" id="pnum" name="pnum" value="<%=pvo.getPnum() %>">
 			<input type="hidden" id="emnum" name="emnum" value="<%=pvo.getEmnum() %>">
@@ -247,17 +246,7 @@ $(document).on("click", "#pcrbtn", function(){
 		"enctype":"application/x-www-form-urlencoded"				
 	}).submit();
 });
-$(document).on("click", "#curebtn", function(){
-	 document.getElementById("poutcome").value="N"; 
-	 document.getElementById("deleteyn").value="Y"; 
-	 $("#jindan").attr({
-			"action":"pcrUpdate.kaoni",
-			"method":"GET",
-			"enctype":"application/x-www-form-urlencoded"				
-		}).submit();
-	alert("완치로 저장하겠습니다.");
-	
-});//curebtn click
+
 });
 function checkOnlyOne(element) {
 	  

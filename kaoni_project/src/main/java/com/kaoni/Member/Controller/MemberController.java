@@ -73,9 +73,7 @@ public class MemberController {
 				String emnum = ChabunUtil.getMemChabun("EM", chabunService.getMemberChabun().getEmnum());
 				mvo.setEmnum(emnum);
 				memberService.memberSignUp(mvo);
-				logger.info(emnum);
-				logger.info("가입 실행");
-				return "redirect:/";
+				return "sucsessSingUp";
 				}
 
 		}
@@ -121,7 +119,7 @@ public class MemberController {
 			session.setAttribute("emnum", null);
 			session.setAttribute("member", null);
 			session.setAttribute("passwd", null);
-			return "redirect:/";
+			return "needlogin2";
 		}else {
 			session.setAttribute("emnum", memberVO.getEmnum());
 			session.setAttribute("member", memberVO.getId());
@@ -154,10 +152,9 @@ public class MemberController {
 		memberService.memberLogin(mvo);
 		
 		if(memberVO.getPasswd().equals(mvo.getPasswd())) {
-			logger.info("1");
 			return "redirect:/updateInfo.kaoni";
 		}else{
-		return "redirect:/";
+		return "needlogin3";
 		}
 	}
 
@@ -181,7 +178,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "updateInfo2",method = RequestMethod.POST)
 	public String updateInfo1( MemberVO mvo, HttpServletRequest request, HttpSession session) {
-		
 		mvo.setName(request.getParameter("name"));
 		mvo.setDname(request.getParameter("dname"));
 		mvo.setPosition(request.getParameter("position"));
@@ -189,7 +185,11 @@ public class MemberController {
 		mvo.setPasswd(request.getParameter("passwd"));
 		mvo.setEmnum(request.getParameter("emnum"));
 		memberService.updateInfo(mvo);
-		return "redirect:/";
+		
+		session = request.getSession();
+		session.invalidate();
+		
+		return "sucsessUpdateInfo";
 	}
 	
 
@@ -204,10 +204,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
 	public int idCheck(MemberVO mvo,HttpServletRequest request,String id2) {
-		logger.info(mvo.getId());
 		int result = memberService.idCheck(mvo);
-		logger.info(result);
-		
 		return result;
 	}
 		

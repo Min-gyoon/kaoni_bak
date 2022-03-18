@@ -105,7 +105,7 @@
                             <span class="upde">
                             
                             <c:choose>
-                            <c:when test="${emnum eq 'admin'}"> 
+                            <c:when test="${emnum eq 'EM0000'}"> 
                             <a href="/UpdatePost.kaoni?nbo=${data.nbo}">수정</a>&nbsp;&nbsp;
                             <a href="/DeletePost.kaoni?nbo=${data.nbo}">삭제</a>&nbsp;&nbsp;
                             </c:when>

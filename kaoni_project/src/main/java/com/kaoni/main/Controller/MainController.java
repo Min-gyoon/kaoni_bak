@@ -43,13 +43,10 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value="pcrdata", method=RequestMethod.GET)
 	public String pcrdata(MainVO mvo, Model model) {
-		logger.info("welcome pcrdata");
 		String mainnum = ChabunUtil.getMainChabun("M", chabunService.getMainChabun().getMainnum());
-		logger.info(mainnum);
 		MainVO mvoinsert = new MainVO();
 		mvoinsert.setMainnum(mainnum);
 		int nCnt =mainservice.pcrdatainsert(mvoinsert);
-		logger.info(nCnt+"건 추가완료");
 		
 		List<MainVO> pcrlist = mainservice.pcrdata(mvo);
 		mvo = pcrlist.get(0);
@@ -57,7 +54,6 @@ public class MainController {
 		if(pcrlist.size()>0) {
 			return json;
 		}
-		logger.info("list 제대로 가져오지 못했음. ");
 		return "error";
 	}
 	@ResponseBody
@@ -83,7 +79,6 @@ public class MainController {
 			 response.getWriter().close();
 			return json;
 	}catch(Exception  e){
-		logger.info("api 연결오류 "+e);
 	}
 		return "error";
 	}

@@ -30,7 +30,7 @@
 </select>
 <select id="pcrSearch" parameterType="PcrVO" resultMap="PcrVO">
 SELECT P.ISOLEA, P.ISOLEB, P.POUTCOME, M.EMNUM, M.NAME, M.DNAME, M.POSITION 
-	FROM PCRTBL P, MEMBERTBL M WHERE M.NAME LIKE '%'||#{search}||'%'
+FROM PCRTBL P, MEMBERTBL M WHERE M.NAME LIKE '%'||#{search}||'%' AND TO_DATE(P.ISOLEB, 'YY/MM/DD') > SYSDATE
 
 </select>
 

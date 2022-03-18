@@ -93,7 +93,7 @@ $(document).on("click", "#update", function(){
         <label class="col-sm-3 control-label" for="card-number">Position</label>
         <div class="col-sm-9">
          <select class="form-control col-sm-2" name="position">
-					    <option value=""><%=mvo.getPosition()%></option>
+					    <option value=<%=mvo.getPosition()%>><%=mvo.getPosition()%></option>
 					    <option value="사원">사원</option>
 					    <option value="대리">대리</option>
 					    <option value="팀장">팀장</option>

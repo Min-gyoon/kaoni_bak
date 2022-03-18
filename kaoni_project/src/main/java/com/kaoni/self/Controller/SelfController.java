@@ -31,14 +31,12 @@ public class SelfController {
 		if(checklogin==null) {
 			return "needlogin";
 		}
-		logger.info("self form --->");
 		return "self/selfForm";
 	}
 	
 	
 	@RequestMapping(value="selfInsert") 
 	public String selfInsert(HttpServletRequest request) { 
-	logger.info("logger Controller insert--------"); 
 	SelfVO svo = new SelfVO(); 
 	 
 	HttpSession session = request.getSession(); 
@@ -66,10 +64,8 @@ public class SelfController {
 	int sCnt = 0; 
 	for(int i =0; i<list.size(); i++) { 
 	String count = (String) list.get(i); 
-	logger.info("scnt"+count); 
 	if(count.equals("Y")) { 
 	sCnt++; 
-	logger.info(sCnt); 
 	} 
 	} 
 	 
@@ -83,14 +79,12 @@ public class SelfController {
 	int nCnt = selfservice.selfInsert(svo); 
 	 
 	if(sCnt>3) { 
-		logger.info("scnt결과로");
 	//return "self/warning"; 
 	return "self/selfResult"; 
 	} 
 	 
 	 
 	if(nCnt > 0) { 
-		logger.info("ncnt결과로 ");
 	return "redirect:/"; 
 	}else { 
 	return "self/selfForm"; 
@@ -111,7 +105,6 @@ public class SelfController {
 		if(listAll.size()>0) {
 			return "self/selfSelectAll";
 		}else {	
-			logger.info("selectall data error");
 			return "error";}
 	
 }

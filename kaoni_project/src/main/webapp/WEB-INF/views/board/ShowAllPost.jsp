@@ -90,7 +90,7 @@ ul{
     </c:if> 
   </ul>
        <c:choose>
-                     <c:when test="${emnum eq 'admin'}"> 
+                     <c:when test="${emnum eq 'EM0000'}"> 
                            <button onclick="location='writePost.kaoni'" style="margin-left: 800px; width: 100px; margin-bottom: 15px;" class="btn btn-primary">글쓰기</button>
                      </c:when></c:choose>
   
