@@ -184,6 +184,7 @@ public class MemberController {
 		mvo.setId(request.getParameter("id"));
 		mvo.setPasswd(request.getParameter("passwd"));
 		mvo.setEmnum(request.getParameter("emnum"));
+		mvo.setDeleteyn(request.getParameter("deleteyn"));
 		memberService.updateInfo(mvo);
 		
 		session = request.getSession();

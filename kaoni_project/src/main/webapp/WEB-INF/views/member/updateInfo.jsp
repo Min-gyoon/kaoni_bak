@@ -44,12 +44,21 @@
   List<MemberVO> list = (List)obj;
 	  MemberVO mvo = list.get(0);
   out.print(mvo.getName());
-  out.print(mvo.getPosition());
+  out.print(mvo.getDeleteyn());
   %>
   
 <script type="text/javascript">
 $(document).ready(function(){
 $(document).on("click", "#update", function(){
+	$("#updateform").attr({
+		"action":"updateInfo2.kaoni",
+		"method":"POST",
+		"enctype":"application/x-www-form-urlencoded"				
+	}).submit();
+});
+$(document).on("click", "#delete", function(){
+	$('#deleteyn').val('N');
+	$('#passwd').val(<%= mvo.getPasswd()%>);
 	$("#updateform").attr({
 		"action":"updateInfo2.kaoni",
 		"method":"POST",
@@ -132,7 +141,9 @@ $(document).on("click", "#update", function(){
                   <input type="hidden" id="emnum" name="emnum" value="<%=mvo.getEmnum()%>">
                   <input type="hidden" id="name" name="name" value="<%=mvo.getName() %>">
                   <input type="hidden" id="dname" name="dname" value="<%=mvo.getDname() %>">
+                  <input type="hidden" id="deleteyn" name="deleteyn" value="<%=mvo.getDeleteyn()%>">
                   <input type="button" id="update" value="수정완료" class="btn btn-primary">
+                  <input type="button" id="delete" value="삭제하기" class="btn btn-primary">
         </form>
 	</div>
   <!-- End #main -->
