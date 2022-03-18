@@ -9,7 +9,7 @@ SELECT  EMNUM,
 		    TITLE, 
 		    CONTENT,
 		    REGDATE,
-		    UPDATEDATE,
+		    UPDATEDATE,	
 		    IMPOR    
 		 FROM ( 
 		 SELECT EMNUM,

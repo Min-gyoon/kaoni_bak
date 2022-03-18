@@ -8,87 +8,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <title>kaoni_prject index</title>
 
-  <script type="text/javascript">
-  //코로나현황 데이터 가져오기. 
-       function clickrefresh(){
-         $.ajax({
-            url : 'pcrdata.kaoni',
-            dataType : 'json',
-            success : function(data){
-               document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
-               document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
-               document.getElementById('member').innerHTML = parseInt(data.member)+"명";
-               document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
-            },
-            error : function(error){
-               console.log(error);
-            }   
-         });
-     }
-  $(document).ready(function(){
-      
-          $.ajax({
-             url : 'pcrdata.kaoni',
-             dataType : 'json',
-             success : function(data){
-                document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
-                document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
-                document.getElementById('member').innerHTML = parseInt(data.member)+"명";
-                document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
-             },
-             error : function(error){
-                console.log(error);
-             }   
-          });
-      
-	  
-         $.ajax({
-            url : 'pcrMain.kaoni',
-            dataType : 'json',
-            success : function(data2){
-               for(var i =0; i< 10; i++){
-               var addpcr ="";
-               var isole = data2[i].isolea.split(" ")[0]+" ~ "+data2[i].isoleb.split(" ")[0];
-               
-               
-               addpcr +="<tr>"
-               addpcr +="<td>"+data2[i].memberVO.name+"</td>"
-               addpcr +="<td>"+data2[i].memberVO.position+"</td>"
-               addpcr +="<td>"+data2[i].memberVO.Dname+"</td>"
-               addpcr +="<td>"+isole+"</td>"
-               addpcr +="<td>"+data2[i].poutcome+"</td>"               
-               addpcr +="</tr>"
-               $("#addtable").append(addpcr);
-               }
-            },
-            error : function(error){
-               console.log(error);
-            }   
-         });         
-         	//api data
-         $.ajax({
-             url : 'jungukdata.kaoni',
-             dataType : 'json',
-             success : function(data){
-          	   console.log(typeof(data));
-          	   var day = data.TbCorona19CountStatus.row[0].S_DT;
-                 var hj = data.TbCorona19CountStatus.row[0].SN_HJ;
-                 var death = data.TbCorona19CountStatus.row[0].S_DEATH;
-                 var jhj = data.TbCorona19CountStatus.row[0].N_HJ;
-                 var jdeath =data.TbCorona19CountStatus.row[0].DEATH;
-                console.log(jdeath);
-                document.getElementById('hj').innerHTML=hj+"명";
-                document.getElementById('death').innerHTML = death+"명";
-                document.getElementById('jhj').innerHTML = jhj+"명";
-                document.getElementById('jdeath').innerText = jdeath+"명";
-                document.getElementById('day').innerText = day+"기준";
-             },
-             error : function(error){
-                console.log(error);
-             }   
-          });  
-  });//ready
-</script>
+  
 <style type="text/css">
 
 
@@ -200,5 +120,85 @@ border-color: black
 
 
 </body>
-
+<script type="text/javascript">
+  //코로나현황 데이터 가져오기. 
+       function clickrefresh(){
+         $.ajax({
+            url : 'pcrdata.kaoni',
+            dataType : 'json',
+            success : function(data){
+               document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
+               document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
+               document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+               document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
+            },
+            error : function(error){
+               console.log(error);
+            }   
+         });
+     }
+  $(document).ready(function(){
+      
+          $.ajax({
+             url : 'pcrdata.kaoni',
+             dataType : 'json',
+             success : function(data){
+                document.getElementById('allmember').innerHTML=parseInt(data.allmember)+"명";
+                document.getElementById('nowmember').innerHTML = parseInt(data.nowmember)+"명";
+                document.getElementById('member').innerHTML = parseInt(data.member)+"명";
+                document.getElementById('isolemember').innerHTML = parseInt(data.isolemember)+"명";
+             },
+             error : function(error){
+                console.log(error);
+             }   
+          });
+      
+	  
+         $.ajax({
+            url : 'pcrMain.kaoni',
+            dataType : 'json',
+            success : function(data2){
+               for(var i =0; i< 10; i++){
+               var addpcr ="";
+               var isole = data2[i].isolea.split(" ")[0]+" ~ "+data2[i].isoleb.split(" ")[0];
+               
+               
+               addpcr +="<tr>"
+               addpcr +="<td>"+data2[i].memberVO.name+"</td>"
+               addpcr +="<td>"+data2[i].memberVO.position+"</td>"
+               addpcr +="<td>"+data2[i].memberVO.Dname+"</td>"
+               addpcr +="<td>"+isole+"</td>"
+               addpcr +="<td>"+data2[i].poutcome+"</td>"               
+               addpcr +="</tr>"
+               $("#addtable").append(addpcr);
+               }
+            },
+            error : function(error){
+               console.log(error);
+            }   
+         });         
+         	//api data
+         $.ajax({
+             url : 'jungukdata.kaoni',
+             dataType : 'json',
+             success : function(data){
+          	   console.log(typeof(data));
+          	   var day = data.TbCorona19CountStatus.row[0].S_DT;
+                 var hj = data.TbCorona19CountStatus.row[0].SN_HJ;
+                 var death = data.TbCorona19CountStatus.row[0].S_DEATH;
+                 var jhj = data.TbCorona19CountStatus.row[0].N_HJ;
+                 var jdeath =data.TbCorona19CountStatus.row[0].DEATH;
+                console.log(jdeath);
+                document.getElementById('hj').innerHTML=hj+"명";
+                document.getElementById('death').innerHTML = death+"명";
+                document.getElementById('jhj').innerHTML = jhj+"명";
+                document.getElementById('jdeath').innerText = jdeath+"명";
+                document.getElementById('day').innerText = day+"기준";
+             },
+             error : function(error){
+                console.log(error);
+             }   
+          });  
+  });//ready
+</script>
 </html>
