@@ -66,6 +66,7 @@ public class MemberController {
 			if(result.hasErrors()) {
 				for( ObjectError error : list ) {
 					System.out.println(error);
+					logger.info(error);
 				}
 				return "member/memberSignUp";
 			}else {

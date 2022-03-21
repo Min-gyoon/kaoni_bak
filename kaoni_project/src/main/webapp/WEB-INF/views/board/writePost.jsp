@@ -8,68 +8,56 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 작성</title>
-<style type="text/css">
-.contact-form{ margin-top:15px;}
-.contact-form .textarea{ min-height:220px; resize:none;}
-.form-control{ box-shadow:none; border-color:#eee; height:49px;}
-.form-control:focus{ box-shadow:none; border-color:#00b09c;}
-.form-control-feedback{ line-height:50px;}
-.main-btn{ background:#00b09c; border-color:#00b09c; color:#fff;}
-.main-btn:hover{ background:#00a491;color:#fff;}
-.form-control-feedback {
-line-height: 50px;
-top: 0px;
-}
-</style>
+
 </head>
 
 <body>
 <header>
  <%@include file ="/WEB-INF/views/header.jsp" %>
 </header>
+<div id="wrapper">
+<div id="content-wrapper" class="d-flex flex-column">
+<div id="content" >
+<div class="container-fluid" style="margin-left: 480px; margin-top: 170px; margin-bottom: 70px; width: 1800px;">
+ <div class="row">
+                        <div class="col-lg-6">
+
+
+<form action="writePost1.kaoni" method="post" class="user">
 
 
 
-<div class="container" style="margin-top: 150px;">
-	<div class="row">
-	<form action="writePost1.kaoni" method="post" id="contact-form" class="contact-form">
-		<div class="row"> 
-			<div class="col-md-6">
-            	<span class="form-group" >
-            		제목 : 
-            	</span>
-            		<input type="text" id="title" name="title">
-                 <span>중요도 : </span> 
-                		<select name="impor">
+<!-- Dropdown Card Example -->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary"> 제목 :&nbsp;&nbsp;&nbsp;<input type="text" id="title" name="title" value="${data.title}"></h6>	
+								<span style="margin-right: 60px;"> 중요도 : 
+								<select name="impor">
                     		<option value="0">0</option>
                     		<option value="1">1</option>
                     		<option value="2">2</option>
                     		<option value="3">3</option>
-               			</select>
+               			</select></span>
+								</div>
+								 
+                                    <textarea id="summernote" name="summernote" ></textarea>
+                             
+							</div>
+						<button type="submit" class="btn btn-primary" style="margin-left: 650px; width: 80px;">등록</button>
+                        <button type="button" onclick="location='ShowAllPost.kaoni'" class="btn btn-primary" style="width: 80px;margin-left: 10px;">취소</button>
+                        </form>
+                        
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
             </div>
+            <!-- End of Main Content -->
         </div>
-        <br>
-        <div class="row">
-        	<div class="col-md-12">
-            	<div class="form-group">
-           <span>내용 :</span><textarea id="summernote" name="summernote"></textarea>
-            	</div>
-            </div>
-       </div>
-           
-        <div class="row">
-       		<div class="col-md-12">
-            	<button type="submit" class="btn btn-primary" 
-            	style="margin-left: 1000px; width: 100px; margin-bottom: 15px; margin-top: 15px;" >
-            	등록</button>
-            	<button type="button" onclick="location='ShowAllPost.kaoni'" style="width: 100px;" class="btn btn-primary">취소</button>
-            
-        	</div>
-        </div>
-	</form>
+        <!-- End of Content Wrapper -->
+    </div>
 	
-	</div>
-</div>
 
 
 <footer><%@include file ="/WEB-INF/views/footer.jsp"%></footer>	
@@ -111,5 +99,10 @@ $(document).ready(function() {
 	}); 
 	});
 </script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
+<!-- include summernote css/js -->  
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">  
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
 </html>
 

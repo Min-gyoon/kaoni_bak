@@ -4,7 +4,7 @@
 <mapper namespace="com.kaoni.Board.DAO.BoardDAO">
 
 <select id="ShowAllPost" parameterType="BoardVO" resultType="BoardVO">
-SELECT  EMNUM,
+<!-- SELECT  EMNUM,
 			NBO, 
 		    TITLE, 
 		    CONTENT,
@@ -22,7 +22,8 @@ SELECT  EMNUM,
             ROW_NUMBER() OVER(ORDER BY NBO DESC) AS RNUM
 		         FROM BOARDTBL ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY IMPOR DESC , NBO DESC
+		ORDER BY IMPOR DESC , NBO DESC -->
+		SELECT * FROM BOARDTBL ORDER BY IMPOR DESC ,UPDATEDATE DESC
 </select>
 
 <insert id="WritePost">

@@ -19,8 +19,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<BoardVO> ShowAllPost(Criteria cri) {
-		return sqlSession.selectList("ShowAllPost", cri);
+	public List<BoardVO> ShowAllPost(BoardVO bvo) {
+		return sqlSession.selectList("ShowAllPost", bvo);
 	}
 	
 	@Override

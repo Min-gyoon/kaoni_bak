@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> ShowAllPost(Criteria cri) {
-		return boardDAO.ShowAllPost(cri);
+	public List<BoardVO> ShowAllPost(BoardVO bvo) {
+		return boardDAO.ShowAllPost(bvo);
 	}
 
 	@Override
