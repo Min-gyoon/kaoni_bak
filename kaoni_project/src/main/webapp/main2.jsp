@@ -14,13 +14,13 @@
 
 	<!-- jquery -->
 	<script src="./resources/vendor/jquery/jquery.min.js"></script>
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template 푸터에 없음-->
     <link href="/resources/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    <!-- Custom styles for this template 푸터에 있음-->
     <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript">
   //코로나현황 데이터 가져오기. 
@@ -136,10 +136,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+ 
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -151,10 +148,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">코로나</h6>
-                        <a class="collapse-item" href="buttons.html">내 코로나 결과 입력하기(로그인시 jstl처리)</a>
-                        <a class="collapse-item" href="cards.html">내 코로나 결과 모두보기(로그인시 jstl처리)</a>
-                        <a class="collapse-item" href="cards.html">사내 코로나 정보 모두보기</a>
-                        <a class="collapse-item" href="cards.html">관리자용 사내 코로나 결과(관리자 로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrForm.kaoni">내 코로나 결과 입력하기(로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrMine.kaoni">내 코로나 결과 모두보기(로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
+                        <a class="collapse-item" href="http://localhost:8080/adminmain.kaoni">관리자용 사내 코로나 결과(관리자 로그인시 jstl처리)</a>
                     </div>
                 </div>
             </li>
@@ -170,8 +167,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">자가진단</h6>
-                        <a class="collapse-item" href="utilities-color.html">자가진단하기</a>
-                        <a class="collapse-item" href="utilities-border.html">내 자가진단 결과 모아보기</a>
+                        <a class="collapse-item" href="http://localhost:8080/selfForm.kaoni">자가진단하기</a>
+                        <a class="collapse-item" href="http://localhost:8080/selfSelectAll.kaoni">내 자가진단 결과 모아보기</a>
                     </div>
                 </div>
             </li>
@@ -179,15 +176,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+<<<<<<< HEAD
                 <a class="nav-link" href="ShowAllPost.kaoni">
+=======
+                <a class="nav-link" href="http://localhost:8080/ShowAllPost.kaoni">
+>>>>>>> fa64cbaf77119c35ec4ceb9dc6c7bef8743128b3
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>공지사항</span></a>
             </li>
@@ -439,31 +434,8 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+ 
     <!-- Bootstrap core JavaScript-->
     
     <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

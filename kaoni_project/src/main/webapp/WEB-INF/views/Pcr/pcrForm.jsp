@@ -26,6 +26,7 @@ href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+	<%@include file ="/WEB-INF/views/header2.jsp" %>
 <script type="text/javascript">  
   
 $(document).ready(function(){  
@@ -81,7 +82,6 @@ document.getElementById("isoleb").value = "";
 </script>  
 
 <body class="bg-gradient-primary">
-
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">

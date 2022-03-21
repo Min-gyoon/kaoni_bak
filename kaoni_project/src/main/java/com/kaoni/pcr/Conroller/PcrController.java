@@ -141,7 +141,7 @@ return "Pcr/pcrMine";
 return "needlogin";}  
 }  
   
-  
+  /*
 @RequestMapping(value="pcrSearch", method=RequestMethod.GET)  
 public String pcrSearch(PcrVO pvo, Model model,HttpServletRequest req) {  
   
@@ -152,7 +152,7 @@ model.addAttribute("listsearch", listsearch);
 return "Pcr/pcrSearchResult";  
 }else {  
 return "error";}  
-}  
+}  */
   
   
 }
