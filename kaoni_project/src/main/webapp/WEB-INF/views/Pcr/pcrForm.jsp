@@ -1,237 +1,31 @@
-<!DOCTYPE html>  
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
-  
-<html>  
-<head>   
-  <meta charset="utf-8">   
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">   
-  <title>kaoni_prject index</title>   
-  <meta content="" name="description">   
-  <meta content="" name="keywords">   
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>     
-   <!-- bootstrap-->  
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"   
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"   
-  crossorigin="anonymous">  
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">  
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>  
-  
-<title>코로나 진단</title>  
-  
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>  
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
-<link rel="stylesheet"  
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<html>
+<head>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>감염 정보 입력하기</title>
+	<!-- jquery -->
+	<script src="./resources/vendor/jquery/jquery.min.js"></script>
+    <!-- Custom fonts for this template-->
+    <link href="/resources/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+	<!-- 데이트피커 -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+	<link rel="stylesheet"  
 href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
-  <!-- Favicons -->   
-  <link href="assets/img/favicon.png" rel="icon">   
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">   
-   
-  <!-- Google Fonts -->   
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">   
-   
-  <!-- Vendor CSS Files -->   
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">   
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">   
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">   
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">   
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">   
-   
-  <!-- Template Main CSS File -->   
-  <link href="assets/css/style.css" rel="stylesheet">   
-   
-  <!-- =======================================================   
-  * Template Name: eNno - v4.7.0   
-  * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/   
-  * Author: BootstrapMade.com   
-  * License: https://bootstrapmade.com/license/   
-  ======================================================== -->   
-  
-<script>  
-$(function() {  
-    function slideMenu() {  
-        var activeState = $("#menu-container .menu-list").hasClass("active");  
-        $("#menu-container .menu-list").animate({right: activeState ? "0%" : "-100%"}, 400);  
-    }  
-    $("#menu-wrapper").click(function(event) {  
-        event.stopPropagation();  
-        $("#hamburger-menu").toggleClass("open");  
-        $("#menu-container .menu-list").toggleClass("active");  
-        slideMenu();  
-  
-        $("body").toggleClass("overflow-hidden");  
-    });  
-  
-    $(".menu-list").find(".accordion-toggle").click(function() {  
-        $(this).next().toggleClass("open").slideToggle("fast");  
-        $(this).toggleClass("active-tab").find(".menu-link").toggleClass("active");  
-  
-        $(".menu-list .accordion-content").not($(this).next()).slideUp("fast").removeClass("open");  
-        $(".menu-list .accordion-toggle").not(jQuery(this)).removeClass("active-tab").find(".menu-link").removeClass("active");  
-    });  
-}); // jQuery load  
-  
-</script>  
-<style type="text/css">  
-div li{  
-float: left;  
-}  
-</style>  
-<meta charset="UTF-8">  
-<title>Insert title here</title>  
-</head>  
-<body>  
- <!-- ======= Header ======= -->  
-  <header id="header" class="fixed-top">  
-    <div class="container d-flex align-items-center justify-content-between">  
-  
-      <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1>  
-      <!-- Uncomment below if you prefer to use an image logo -->  
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->  
-<!-- 헤더 -->  
-      <nav id="navbar" class="navbar" style="margin-left: 250px; width: 700px;">  
-        <ul>  
-          <li>  
-          <li><a class="nav-link scrollto" href="http://localhost:8080/pcrSelectAll.kaoni">Pcr정보모두보기</a></li>  
-          <li><a class="nav-link scrollto " href="http://localhost:8080/pcrForm.kaoni">내Pcr정보입력하기</a></li>  
-          <li><a class="nav-link scrollto" href="http://localhost:8080/selfForm.kaoni">자가진단해보기</a></li>  
-  <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li>  
-  <c:choose>   
-  <c:when test="${emnum eq 'EM0000'}">  
-  <%-- 관리자 계정 --%>  
-  <div style="width: 430px; padding-left:20px;">  
-  <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li>  
-  <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
-  </div>  
-  </c:when>  
-    
-  <c:when test="${not empty emnum}">  
-  <%-- 일반 계정 --%>  
-     <div style="width: 430px; padding-left:20px;">  
-     <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li>  
-    <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li> 
-  </div>  
-  </c:when>  
-  <c:otherwise>  
-    
-  <li><a class="nav-link scrollto" href="http://localhost:8080/memberSignUp.kaoni">회원가입</a></li>  
-          <li><a class="getstarted scrollto" href="http://localhost:8080/memberLogin.kaoni">로그인</a></li>  
- </c:otherwise>  
-  </c:choose>  
-        </ul>  
-        <i class="bi bi-list mobile-nav-toggle"></i>  
-      </nav><!-- .navbar -->  
-        
-        
-       <c:choose> 
-       <c:when test="${empty emnum} }"> 
-        
-       </c:when> 
-       <c:when test="${not empty emnum}"> 
-        
-        
-<div id="menu-container">  
-            <div id="menu-wrapper">  
-                <div id="hamburger-menu"><span></span><span></span><span></span></div>  
-                <!-- hamburger-menu -->  
-            </div>  
-            <!-- menu-wrapper -->  
-            <ul class="menu-list accordion">  
-             
-<c:choose>   
-  <c:when test="${emnum eq 'EM0000'}"> 
-  <%-- 관리자 계정 --%>  
-   
-     <li id="nav1" class="toggle accordion-toggle"> 
-     <span class="icon-plus"></span>  
-     <a class="menu-link" href="http://localhost:8080/adminmain.kaoni">관리자 페이지</a></li>  
-    
-  </c:when>  
-   
-  <c:when test="${not empty emnum}">  
-  <%-- 일반 계정 --%>  
-      
-     <li id="nav1" class="toggle accordion-toggle"> 
-     <span class="icon-plus"></span>  
-     <a class="menu-link" href="http://localhost:8080/updateInfo_pwCheck.kaoni">내 정보 수정</a></li>  
-      
-      <li id="nav2" class="toggle accordion-toggle">   
-      <span class="icon-plus"></span>  
-      <a class="menu-link" href="http://localhost:8080/pcrMine.kaoni">내PCR검사수정하기</a></li> 
-      
- <li id="nav3" class="toggle accordion-toggle"> 
-     <span class="icon-plus"></span>  
-     <a class="menu-link" href="http://localhost:8080/selfSelectAll.kaoni">자가 진단 확인</a></li>  
-      
-     <li id="nav4" class="toggle accordion-toggle"> 
-     <span class="icon-plus"></span>  
-     </li>  
-  
-  </c:when>  
-  <c:otherwise>  
-  <h5>로그인 후 이용해주세요</h5> 
- </c:otherwise>  
-  </c:choose>  
-            </ul>  
-            <!-- menu-list accordion-->  
-        </div>  
-         
-        </c:when> 
-       </c:choose> 
-        
-  
-    </div>   
- </header> 
-  <main id="main" style="padding-top:130px">  
-<div class="container">  
-<div class="row justify-content-center">  
-                    <div class="col-md-8">  
-                        <div class="card">  
-                        <div class="card-header" style="font-size: 1.1rem">PCR정보입력</div>  
-                            <div class="card-body">  
-        <form name="jindan" id="jindan">  
-        <div class="form-group">  
-            <label for="name" class="cols-sm-2 control-label">검사결과</label>  
-            <div class="cols-sm-10">  
-            <div class="input-group">  
-            &nbsp;&nbsp;<input type="checkbox" name="poutcome" value="Y" onclick='checkOnlyOne(this)'>양성&nbsp;&nbsp;&nbsp;&nbsp;  
-                    <input type="checkbox" name="poutcome"  value="N" onclick='checkOnlyOne(this)'>음성  
-            </div>  
-            </div>  
-            </div>    
-        <!-- 날짜 -->  
-        <div class="form-group">  
-            <label for="name" class="cols-sm-2 control-label">자가격리기간</label>  
-            <div class="cols-sm-10">  
-            <div class="input-group">  
-            시작일: <input type="text" autocomplete="off" name="isolea" id="isolea" class="form-control">  
-            종료일: <input type="text" onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" class="form-control">  
-            </div>  
-            </div>  
-            </div>  
-            <!-- 특이사항 -->  
-             <div class="form-group">  
-            <label for="name" class="cols-sm-2 control-label">특이사항</label>  
-            <div class="cols-sm-10">  
-            <div class="input-group">  
-            <textarea name="pcontent" id="pcontent" maxlength="1000" class="form-control" placeholder="특이사항을 입력하시오"> </textarea>  
-            </div>  
-            </div>  
-            </div>  
-        <input type="button" id="pcrbtn" value="제출하기" class="btn btn-primary">  
-          
-        </form>                     
-                       
-</div>  
-</div>  
-</div>  
-</div>  
-</div>  
-  </main><!-- End #main -->  
-  
-<%@include file ="/WEB-INF/views/footer.jsp" %>  
-  
-</body>  
+    <!-- Custom styles for this template-->
+    <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
 <script type="text/javascript">  
   
 $(document).ready(function(){  
@@ -285,5 +79,68 @@ document.getElementById("isoleb").value = "";
 }  
 }  
 </script>  
-  
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">감염 정보 입력하기</h1>
+                            </div>
+                            <form name="jindan" id="jindan">
+                                      <div class="form-group">
+                                            <div>
+                                               &emsp;<input type="checkbox"  name="poutcome" value="Y" onclick='checkOnlyOne(this)'>
+												<label>양성</label> &emsp;&emsp;
+												<input type="checkbox"  name="poutcome"  value="N" onclick='checkOnlyOne(this)'>
+                                                <label>음성</label>
+                                            </div>
+                                            </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user"
+                                           autocomplete="off" name="isolea" id="isolea" placeholder="자가격리시작일">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user"
+                                            onchange='checkday()' autocomplete="off" name="isoleb" id="isoleb" placeholder="자가격리종료일">
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                    <textarea class="form-control form-control-user" name="pcontent" id="pcontent" maxlength="1000"
+                                        placeholder="특이사항"></textarea>
+                                </div>
+                                <input type="button" id="pcrbtn" value="제출하기" class="btn btn-primary btn-user btn-block">
+                                  	  
+                                <hr>
+
+                            </form>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./resources/js/sb-admin-2.min.js"></script>
+
+</body>
+
 </html>

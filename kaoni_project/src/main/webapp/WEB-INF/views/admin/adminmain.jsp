@@ -1,152 +1,158 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
 <%@ page import="com.kaoni.Member.VO.MemberVO"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <!-- bootswatch journal-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <title>kaoni_prject index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <title>관리자용 감염정보 모두보기</title>
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+        <!-- Bootstrap core JavaScript-->
+    <script src="./resources/vendor/jquery/jquery.min.js"></script>
+    <link href="./resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: eNno - v4.7.0
-  * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script>
-function selectMember(emnum){
-	
-	var id = emnum.id;
-	alert(id);
-	$("#emnum").val(id);
-	
-	$("#adminpcrselect").attr({
-		"action":"/adminPcrSelect.kaoni",
-		"method":"GET",
-		"enctype":"application/x-www-form-urlencoded"
-	}).submit();
-}
+    <!-- Custom styles for this template -->
+    <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
 
-
-</script>
-<style type="text/css">
-
-
-table tr td {
-border: 1px solid rgba(255, 0, 0, 2);
-border-right: none;
-border-top: none;
-border-left: none;
-border-color: black 
-}
-
-
-</style>
-</head>
-<body>
- <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1>
-	<!-- 헤더 -->
-      <nav id="navbar" class="navbar">
-        <ul>
-        
-          <li><a class="nav-link scrollto" href="http://localhost:8080/adminMemberlist.kaoni">사원관리하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/adminmain.kaoni">사원PCR정보보기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/adminPcrInsertForm.kaoni">사원 PCR정보 입력하기</a></li>
-          <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-  <main id="main" style="padding-top:85px">
-  <form id ="adminpcrselect" name="adminpcrselect">
-  <table  align="center" class="selectall">
-<thead>
-  <tr class="table-info">
-  	<th>사원번호</th>
-    <th>이름</th>
-    <th>직책</th>
-    <th>부서</th>
-    <th>자가격리기간</th>
-    <th>확진여부</th>
-  </tr>
-  <%
-  //세션, 쿼리 조인 후 직책 부서 추가. 
-  
-Object obj = request.getAttribute("listAll");
-List<PcrVO> list = (List)obj;
-MemberVO mvo;
-for(int i = 0; i < list.size(); i++){
-PcrVO pvo = list.get(i);
-mvo = pvo.getMemberVO();
-String isolea = pvo.getIsolea().split("\\s+")[0];
-String isoleb = pvo.getIsoleb().split("\\s+")[0];
-String outcome = pvo.getPoutcome();
-System.out.println("adminmain-->"+pvo.getPnum());
-
+    <!-- Custom styles for this page -->
+    <link href="./resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<% 
+	  
+	Object obj = request.getAttribute("listAll");
+	List<PcrVO> list = (List)obj;
+	MemberVO mvo;
 %>
-
-  <tr id="<%= mvo.getEmnum() %>" style="cursor: pointer;" onclick="selectMember(this)">
-  	<td><%= mvo.getEmnum() %></td>
-    <td><%=mvo.getName() %></td>
-    <td><%=mvo.getPosition() %></td>
-    <td><%=mvo.getDname() %></td>
-    <td><%=isolea %> ~ <%=isoleb %></td>
-    <td><%= outcome%></td>
-    
-    </tr>
-    <tr><td>
-    <input type="hidden" id="emnum" name="emnum" value="">
-	<input type="hidden" id="pnum" name="pnum" value="<%=pvo.getPnum()%>">
-</td></tr>
-  
+<script>   
+function selectMember(pnum){   
+   
+	var id = pnum.id;
+	
+	$("#pnum").val(id);
+	
+	
+   
+$("#adminpcrselect").attr({   
+"action":"/adminPcrSelect.kaoni",   
+"method":"GET",   
+"enctype":"application/x-www-form-urlencoded"   
+}).submit();   
+}   
+   
+</script> 
+</head>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">내 감염 정보 모두보기</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <form id="adminpcrselect" name="adminpcrselect">   
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                                    <thead>
+                            <tr>
+								<th>사원번호</th>
+								<th>이름</th>
+								<th>직책</th>
+								<th>부서</th>
+								<th>자가격리기간</th>
+								<th>확진여부</th>
+							</tr>
+                                    </thead>
+                                    <tbody>
+                                      <%   
+                                      for(int i = 0; i < list.size(); i++){
+                                    	  PcrVO pvo = list.get(i);
+                                    	  mvo = pvo.getMemberVO();
+                                    	  String isolea = pvo.getIsolea().split("\\s+")[0];
+                                    	  String isoleb = pvo.getIsoleb().split("\\s+")[0];
+                                    	  String outcome = pvo.getPoutcome(); 
+                                    	  System.out.println("pnum-->"+pvo.getPnum());
+										%>
+							<tr id="<%= pvo.getPnum()%>" style="cursor: pointer;"
+								onclick="selectMember(this)">
+								<td><%=mvo.getEmnum()%></td>
+								<td><%=mvo.getName()%></td>
+								<td><%=mvo.getPosition()%></td>
+								<td><%=mvo.getDname()%></td>
+								<td><%=isolea%> ~ <%=isoleb%></td>
+								<td><%=outcome%></td>
+								<input type="hidden" id="emnum" name="emnum" value="">
+								<input type="hidden" id="pnum" name="pnum" value="">
+							</tr>
+								
+							
 <%
 }
 %>
-</table>
+						
+						</tbody>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
-</form>
-  </main><!-- End #main -->
-  
-  <%@include file ="/WEB-INF/views/footer.jsp" %>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./resources/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="./resources/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="./resources/js/demo/datatables-demo.js"></script>
+
 </body>
+
 </html>

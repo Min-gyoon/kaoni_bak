@@ -1,27 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"   
-    pageEncoding="UTF-8"%>   
-    <%@ page import="java.util.List" %>   
-<%@ page import="com.kaoni.pcr.VO.PcrVO"%>   
-<!DOCTYPE html>   
-<html>   
-<head>   
-<%   
-Object obj = request.getAttribute("listmine");   
-List<PcrVO> list = (List)obj;   
-%>   
-<style type="text/css">   
-   
-   
-table tr td {   
-border: 1px solid rgba(255, 0, 0, 2);   
-border-right: none;   
-border-top: none;   
-border-left: none;   
-border-color: black    
-}   
-   
-   
-</style>   
+<!DOCTYPE html>
+<%@ page import="java.util.List" %>
+<%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
+<%@ page import="com.kaoni.Member.VO.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>내 감염 정보 모두보기</title>
+
+    <!-- Custom fonts for this template -->
+        <!-- Bootstrap core JavaScript-->
+    <script src="./resources/vendor/jquery/jquery.min.js"></script>
+    <link href="./resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="./resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<% 
+
+Object obj = request.getAttribute("listmine");
+List<PcrVO> list = (List)obj;
+
+%>
 <script>   
 function selectMember(pnum){   
    
@@ -35,44 +47,97 @@ $("#mineform").attr({
 }).submit();   
 }   
    
-</script>   
-<meta charset="UTF-8">   
-<title>Insert title here</title>   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">  
-<%@include file ="/WEB-INF/views/header.jsp" %>   
-   
-</head>   
-<body>   
-<main style="padding-top:110px">   
-<form id="mineform" name="mineform">   
-<table  align="center" class="pcrmine" style="width:70%; text-align:center;">   
-   
-  <tr class="table-info">   
-    <th>번호</th>   
-    <th>자가격리기간</th>   
-    <th>치료여부</th>   
-  </tr>   
-  <%   
-for(int i=0; i <list.size(); i++){   
-PcrVO pvo = list.get(i);   
-String isolea = pvo.getIsolea().split("\\s+")[0];   
-String isoleb = pvo.getIsoleb().split("\\s+")[0];   
-%>   
-  <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" onclick="selectMember(this)">   
-  <td><%=i+1 %></td>   
-  <td><%=isolea%> ~ <%=isoleb %></td>   
-  <td><%=pvo.getPoutcome() %></td>   
-  </tr>   
-     
-  <%   
-}   
-  %>   
-  <tr>   
-  <td><input type="hidden" id ="pnum" name="pnum"></td>   
-  </tr>   
-  </table>   
-  </form>   
-</main>   
-<%@include file ="/WEB-INF/views/footer.jsp" %>   
-</body>   
+</script> 
+</head>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">내 감염 정보 모두보기</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <form id="mineform" name="mineform">   
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>자가격리기간</th>
+                                            <th>치료여부</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <%   
+										for(int i=0; i <list.size(); i++){   
+										PcrVO pvo = list.get(i);   
+										String isolea = pvo.getIsolea().split("\\s+")[0];   
+										String isoleb = pvo.getIsoleb().split("\\s+")[0];   
+										%> 
+                                   <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" onclick="selectMember(this)">   
+  									<td><%=i+1 %></td>   
+  									<td><%=isolea%> ~ <%=isoleb %></td>   
+  									<td><%=pvo.getPoutcome() %></td>   
+  									</tr> 
+<%
+}
+%>
+									<tr>   
+  										<td><input type="hidden" id ="pnum" name="pnum"></td>   
+  									</tr>  
+									</tbody>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./resources/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="./resources/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="./resources/js/demo/datatables-demo.js"></script>
+
+</body>
+
 </html>

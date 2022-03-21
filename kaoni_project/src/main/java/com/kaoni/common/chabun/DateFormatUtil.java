@@ -62,6 +62,5 @@ public abstract class DateFormatUtil {
 	
 	public static void main(String[] args) {
 		String result = DateFormatUtil.numPad(1000);
-		System.out.println("result >>> : " + result);
 	}
 }

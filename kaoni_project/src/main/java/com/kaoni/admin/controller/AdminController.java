@@ -53,6 +53,7 @@ public class AdminController {
 	@RequestMapping(value="adminPcrInsertForm", method=RequestMethod.GET)
 	public String adminPcrInsertForm(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		
 		String checklogin = (String)session.getAttribute("emnum");
 		/*
 		 * if(checklogin.equals("admin")) { }else {return "404";}
@@ -83,6 +84,7 @@ public class AdminController {
 	@RequestMapping(value="adminPcrSelect", method=RequestMethod.GET)
 	public String adminPcrSelect(PcrVO pvo, Model model, HttpServletRequest req) {
 		pvo.setEmnum(req.getParameter("emnum"));
+		logger.info("pcrselect->>"+req.getParameter("pnum"));
 		pvo.setPnum(req.getParameter("pnum"));
 		List<PcrVO> list = pcrservice.pcrUpdateForm(pvo);
 		if(list.size()>0) {

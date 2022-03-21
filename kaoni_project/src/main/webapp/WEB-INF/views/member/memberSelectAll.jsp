@@ -12,7 +12,6 @@
 	
 	List<MemberVO> list = (List)obj;
 	int count = list.size();
-	System.out.println("list->>>"+list);
 
 %>
 <title>Insert title here</title>

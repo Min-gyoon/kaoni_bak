@@ -2,6 +2,7 @@ package com.kaoni.pcr.Service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.kaoni.pcr.VO.PcrVO;
 @Service
 @Transactional
 public class PcrServiceImpl implements PcrService {
+	Logger logger = Logger.getLogger(PcrServiceImpl.class);  
 	
 	@Autowired(required=false)
 	private PcrDAO pcrdao;
@@ -48,6 +50,7 @@ public class PcrServiceImpl implements PcrService {
 
 	
 	  @Override public List<PcrVO> pcrMain(PcrVO pvo) { 
+		  logger.info("pcrmain service 진입");
 	  return pcrdao.pcrMain(pvo); }
 
 

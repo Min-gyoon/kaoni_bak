@@ -1,89 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kaoni.pcr.VO.PcrVO"%> 
 <%@ page import="com.kaoni.Member.VO.MemberVO"%>
-
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 
 <head>
-<!-- bootswatch journal-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous">
-<title>코로나 진단표</title>
- <%@include file ="/WEB-INF/views/header.jsp" %>
-</head>
-<script>
-$(document).ready(function(){
-	$(document).on("click", "#searchbtn", function(){
-		console.log("click searchbtn");
-		$("#searchform").attr({
-			"action":"pcrSearch.kaoni",
-			"method":"GET",
-			"enctype":"application/x-www-form-urlencoded"				
-		}).submit();
-	});
-	});
 
-</script>
-<style type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>사내 감염정보 확인하기</title>
 
-table tr td {
-border: 1px solid rgba(255, 0, 0, 2);
-border-right: none;
-border-top: none;
-border-left: none;
-border-color: black 
-}
+    <!-- Custom fonts for this template -->
+        <!-- Bootstrap core JavaScript-->
+    <script src="./resources/vendor/jquery/jquery.min.js"></script>
+    <link href="./resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
 
-</style>
-
-<body>
-<% 
-int pageSize = 0;
-int groupSize = 0;
-int curPage = 0;
-int totalCount = 0;
-
+    <!-- Custom styles for this page -->
+    <link href="./resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<% 
 
 Object obj = request.getAttribute("listAll");
 List<PcrVO> list = (List)obj;
-
-Object obj2 = request.getAttribute("pagingVO");
-PcrVO pvo2 = (PcrVO)obj2;
 MemberVO mvo;
 
-pageSize = Integer.parseInt(pvo2.getPageSize());
-groupSize = Integer.parseInt(pvo2.getGroupSize());
-curPage = Integer.parseInt(pvo2.getCurPage());
-totalCount = Integer.parseInt(pvo2.getTotalCount());
 %>
-<!-- 폼태그 넘기는 함수 하나 만들고 컨트롤러 하나 만들고 받아온 리스트 넘기는 jsp 하나 만들기.  -->
-  <main id="main" style="padding-top:95px">
-  <div id="wrap">
-  <form id ="searchform" >
-  
-<table  align="center" class="selectall" style="width:80%;text-align:center;" >
-<thead>
+</head>
 
-<tr>
-	<td  colspan="2"></td>
-	<td  colspan="2"></td>
-	<td style="text-align:right"> <input type="text" id="search" name="search"></td>
-	<td><input type="button" id="searchbtn" value="검색"></td>
-	</tr>
-	
-  <tr class="table-info">
-    <th style="width:20%;">이름</th>
-    <th style="width:20%;">직책</th>
-    <th style="width:20%;">부서</th>
-    <th style="width:25%;">자가격리기간</th>
-    <th style="width:15%;">확진여부</th>
-  </tr>
-  
-  <%
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">사내 코로나 감염 정보 모두보기</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                                    <thead>
+                                        <tr>
+                                            <th>이름</th>
+                                            <th>직책</th>
+                                            <th>부서</th>
+                                            <th>자가격리기간</th>
+                                            <th>확진여부</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <%
 
 for(int i = 0; i < list.size(); i++){
 
@@ -93,28 +68,67 @@ String isolea = pvo1.getIsolea().split("\\s+")[0];
 String isoleb = pvo1.getIsoleb().split("\\s+")[0];
 String outcome = pvo1.getPoutcome();
 
-
-
-
 %>
-  <tr>
-    <td><%=mvo.getName() %></td>
-    <td><%=mvo.getPosition() %></td>
-    <td><%=mvo.getDname() %></td>
-    <td><%=isolea %> ~ <%=isoleb %></td>
-    <td><%= outcome%></td>
-  </tr>
+                                        <tr>
+   											<td><%=mvo.getName() %></td>
+										    <td><%=mvo.getPosition() %></td>
+										    <td><%=mvo.getDname() %></td>
+    										<td><%=isolea %> ~ <%=isoleb %></td>
+    										<td><%= outcome%></td>
+                                        </tr>
 <%
 }
 %>
+									</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-</table>
-</form>
-</div>
-	
-  </main><!-- End #main -->
-<%@include file ="/WEB-INF/views/footer.jsp" %>
+                </div>
+                <!-- /.container-fluid -->
 
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+    <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./resources/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="./resources/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="./resources/js/demo/datatables-demo.js"></script>
 
 </body>
 

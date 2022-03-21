@@ -79,6 +79,7 @@ return "Pcr/pcrSelectAll";
 }  
 @RequestMapping(value="PcrUpdateForm", method=RequestMethod.GET)  
 public String pcrUpdateForm(PcrVO pvo, Model model, HttpServletRequest req) {  
+	
 String pnum = req.getParameter("pnum");  
 pvo.setEmnum(req.getParameter("emnum"));  
 pvo.setPnum(pnum);  
@@ -91,7 +92,8 @@ return "needlogin";
 }  
   
 @RequestMapping(value="pcrUpdate", method=RequestMethod.GET)  
-public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {  
+public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {
+	logger.info("pcrupdate-->");
 HttpSession session = req.getSession();  
 String emnum = (String)session.getAttribute("emnum");  
   
@@ -114,9 +116,10 @@ return "Pcr/pcrUpdateForm";
 @ResponseBody  
 @RequestMapping(value="pcrMain", method=RequestMethod.GET, produces = "application/text; charset=utf8")  
 public String pcrMain(PcrVO pvo, Model model) {  
-  
+  logger.info("pcrmain진입");
 List<PcrVO> listmain = pcrService.pcrMain(pvo);;  
 String jsontest = new Gson().toJson(listmain);  
+logger.info("pcrmain-->"+jsontest);
   
   
 if(listmain.size()>0) {  
@@ -132,6 +135,7 @@ pvo.setEmnum(emnum);
 List<PcrVO> listmine = pcrService.pcrMine(pvo);  
 if(listmine.size()>0) {  
 model.addAttribute("listmine", listmine);  
+logger.info("pcrmine-->"+listmine.size());
 return "Pcr/pcrMine";  
 }else {  
 return "needlogin";}  

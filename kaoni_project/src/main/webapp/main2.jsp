@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Kaoni</title>
 
 	<!-- jquery -->
 	<script src="./resources/vendor/jquery/jquery.min.js"></script>
@@ -43,7 +43,7 @@
     	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     	}
   $(document).ready(function(){
-      /*
+      
           $.ajax({
              url : 'pcrdata.kaoni',
              dataType : 'json',
@@ -57,8 +57,8 @@
                 console.log(error);
              }   
           });
-      */
-	  /*
+      
+	 
          $.ajax({
             url : 'pcrMain.kaoni',
             dataType : 'json',
@@ -66,8 +66,6 @@
                for(var i =0; i< 10; i++){
                var addpcr ="";
                var isole = data2[i].isolea.split(" ")[0]+" ~ "+data2[i].isoleb.split(" ")[0];
-               
-               
                addpcr +="<tr>"
                addpcr +="<td>"+data2[i].memberVO.name+"</td>"
                addpcr +="<td>"+data2[i].memberVO.position+"</td>"
@@ -79,16 +77,16 @@
                }
             },
             error : function(error){
+
                console.log(error);
             }   
          }); 
-		*/       
+		       
          	//api data
          $.ajax({
              url : 'jungukdata.kaoni',
              dataType : 'json',
              success : function(data){
-          	   console.log(typeof(data));
           	   var day = data.TbCorona19CountStatus.row[0].S_DT;
                  var hj = data.TbCorona19CountStatus.row[0].SN_HJ;
                  var death = data.TbCorona19CountStatus.row[0].S_DEATH;
@@ -102,7 +100,7 @@
                 document.getElementById('death').innerHTML = death+"명";
                 document.getElementById('jhj').innerHTML = jhj+"명";
                 document.getElementById('jdeath').innerText = jdeath+"명";
-                document.getElementById('day').innerText = day+"기준";
+                //document.getElementById('day').innerText = day+"기준";
              },
              error : function(error){
                 console.log(error);
@@ -121,22 +119,16 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:8080/">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Kaoni</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -151,32 +143,32 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>코로나</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">코로나</h6>
+                        <a class="collapse-item" href="buttons.html">내 코로나 결과 입력하기(로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="cards.html">내 코로나 결과 모두보기(로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="cards.html">사내 코로나 정보 모두보기</a>
+                        <a class="collapse-item" href="cards.html">관리자용 사내 코로나 결과(관리자 로그인시 jstl처리)</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="http://localhost:8080/pcrSelectAll.kaoni" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities" >
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>자가진단</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <h6 class="collapse-header">자가진단</h6>
+                        <a class="collapse-item" href="utilities-color.html">자가진단하기</a>
+                        <a class="collapse-item" href="utilities-border.html">내 자가진단 결과 모아보기</a>
                     </div>
                 </div>
             </li>
@@ -189,39 +181,30 @@
                 Addons
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <span>공지사항</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>내정보 수정</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>로그아웃</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>회원관리하기(관리자)(관리자 로그인시 노출 jstl처리)</span></a>
             </li>
 
             <!-- Divider -->
@@ -258,12 +241,25 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">최근 확진자</h6>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                      
-                                    </div>
-                                </div>
+                                
+<div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                                    <thead>
+                                        <tr>
+                                            <th>이름</th>
+                                            <th>직위</th>
+                                            <th>부서</th>
+                                            <th>자가격리기간</th>
+                                            <th>검사결과</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="addtable">
+
+									</tbody>
+                                </table>
+                            </div>
+                        </div>
                             </div>
                         </div>
 
@@ -349,11 +345,71 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- 사내 코로나  -->
+                          <div class="row">
 					
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align:center">
+                                                	총확진자</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="allmember" style="text-align:center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            
-                           
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align:center">
+                                                	현재 확진자</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="nowmember" style="text-align:center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">자가 격리자
+                                            </div>
+                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="member" style="text-align:center; align:center;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align:center">
+                                                		근무원 총원</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="isolemember" style="text-align:center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                         </div>
                     </div>
 

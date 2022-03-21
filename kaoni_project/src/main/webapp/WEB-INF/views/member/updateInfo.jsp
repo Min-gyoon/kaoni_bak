@@ -39,7 +39,7 @@
   * License: https://bootstrapmade.com/license/ 
   ======================================================== --> 
   <% 
-  System.out.println("updateinfojsp"); 
+ 
   Object obj = request.getAttribute("list"); 
   List<MemberVO> list = (List)obj; 
   MemberVO mvo = list.get(0); 

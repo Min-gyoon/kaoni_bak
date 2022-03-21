@@ -73,12 +73,17 @@ public class MainController {
 			String line;
 			while ((line = br.readLine()) != null) {
 				result = result + line + "\n";
+				
 			}
+			
 			response.getWriter().append(result);
 			 String json = new Gson().toJson(result);
+			 br.close();
+			 response.getWriter().flush();
 			 response.getWriter().close();
 			return json;
 	}catch(Exception  e){
+		
 	}
 		return "error";
 	}
