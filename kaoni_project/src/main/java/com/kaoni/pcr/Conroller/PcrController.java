@@ -94,7 +94,7 @@ public class PcrController {
 	public String pcrUpdate(PcrVO pvo, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String emnum = (String)session.getAttribute("emnum");
-		if(emnum.equals(null)) {logger.info("emnum 널임");}
+		
 		pvo.setEmnum(req.getParameter("pnum"));
 		pvo.setEmnum(req.getParameter("emnum"));
 		pvo.setPoutcome(req.getParameter("poutcome"));
@@ -103,7 +103,7 @@ public class PcrController {
 		pvo.setDeleteyn(req.getParameter("deleteyn"));	
 		int nCnt = pcrService.pcrUpdate(pvo);
 		if(nCnt>0) {
-			logger.info("update"+nCnt+"건 완료");
+			
 		return "redirect:/";
 	}else {
 		return "Pcr/pcrUpdateForm";
