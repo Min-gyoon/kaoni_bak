@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrawpcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style>
 ul{
@@ -22,12 +22,13 @@ ul{
 </script>
 <body>
  <%@include file ="/WEB-INF/views/header.jsp" %>
- <div class="container" style="transform: translateX(13%);">
-	<div class="row">
-		<div class="col-md-9">
-                    <table class="table table-list-search" style="margin-top:150px; font-size: 1.0rem;">
+ 
+ 
+ <div class="card-body">
+		<div class="col-sm-12" style="margin-left: 150px; margin-top: 150px">
+                    <table class="table table-bordered dataTable">
                         <thead>
-                            <tr style="background-color: #d2d2d2;">
+                            <tr >
                                 <th>번호</th>
                                 <th>작성자</th>
                                 <th>제목</th>
@@ -74,17 +75,20 @@ ul{
                       </tr>
                         </tbody>
                     </table>
-                    <div>
-  <ul>
+<div class="row">
+<div class="col-sm-12 col-md-7">
+<div class="dataTables_paginate paging_simple_numbers"  id="dataTable_paginate" >
+  
+  <ul class="pagination">
     <c:if test="${pageMaker.prev}">
     	<li style="font-size: 1.5rem;"><a href="/ShowAllPost.kaoni${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
-
-<div style="margin-left: 385px;">
+ 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    	<li style="font-size: 1.5rem; margin-right: 7px; "><a href="/ShowAllPost.kaoni${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    	<li class="paginate_button page-item active" style="font-size: 1.5rem; margin-right: 7px; "><a href="/ShowAllPost.kaoni${pageMaker.makeQuery(idx)}">${idx}</a></li>
     </c:forEach>
-</div>
+    <div style="margin-left: 385px;">
+ </div>
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
     	<li style="font-size: 1.5rem;"><a href="/ShowAllPost.kaoni${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
@@ -95,10 +99,10 @@ ul{
                      </c:when></c:choose>
   
 </div>
-                  </div>
-	</div>
 </div>
-
+</div>
+</div>
+</div>
   <%@include file ="/WEB-INF/views/footer.jsp" %>                  
 </body>
 </html>

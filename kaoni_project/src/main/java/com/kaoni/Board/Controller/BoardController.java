@@ -37,7 +37,7 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "board/ShowAllPost";
+		return "board/ShowAllPost2";
 	}
 
 //	게시글 작성

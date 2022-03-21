@@ -1,19 +1,18 @@
-<!DOCTYPE html> 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
- 
-<html> 
-<head>  
-  <meta charset="utf-8">  
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">  
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  
-  <title>kaoni_prject index</title>  
-  <meta content="" name="description">  
-  <meta content="" name="keywords">  
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+  
+<!-- Custom fonts for this template-->
+    <link href="/resources/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
+    <!-- Custom styles for this template-->
+   <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
   
   <!-- Template Main CSS File -->  
-  <link href="assets/css/style.css" rel="stylesheet">  
   
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
 <!-- include summernote css/js -->  
@@ -56,12 +55,8 @@ div li{
 float: left; 
 } 
 </style> 
-<meta charset="UTF-8"> 
-<title>Insert title here</title> 
-</head> 
-<body> 
  <!-- ======= Header ======= --> 
-  <header id="header" class="fixed-top"> 
+ <%--  <header id="header" class="fixed-top"> 
     <div class="container d-flex align-items-center justify-content-between"> 
  
       <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1> 
@@ -77,7 +72,7 @@ float: left;
   <li><a class="nav-link scrollto" href="http://localhost:8080/ShowAllPost.kaoni">공지사항</a></li> 
   <c:choose>  
   <c:when test="${emnum eq 'EM0000'}"> 
-  <%-- 관리자 계정 --%> 
+  관리자 계정 
   <div style="width: 430px; padding-left:20px;"> 
   <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
   <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
@@ -85,7 +80,7 @@ float: left;
   </c:when> 
    
   <c:when test="${not empty emnum}"> 
-  <%-- 일반 계정 --%> 
+  일반 계정 
      <div style="width: 430px; padding-left:20px;"> 
      <li class="nav-link scrollto" style="font-size: 1.1rem; color: black;">${member}님</li> 
     <li><a class="nav-link scrollto" href="http://localhost:8080/logOut.kaoni">로그아웃</a></li>
@@ -119,7 +114,7 @@ float: left;
             
 <c:choose>  
   <c:when test="${emnum eq 'EM0000'}">
-  <%-- 관리자 계정 --%> 
+  관리자 계정 
   
      <li id="nav1" class="toggle accordion-toggle">
      <span class="icon-plus"></span> 
@@ -128,7 +123,7 @@ float: left;
   </c:when> 
   
   <c:when test="${not empty emnum}"> 
-  <%-- 일반 계정 --%> 
+  일반 계정 
      
      <li id="nav1" class="toggle accordion-toggle">
      <span class="icon-plus"></span> 
@@ -161,6 +156,5 @@ float: left;
  
     </div> 
   </header><!-- End Header --> 
- 
-</body> 
-</html>
+
+ --%>

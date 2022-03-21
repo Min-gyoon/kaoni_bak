@@ -20,6 +20,6 @@
       <property name="basePackage"><value>com.kaoni.**.DAO</value></property>
    </bean>
   
-   
+  
 </beans>
 
