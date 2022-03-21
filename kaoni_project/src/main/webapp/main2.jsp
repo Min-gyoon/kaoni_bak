@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <html>
 <head>
 
@@ -112,6 +112,9 @@
 </head>
 
 <body id="page-top">
+<c:if test="${empty emnum}">
+<c:redirect url="http://localhost:8080/memberLogin.kaoni"/>
+</c:if>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -184,20 +187,21 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="ShowAllPost.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>공지사항</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="updateInfo_pwCheck.kaoni">
                     <i class="fas fa-fw fa-table"></i>
                     <span>내정보 수정</span></a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            
+                <a class="nav-link" href="logOut.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>로그아웃</span></a>
             </li>
