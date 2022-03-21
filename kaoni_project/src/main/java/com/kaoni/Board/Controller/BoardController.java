@@ -30,14 +30,14 @@ public class BoardController {
 //	게시글 전체 목록
 	@RequestMapping(value="ShowAllPost", method=RequestMethod.GET)
 	public String ShowAllPost(BoardVO bvo, Model model,Criteria cri){
-		model.addAttribute("list", boardService.ShowAllPost(cri));
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(boardService.listCount());
+		model.addAttribute("list", boardService.ShowAllPost(bvo));
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(boardService.listCount());
+//		
+//		model.addAttribute("pageMaker", pageMaker);
 		
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "board/ShowAllPost2";
+		return "board/ShowAllPost";
 	}
 
 //	게시글 작성

@@ -7,7 +7,7 @@ import com.kaoni.Board.VO.Criteria;
 
 public interface BoardService {
 	
-	public List<BoardVO> ShowAllPost(Criteria cri);
+	public List<BoardVO> ShowAllPost(BoardVO bvo);
 	public int WritePost(BoardVO bvo);
 	public int UpdatePost(BoardVO bvo);
 	public int DeletePost(BoardVO bvo);

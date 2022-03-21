@@ -14,10 +14,7 @@
   
   <!-- Template Main CSS File -->  
   
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
-<!-- include summernote css/js -->  
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">  
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
+
   <!-- =======================================================  
   * Template Name: eNno - v4.7.0  
   * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/  
@@ -56,7 +53,7 @@ float: left;
 } 
 </style> 
  <!-- ======= Header ======= --> 
- <%--  <header id="header" class="fixed-top"> 
+ <header id="header" class="fixed-top"> 
     <div class="container d-flex align-items-center justify-content-between"> 
  
       <h1 class="logo"><a href="http://localhost:8080/">Kaoni</a></h1> 
@@ -157,4 +154,3 @@ float: left;
     </div> 
   </header><!-- End Header --> 
 
- --%>

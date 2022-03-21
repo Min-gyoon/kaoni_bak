@@ -1,30 +1,32 @@
-
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-<title></title>
+<title>로그인</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
- 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  
+  
+<!-- Custom fonts for this template-->
+    <link href="/resources/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
- 
-  <!-- =======================================================
-  * Template Name: eNno - v4.7.0
-  * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <!-- Custom styles for this template-->
+   <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->  
+  
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
+<!-- include summernote css/js -->  
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">  
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  
+  
 <script type="text/javascript">
 function login(){
     var id = $("#id");
@@ -62,38 +64,62 @@ function login(){
 </style>
 </head>
 
-<body>
+<body class="bg-gradient-primary">
   <!-- ======= Header ======= -->
-<%@include file ="/WEB-INF/views/header.jsp" %>
-<div class="container" style="margin-top: 200px; margin-bottom: 100px;">
-    <div class="row">
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default">
-			  <div class="panel-heading">
-			<h3 class="panel-title">Login</h3>
-			 </div>
-			 	<div class="panel-body">
-	   <form name="frm" method="post" action="memberLogin1.kaoni" onsubmit="return login()" >
-         <input type="hidden" id="publicKeyModulus" value="${RSAModulus}"/>
-         <input type="hidden" id="publicKeyExponent" value="${RSAExponent}"/>   
-          <div class="form-group">
-        <input type="text" placeholder="Id" id="id" name="id" class="form-control" style="font-size: 15px;"/>
-        
+
+<div class="container" >
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9" style="margin-top: 200px;" >
+
+                <div class="card o-hidden border-0 shadow-lg my-5" >
+                    <div class="card-body p-0" style="width: 810px;">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row" >
+                            
+                            <div class="col-lg-6" style="margin-left: 230px; ">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">로그인</h1>
+                                    </div>
+                                    <form name="frm" method="post" action="memberLogin1.kaoni" onsubmit="return login()" class="user">
+                                        <input type="hidden" id="publicKeyModulus" value="${RSAModulus}"/>
+                                        <input type="hidden" id="publicKeyExponent" value="${RSAExponent}"/>   
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="id" name="id" aria-describedby="emailHelp"
+                                                placeholder="아이디">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control form-control-user"
+                                            id="password" placeholder="비밀번호">
+                                        </div>
+                                        
+                                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block"/>
+                                       
+                                        <hr>
+                                        <input type="hidden" id="USER_ID" name="USER_ID">
+                                        <input type="hidden" id="USER_PW" name="USER_PW">
+                                    </form>
+                                    <hr>
+                                   
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">회원가입</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <div class="form-group">
-        <input type="password" placeholder="Password" id="password" name="password" class="form-control" style="font-size: 15px;"/>
-        </div>
-        
-        <input type="hidden" id="USER_ID" name="USER_ID">
-        <input type="hidden" id="USER_PW" name="USER_PW">
-        
-        <input type="submit" value="Login" class="btn btn-lg btn-success btn-block"/>
-    </form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
+    </div>
   <!-- ======= Footer ======= -->
   <footer id="footer">
 <%@include file ="/WEB-INF/views/footer.jsp" %>

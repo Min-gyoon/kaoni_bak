@@ -5,153 +5,153 @@
 <html>
 <head>
 <title>회원가입</title>
-  <!-- Bootstrap CSS --> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-  crossorigin="anonymous">
-  
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
 strong{
 color: red;
 }
 </style>
+ <link href="/resources/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+   <link href="./resources/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
-<body>
-<%@include file ="/WEB-INF/views/header.jsp" %>
+<body class="bg-gradient-primary">
+
 <main id="main" style="padding-top:120px;">
 
 <div class="container">
-<div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                        <div class="card-header" style="font-size: 1.1rem">회원가입</div>
-                            <div class="card-body">
 
-<form method="post" name ="userinfo" action="memberSignUp1.kaoni" class="form-horizontal">
-    
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">ID</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            <input type="text" name="id" id ="id" maxlength="20" class="form-control" placeholder="Enter your ID">
-            		</div> 
-            		<button type="button" onclick="fn_idCheck();" class="btn btn-primary"
-            		style="margin-top: 8px;"
-            		>중복 확인</button>
-            	</div>
-            </div>
-           
-           <spring:hasBindErrors name="memberVO">
-
+        <div class="card o-hidden border-0 shadow-lg my-5" style="width: 780px; margin-left: 150px;">
+            <div class="card-body p-0" >
+                <!-- Nested Row within Card Body -->
+                <div class="row" >
+                  
+                    <div class="col-lg-7">
+                        <div class="p-5" style="width: 700px; margin-left: 30px;">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
+                            </div>
+                            <form action="memberSignUp1.kaoni" method="post" class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" name="id" id ="id" maxlength="20" class="form-control form-control-user" placeholder="아이디">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" onclick="fn_idCheck();" class="btn btn-primary"
+            		                style="margin-top: 8px;">중복 확인</button>
+                                    </div>
+                                    <spring:hasBindErrors name="memberVO">
             <c:if test="${errors.hasFieldErrors('id') }">                                     
                <strong>${errors.getFieldError( 'id' ).defaultMessage }</strong>
 			</c:if>
 			</spring:hasBindErrors>
-             
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Password</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            <input type="password" id="passwd" name="passwd" maxlength="15" class="form-control" 
-            oninput="checkPwd()" placeholder="Enter your Password">
-           
-            		</div> <div class="pwCheck"></div>
-            	</div>
-            </div>
-               <spring:hasBindErrors name="memberVO">
-
-            <c:if test="${errors.hasFieldErrors('passwd') }">                                     
-               <strong>${errors.getFieldError( 'passwd' ).defaultMessage }</strong>
-			</c:if>
-			</spring:hasBindErrors>
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Password Check</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            <input type="password" id="passwd1" name="passwd1" maxlength="15" class="form-control" 
-            oninput="checkPwd()" placeholder="Enter your Password" >
-            		</div>
-            	</div>
-            </div>
-                  
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Name</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            <input type="text" name="name" maxlength="40" class="form-control" placeholder="Enter your Name">
-            		</div>
-            	</div>
-            </div>  
-             <spring:hasBindErrors name="memberVO">
-
-            <c:if test="${errors.hasFieldErrors('name') }">                                     
-               <strong>${errors.getFieldError( 'name' ).defaultMessage }</strong>
-			</c:if>
-			</spring:hasBindErrors>
+                                    
+                                </div>
+                                
             
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Gender</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            &nbsp;&nbsp;<input type="radio" name="gender" value="남" checked>남&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="pwCheck"></div>
+                                <div class="form-group">
+                                    
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" id="passwd" name="passwd"class="form-control form-control-user" 
+                                        oninput="checkPwd()" placeholder="비밀번호">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" id="passwd1" name="passwd1" class="form-control form-control-user"
+                                        oninput="checkPwd()" placeholder="비밀번호 확인" >
+                                    </div>
+
+                                    <spring:hasBindErrors name="memberVO">
+
+                                    <c:if test="${errors.hasFieldErrors('passwd') }">                                     
+                                       <strong>${errors.getFieldError( 'passwd' ).defaultMessage }</strong>
+                                    </c:if>
+                                    </spring:hasBindErrors>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" name="name" maxlength="40" class="form-control form-control-user" placeholder="이름">
+                                    </div>
+                                    <spring:hasBindErrors name="memberVO">
+
+                                        <c:if test="${errors.hasFieldErrors('name') }">                                     
+                                           <strong>${errors.getFieldError( 'name' ).defaultMessage }</strong>
+                                        </c:if>
+                                        </spring:hasBindErrors>
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        &nbsp;&nbsp;<input type="radio" name="gender" value="남" checked>남&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="gender" value="여">여
-            		</div>
-            	</div>
-            </div>  
-             
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Department</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-            <select name="Dname" class="form-control">
-                    <option value="">Choice</option>
-                    <option value="SS개발부">SS개발부</option>
-                    <option value="ES개발부">ES개발부</option>
-                    <option value="경영지원실">경영지원실</option>
-                    <option value="사업부">사업부</option>
-                </select>
-            		</div>
-            	</div>
-            </div>  
-             <spring:hasBindErrors name="memberVO">
-            <c:if test="${errors.hasFieldErrors('Dname') }">                                     
-               <strong>${errors.getFieldError( 'Dname' ).defaultMessage }</strong>
-			</c:if>
-			</spring:hasBindErrors>
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Position</label>
-            	<div class="cols-sm-10">
-            		<div class="input-group">
-             <select name="position" class="form-control">
-                    <option value="">Choice</option>
-                    <option value="사원">사원</option>
-                    <option value="대리">대리</option>
-                    <option value="팀장">팀장</option>
-                    <option value="과장">과장</option>
-                </select>
-            		</div>
-            	</div>
-            	 <spring:hasBindErrors name="memberVO">
+                                    </div>
+                                </div>
 
-            <c:if test="${errors.hasFieldErrors('position') }">                                     
-               <strong>${errors.getFieldError( 'position' ).defaultMessage }</strong>
-			</c:if>
-			</spring:hasBindErrors>
-            </div>  
-        <input type="submit" value="가입" class="btn btn-primary" id="signupbtn" disabled="true"/>  
-        <input type="button" value="취소" class="btn btn-primary">
-    </form>
-      </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <select name="Dname" class="form-control">
+                                            <option value="">부서를 선택해주세요</option>
+                                            <option value="SS개발부">SS개발부</option>
+                                            <option value="ES개발부">ES개발부</option>
+                                            <option value="경영지원실">경영지원실</option>
+                                            <option value="사업부">사업부</option>
+                                        </select>
+                                    </div>
+                                    <spring:hasBindErrors name="memberVO">
+                                        <c:if test="${errors.hasFieldErrors('Dname') }">                                     
+                                           <strong>${errors.getFieldError( 'Dname' ).defaultMessage }</strong>
+                                        </c:if>
+                                        </spring:hasBindErrors>
 
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <select name="position" class="form-control">
+                                            <option value="">직책을 선택해주세요</option>
+                                            <option value="사원">사원</option>
+                                            <option value="대리">대리</option>
+                                            <option value="팀장">팀장</option>
+                                            <option value="과장">과장</option>
+                                        </select>
+                                    </div>
+                                    <spring:hasBindErrors name="memberVO">
+
+                                        <c:if test="${errors.hasFieldErrors('position') }">                                     
+                                           <strong>${errors.getFieldError( 'position' ).defaultMessage }</strong>
+                                        </c:if>
+                                        </spring:hasBindErrors>
+                                </div>
+
+
+
+                                <input type="submit" value="가입" class="btn btn-primary" id="signupbtn" disabled="true"/>  
+                                <input type="button" value="취소" class="btn btn-primary">
+                                <hr>
+                                
+                            </form>
+                            <hr>
+                          
+                            <div class="text-center">
+                                <a class="small" href="#">로그인창으로 가기</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-</div>
+            </div>
+        </div>
+
+    </div>
 <br><br><br>
+
   </main><!-- End #main -->
 <%@include file ="/WEB-INF/views/footer.jsp" %>
 </body>
