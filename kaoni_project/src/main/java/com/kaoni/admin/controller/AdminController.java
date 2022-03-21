@@ -95,7 +95,7 @@ public class AdminController {
 	public String adminMemberlist(MemberVO mvo, Model model, HttpServletRequest req) {
 		logger.info("adminMemberlist 진입");
 		HttpSession session = req.getSession();
-		String checklogin = (String)session.getAttribute("emnum");
+		mvo.setEmnum(req.getParameter("emnum"));
 		/*
 		 * if(checklogin.equals("00")) { }else {return "404";}
 		 */

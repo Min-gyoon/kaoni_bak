@@ -164,12 +164,16 @@ public class MemberController {
 		logger.info("updateinfo 진입");
 		
 		HttpSession session = req.getSession();
-		String checklogin = (String)session.getAttribute("emnum");
 		
+		String checklogin = (String)session.getAttribute("emnum");
+		if(checklogin.equals("EM0000")) {
+			mvo.setEmnum(req.getParameter("emnum"));
+		}else {
+			mvo.setEmnum(checklogin);
+		}
 		//if(checklogin.equals("admin")) {
 		//}else {return "404";}
-		logger.info("update->>"+checklogin);
-		mvo.setEmnum(checklogin);
+		
 		List<MemberVO> list = memberService.memberUpdateForm(mvo);
 		model.addAttribute("list", list);
 		

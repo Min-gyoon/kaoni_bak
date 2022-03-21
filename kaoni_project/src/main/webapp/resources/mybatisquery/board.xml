@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaoni.Board.DAO.BoardDAO">
+
+<select id="ShowAllPost" parameterType="BoardVO" resultType="BoardVO">
+SELECT  EMNUM,
+			NBO, 
+		    TITLE, 
+		    CONTENT,
+		    REGDATE,
+		    UPDATEDATE,	
+		    IMPOR    
+		 FROM ( 
+		 SELECT EMNUM,
+			NBO, 
+		    TITLE, 
+		    CONTENT,
+		    REGDATE,
+		    UPDATEDATE,
+		    IMPOR ,  
+            ROW_NUMBER() OVER(ORDER BY NBO DESC) AS RNUM
+		         FROM BOARDTBL ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY IMPOR DESC , NBO DESC
+</select>
+
+<insert id="WritePost">
+INSERT INTO BOARDTBL
+(NBO,EMNUM,TITLE,CONTENT,REGDATE,IMPOR,UPDATEDATE) 
+VALUES(
+boardtbl_SEQ.nextval,
+'${emnum}',
+'${title}',
+'${content}',
+TO_DATE('${regdate}', 'YYYY-MM-DD hh24:mi:ss'),
+'${impor}',
+TO_DATE('${updatedate}', 'YYYY-MM-DD hh24:mi:ss')
+)
+</insert>
+
+<update id="UpdatePost">
+UPDATE BOARDTBL SET
+TITLE = '${title}',
+CONTENT = '${content}',
+UPDATEDATE = TO_DATE('${updatedate}', 'YYYY-MM-DD hh24:mi:ss'),
+IMPOR = '${impor}'
+WHERE NBO = '${nbo}'
+</update>
+<delete id="DeletePost">
+DELETE FROM BOARDTBL
+WHERE NBO = #{nbo}
+</delete>
+
+<select id="DetailPost" parameterType="BoardVO" resultType="BoardVO">
+SELECT * FROM BOARDTBL WHERE NBO = #{nbo}
+</select>
+</mapper>
