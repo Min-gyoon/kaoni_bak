@@ -90,7 +90,7 @@ String isolea = pvo.getIsolea().split("\\s+")[0];
 String isoleb = pvo.getIsoleb().split("\\s+")[0]; 
 %> 
 <body class="bg-gradient-primary">
-
+<%@include file ="/WEB-INF/views/header2.jsp" %>
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">

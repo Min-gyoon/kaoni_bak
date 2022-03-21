@@ -47,6 +47,8 @@ function addmemeber(){
    
 </script> 
 </head>
+<body>
+<%@include file ="/WEB-INF/views/header2.jsp" %>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- DataTales Example -->
