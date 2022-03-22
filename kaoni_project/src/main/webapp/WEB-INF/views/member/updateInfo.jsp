@@ -25,9 +25,11 @@
  
   Object obj = request.getAttribute("list"); 
   List<MemberVO> list = (List)obj; 
-  MemberVO mvo = list.get(0); 
-  out.print(mvo.getName()); 
-  out.print(mvo.getDeleteyn()); 
+  MemberVO mvo = list.get(0);  
+  System.out.println("update"+mvo.getDeleteyn());
+  System.out.println("update"+mvo.getDname());
+  System.out.println("update"+mvo.getEmnum());
+ 
   %> 
    
 <script type="text/javascript"> 
@@ -72,7 +74,7 @@ $("#updateform").attr({
                                 <h1 class="h4 text-gray-900 mb-4">회원 정보 수정</h1>
                             </div>
                             <form class="user" id="updateform">
-                            <input type="hidden" value="${emnum}">
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="id" id ="id" maxlength="20" 
@@ -101,8 +103,8 @@ $("#updateform").attr({
                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <select name="Dname" class="form-control">
-                                            <option value="<%=mvo.getDname() %>"><%=mvo.getDname() %></option>
+                                        <select name="dname" class="form-control">
+                                            <option name="dname" value="<%=mvo.getDname() %>"><%=mvo.getDname() %></option>
                                             <option value="SS개발부">SS개발부</option>
                                             <option value="ES개발부">ES개발부</option>
                                             <option value="경영지원실">경영지원실</option>
@@ -119,15 +121,18 @@ $("#updateform").attr({
                                         </select>
                                     </div>
                                    
+
                                 </div>
 
                                 <div class="form-group row">
                                    
                                 </div>
 		      			<input type="button" id="update" value="수정완료" class="btn btn-primary" disabled="true"> 
-                  	    <input type="button" id="delete" value="삭제하기" class="btn btn-primary">  
-                               
-                                
+
+                  	      <input type="button" id="delete" value="삭제하기" class="btn btn-primary">  
+                            <input type="hidden" name="emnum" value="<%=mvo.getEmnum()%>">
+                            <input type="hidden" name="deleteyn" value="<%=mvo.getDeleteyn()%>">
+
                             </form>
                             <hr>
                           
