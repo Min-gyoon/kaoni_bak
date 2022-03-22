@@ -11,22 +11,23 @@
 </head>
 <body>
  
+ <header style="float: left; ">
 <%@include file ="/WEB-INF/views/header2.jsp" %>
-
-<div id="wrapper">
-<div id="content-wrapper" class="d-flex flex-column">
+</header>
+<div id="wrapper" >
+<div id="content-wrapper" class="d-flex flex-column" >
 <div id="content" >
-<div class="container-fluid" style="margin-left: 480px; margin-top: 170px; margin-bottom: 70px; width: 1800px;">
+<div class="container-fluid" >
  <div class="row">
                         <div class="col-lg-6">
 
 
-<form action="UpdatePost1.kaoni" method="post" class="user">
+<form action="UpdatePost1.kaoni" method="post" class="user" style="width: 1000px; margin-bottom: 100px;">
 
 <input type="hidden" name="nbo" value="${data.nbo}">
 
 <!-- Dropdown Card Example -->
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4" style="width: 1080px; margin-left: 250px; margin-top: 150px;">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary"> 제목 :&nbsp;&nbsp;&nbsp;<input type="text" id="title" name="title" value="${data.title}"></h6>	
@@ -62,7 +63,7 @@
 <script>
 $(document).ready(function() { 
 	$('#summernote').summernote({
-	 height: 300,                 // 에디터 높이
+	 height: 500,                 // 에디터 높이
 	  minHeight: null,             // 최소 높이
 	  maxHeight: null,             // 최대 높이
 	  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부

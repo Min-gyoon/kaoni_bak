@@ -137,7 +137,7 @@ $("#updateform").attr({
                             <hr>
                           
                             <div class="text-center">
-                                <a class="small" href="#">홈으로 돌아가기</a>
+                                <a class="small" href="http://localhost:8080/">홈으로 돌아가기</a>
                             </div>
                         </div>
                     </div>

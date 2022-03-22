@@ -57,9 +57,11 @@
                         <a class="collapse-item" href="pcrMine.kaoni">내 코로나 결과 모두보기</a>
                         <a class="collapse-item" href="pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
                         <c:choose>
-                        	<c:when test="emnum eq 'EM0000'}">
+                        	<c:when test="${emnum eq 'EM0000'}">
                         <a class="collapse-item" href="adminmain.kaoni">관리자용 사내 코로나 결과</a>
                         	</c:when>
+                        	<c:otherwise>
+                        	</c:otherwise>
                         </c:choose>
                     </div>
                 </div>
