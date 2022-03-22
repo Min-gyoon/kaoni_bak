@@ -25,9 +25,11 @@
  
   Object obj = request.getAttribute("list"); 
   List<MemberVO> list = (List)obj; 
-  MemberVO mvo = list.get(0); 
-  out.print(mvo.getName()); 
-  out.print(mvo.getDeleteyn()); 
+  MemberVO mvo = list.get(0);  
+  System.out.println("update"+mvo.getDeleteyn());
+  System.out.println("update"+mvo.getDname());
+  System.out.println("update"+mvo.getEmnum());
+ 
   %> 
    
 <script type="text/javascript"> 
@@ -72,7 +74,6 @@ $("#updateform").attr({
                                 <h1 class="h4 text-gray-900 mb-4">회원 정보 수정</h1>
                             </div>
                             <form class="user" id="updateform">
-                            <input type="hidden" value="${mvo.getEmnum()}">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="id" id ="id" maxlength="20" class="form-control form-control-user" placeholder="아이디"
@@ -89,13 +90,6 @@ $("#updateform").attr({
                                         <input type="password" id="passwd1" name="passwd1" class="form-control form-control-user"
                                         oninput="checkPwd()" placeholder="비밀번호 확인" >
                                     </div>
-
-                                    <spring:hasBindErrors name="memberVO">
-
-                                    <c:if test="${errors.hasFieldErrors('passwd') }">                                     
-                                       <strong>${errors.getFieldError( 'passwd' ).defaultMessage }</strong>
-                                    </c:if>
-                                    </spring:hasBindErrors>
                                 </div>
 
                                 <div class="form-group row">
@@ -107,20 +101,14 @@ $("#updateform").attr({
                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <select name="Dname" class="form-control">
-                                            <option value="<%=mvo.getDname() %>"><%=mvo.getDname() %></option>
+                                        <select name="dname" class="form-control">
+                                            <option name="dname" value="<%=mvo.getDname() %>"><%=mvo.getDname() %></option>
                                             <option value="SS개발부">SS개발부</option>
                                             <option value="ES개발부">ES개발부</option>
                                             <option value="경영지원실">경영지원실</option>
                                             <option value="사업부">사업부</option>
                                         </select>
                                     </div>
-                                    <spring:hasBindErrors name="memberVO">
-                                        <c:if test="${errors.hasFieldErrors('Dname') }">                                     
-                                           <strong>${errors.getFieldError( 'Dname' ).defaultMessage }</strong>
-                                        </c:if>
-                                        </spring:hasBindErrors>
-
 										 <div class="col-sm-6 mb-3 mb-sm-0">
                                         <select name="position" class="form-control">
                                             <option value="<%=mvo.getPosition() %>"><%=mvo.getPosition() %></option>
@@ -130,11 +118,8 @@ $("#updateform").attr({
                                             <option value="과장">과장</option>
                                         </select>
                                     </div>
-                                    <spring:hasBindErrors name="memberVO">
-                                        <c:if test="${errors.hasFieldErrors('position') }">                         
-                                           <strong>${errors.getFieldError( 'position' ).defaultMessage }</strong>
-                                        </c:if>
-                                        </spring:hasBindErrors>
+                                   
+                                        
                                 </div>
 
                                 <div class="form-group row">
@@ -142,7 +127,8 @@ $("#updateform").attr({
                                 </div>
 		      			<input type="button" id="update" value="수정완료" class="btn btn-primary" disabled="true"> 
                   	      <input type="button" id="delete" value="삭제하기" class="btn btn-primary">  
-                               
+                            <input type="hidden" name="emnum" value="<%=mvo.getEmnum()%>">
+                            <input type="hidden" name="deleteyn" value="<%=mvo.getDeleteyn()%>">
                                 
                             </form>
                             <hr>
