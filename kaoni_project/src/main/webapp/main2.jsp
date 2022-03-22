@@ -146,7 +146,7 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-9
+
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:8080/">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -176,7 +176,11 @@
                         <a class="collapse-item" href="http://localhost:8080/pcrForm.kaoni">내 코로나 결과 입력하기</a>
                         <a class="collapse-item" href="http://localhost:8080/pcrMine.kaoni">내 코로나 결과 모두보기</a>
                         <a class="collapse-item" href="http://localhost:8080/pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
-                        <a class="collapse-item" href="http://localhost:8080/adminmain.kaoni">관리자용 사내 코로나 결과</a>
+                                          <c:choose>
+                        	<c:when test="emnum eq 'EM0000'}">
+                        <a class="collapse-item" href="adminmain.kaoni">관리자용 사내 코로나 결과</a>
+                        	</c:when>
+                        </c:choose>
                     </div>
                 </div>
             </li>
@@ -335,7 +339,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align:center; font-size:20px; ">
                                                 	서울시 확진자</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="hj" style="text-align:center"></div>
                                         </div>
@@ -350,7 +354,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align:center; font-size:20px;">
                                                 	서울시 사망자</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="death" style="text-align:center"></div>
                                         </div>
@@ -365,7 +369,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">전국 확진자
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center; font-size:20px;">전국 확진자
                                             </div>
                                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="jhj" style="text-align:center; align:center;"></div>
                                         </div>
@@ -380,7 +384,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align:center; font-size:20px;">
                                                 		전국 사망자</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="jdeath" style="text-align:center"></div>
                                         </div>
@@ -399,7 +403,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align:center; font-size:20px;">
                                                 	총확진자</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="allmember" style="text-align:center"></div>
                                         </div>
@@ -414,7 +418,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align:center; font-size:20px;">
                                                 	현재 확진자</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="nowmember" style="text-align:center"></div>
                                         </div>
@@ -429,7 +433,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">자가 격리자
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center; font-size:20px;">자가 격리자
                                             </div>
                                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="member" style="text-align:center; align:center;"></div>
                                         </div>
@@ -444,7 +448,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align:center">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align:center; font-size:20px;">
                                                 		근무원 총원</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="isolemember" style="text-align:center"></div>
                                         </div>

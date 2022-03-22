@@ -129,6 +129,7 @@ return "error";
 }  
 @RequestMapping(value="pcrMine", method=RequestMethod.GET)  
 public String pcrMine(PcrVO pvo, Model model,HttpServletRequest req) {  
+	logger.info("pcrmine진입------");
 HttpSession session = req.getSession();  
 String emnum = (String)session.getAttribute("emnum");  
 pvo.setEmnum(emnum);  
@@ -136,7 +137,7 @@ List<PcrVO> listmine = pcrService.pcrMine(pvo);
 if(listmine.size()>0) {  
 model.addAttribute("listmine", listmine);  
 logger.info("pcrmine-->"+listmine.size());
-return "Pcr/pcrMine";  
+return "Pcr/pcrmine";  
 }else {  
 return "needlogin";}  
 }  
