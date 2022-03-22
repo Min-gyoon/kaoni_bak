@@ -52,6 +52,12 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne("listCount");
 	}
 
+	@Override
+	public List<BoardVO> ShowMainPost(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("ShowMainPost",bvo);
+	}
+
 	
 	
 

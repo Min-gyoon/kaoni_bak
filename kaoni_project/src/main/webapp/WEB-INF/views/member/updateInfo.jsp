@@ -5,6 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <html> 
 <head> 
+
+<!-- jquery -->
+	<script src="./resources/vendor/jquery/jquery.min.js"></script>
   <meta charset="utf-8"> 
   <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
  
@@ -68,7 +71,8 @@ $("#updateform").attr({
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원 정보 수정</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" id="updateform">
+                            <input type="hidden" value="${mvo.getEmnum()}">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="id" id ="id" maxlength="20" class="form-control form-control-user" placeholder="아이디"

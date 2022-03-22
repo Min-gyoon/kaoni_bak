@@ -3,6 +3,7 @@ package com.kaoni.Board.Controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.kaoni.Board.Service.BoardService;
 import com.kaoni.Board.VO.BoardVO;
 import com.kaoni.Board.VO.Criteria;
@@ -27,6 +30,21 @@ public class BoardController {
 	@Autowired 
 	private BoardService boardService;
 
+	@ResponseBody
+	@RequestMapping(value = "ShowMainPost", method = RequestMethod.GET)
+	public String ShowMainPost(BoardVO bvo,Model model) {
+		l.info("ShowMainPost");
+		List<BoardVO> list = boardService.ShowMainPost(bvo);
+		String jsontest = new Gson().toJson(list);  
+	
+		l.info("ShowMainPost 전달 : "+jsontest);
+		  
+		if(list.size()>0) {  
+		return jsontest;  
+		}  
+		return "error";  
+		}  
+	
 //	게시글 전체 목록
 	@RequestMapping(value="ShowAllPost", method=RequestMethod.GET)
 	public String ShowAllPost(BoardVO bvo, Model model,Criteria cri){

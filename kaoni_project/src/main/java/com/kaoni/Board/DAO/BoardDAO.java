@@ -8,6 +8,7 @@ import com.kaoni.Board.VO.Criteria;
 public interface BoardDAO {
 
 	public List<BoardVO> ShowAllPost(BoardVO bvo);
+	public List<BoardVO> ShowMainPost(BoardVO bvo);
 	public int WritePost(BoardVO bvo);
 	public int UpdatePost(BoardVO bvo);
 	public int DeletePost(BoardVO bvo);
