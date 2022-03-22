@@ -46,26 +46,28 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered"  width="100%" cellspacing="0" style="text-align:center;">
+                            		<%
+								Object obj = request.getAttribute("listAll");
+								List<SelfVO> listAll = (List)obj;
+								
+								SelfVO svo= null;
+	
+								for(int i=0; i < listAll.size(); i++){
+								svo = listAll.get(i);
+								String time = svo.getInsertdate().split("\\s+")[0];  
+										
+								
+							%>
+                                <table class="table table-bordered"  width="100%" cellspacing="0" style="text-align:center; margin-bottom:30px;">
                                     <thead>
                                         <tr>
-                                            <th>질문</th>
+                                            <th>답변일 : <%=time %></th>
                                             <th>결과</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-							<%
-								Object obj = request.getAttribute("listAll");
-								List<SelfVO> listAll = (List)obj;
-									SelfVO svo= null;
-	
-								for(int i=0; i < listAll.size(); i++){
-								svo = listAll.get(i);
-							%>
-										 <tr>
-                                        <td>작성일 : <%=svo.getInsertdate() %></td>
-                                        <td></td>
-                                        </tr>
+					
+							
 
 							<tr>
    											<td>가족 중 코로나 19확진자 또는 자가격리자가 있습니까?</td>

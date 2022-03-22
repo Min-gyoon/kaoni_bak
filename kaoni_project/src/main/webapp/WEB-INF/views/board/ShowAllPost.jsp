@@ -61,14 +61,14 @@
                          <c:forEach items="${list}" var="BoardVO">
                             <tr>
                             	<c:choose>
-                            	<c:when test="${BoardVO.getImpor() eq 3}">
+                            	<c:when test="${BoardVO.getImpor() eq 0}">
                             	<td style="display: none;">${BoardVO.getImpor()} </td>
                             	<td style="color: red;">${BoardVO.getNbo()}</td>
                                 <td style="color: red;">관리자</td>
                                 <td ><a href="/DetailPost.kaoni?nbo=${BoardVO.getNbo()}" style="color: red;">${BoardVO.getTitle()}</a></td> 
                             	</c:when>
                             	
-                            	<c:when test="${BoardVO.getImpor() eq 2}">
+                            	<c:when test="${BoardVO.getImpor() eq 1}">
                             	<td style="display: none;">${BoardVO.getImpor()}  </td>
                             	<td style="color: blue;">${BoardVO.getNbo()}</td>
                                 <td style="color: blue;">관리자</td>

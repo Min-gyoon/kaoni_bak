@@ -30,9 +30,10 @@
 </insert>
 <select id="selfSelectAll" parameterType="SelfVO" resultType="SelfVO">
 SELECT * FROM SELFTBL 
-WHERE EMNUM = #{emnum, jdbcType=VARCHAR} 
-ORDER BY INSERTDATE DESC
+WHERE EMNUM = #{emnum, jdbcType=VARCHAR} AND <![CDATA[ ROWNUM <=2 ]]>
+ORDER BY INSERTDATE DESC 
 </select>
+ 
 
 
 </mapper>
