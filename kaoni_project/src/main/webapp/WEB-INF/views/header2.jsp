@@ -43,6 +43,8 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+ 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -53,21 +55,29 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">코로나</h6>
-                        <a class="collapse-item" href="pcrForm.kaoni">내 코로나 결과 입력하기</a>
-                        <a class="collapse-item" href="pcrMine.kaoni">내 코로나 결과 모두보기</a>
-                        <a class="collapse-item" href="pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
                         <c:choose>
-                        	<c:when test="${emnum eq 'EM0000'}">
+                        <c:when test="${emnum eq 'EM0000'}">
                         <a class="collapse-item" href="adminmain.kaoni">관리자용 사내 코로나 결과</a>
-                        	</c:when>
-                        	<c:otherwise>
-                        	</c:otherwise>
+                        </c:when>
+                        	
+                        <c:otherwise>
+                        <a class="collapse-item" href="http://localhost:8080/pcrForm.kaoni">내 코로나 결과 입력하기</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrMine.kaoni">내 코로나 결과 모두보기</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
+                       </c:otherwise>
+                        	
                         </c:choose>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+           
+           <c:choose>
+           <c:when test="${emnum eq 'EM0000'}"></c:when>
+           
+           <c:otherwise>
+           
             <li class="nav-item">
                 <a class="nav-link collapsed" href="http://localhost:8080/pcrSelectAll.kaoni" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities" >
@@ -83,23 +93,22 @@
                     </div>
                 </div>
             </li>
-
+            </c:otherwise>
+			</c:choose>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-           
-            
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+
                 <a class="nav-link" href="ShowAllPost.kaoni">
+
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>공지사항</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            
-            <c:choose>
+              <c:choose>
             <c:when test="${emnum eq 'EM0000'}">
             </c:when>
             <c:otherwise>
@@ -110,8 +119,6 @@
             </li>
             </c:otherwise>
             </c:choose>
-            
-            
             <li class="nav-item">
                 <a class="nav-link" href="logOut.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -130,8 +137,10 @@
             
             </c:otherwise>
             </c:choose>
+            
 
             <!-- Divider -->
+            
 
         </ul>
         </div>

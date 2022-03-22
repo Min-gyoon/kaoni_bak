@@ -59,7 +59,7 @@ function addmemeber(){
                             <h6 class="m-0 font-weight-bold text-primary">내 감염 정보 모두보기</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow-x:hidden;">
                             <form id="adminmemberselect" name="adminmemberselect">   
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                     <thead>
@@ -69,7 +69,7 @@ function addmemeber(){
 								<th>직책</th>
 								<th>부서</th>
 								<th>아이디</th>
-								<th>패스워드</th>
+								
 							</tr>
                                     </thead>
                                     <tbody>
@@ -88,7 +88,7 @@ function addmemeber(){
 								<td><%=mvo.getPosition() %></td>
 								<td><%=mvo.getDname() %></td>
 								<td><%=mvo.getId() %></td>
-								<td><%=mvo.getPasswd() %></td>
+								
 								<input type="hidden" id="emnum" name="emnum" value="">
 							</tr>
 							
@@ -101,7 +101,7 @@ function addmemeber(){
 						</tbody>
                                 </table>
                                 </form>
-                                <input type="button" id="insertbtn"
+                                <input type="button" id="insertbtn" class="btn btn-primary"
 									onclick="addmemeber()" value="회원 추가하기">
                             </div>
                         </div>

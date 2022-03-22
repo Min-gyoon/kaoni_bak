@@ -57,7 +57,7 @@ function checkOnlyOne(element) {
 <%@include file ="/WEB-INF/views/header2.jsp" %>
         </header>
                 <!-- Begin Page Content -->
-                <div class="container-fluid" style="width:80%; display:inline-block;">
+                <div class="container-fluid" style="width:80%; display:inline-block; margin-top: 20px;">
                     <!-- DataTales Example -->
                     <div>
                         <div class="card-header py-3">

@@ -17,7 +17,7 @@
     display:none;
     }
   	.dataTables_paginate, .paging_simple_numbers{
-  	margin-left: 350px;
+  	margin-left: 600px;
   	}
     
     </style>
@@ -35,7 +35,7 @@
           <!-- Main Content -->
            <!--  <div id="content" >          -->    
                 <!-- Begin Page Content -->
-                <div class="container-fluid" style="width: 80%; display: inline-block; margin-top: 50px;">
+                <div class="container-fluid" style="width: 80%; display: inline-block; margin-top: 20px;">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                      <div class="card-header py-3">

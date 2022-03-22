@@ -56,7 +56,7 @@ public class PcrServiceImpl implements PcrService {
 
 	@Override
 	public List<PcrVO> pcrMine(PcrVO pvo) {
-		// TODO Auto-generated method stub
+		logger.info("pcrmine service 진입-----");
 		 return pcrdao.pcrMine(pvo);
 	}
 
@@ -68,4 +68,4 @@ public class PcrServiceImpl implements PcrService {
 	}
 	 
 
-}
+} 

@@ -32,7 +32,8 @@
 
 Object obj = request.getAttribute("listmine");
 List<PcrVO> list = (List)obj;
-
+PcrVO pvo = null;
+System.out.println("pcrminejsp---->"+list.size());
 %>
 <script>   
 function selectMember(pnum){   
@@ -54,7 +55,7 @@ $("#mineform").attr({
 <%@include file ="/WEB-INF/views/header2.jsp" %>
         </header>
                 <!-- Begin Page Content -->
-                <div class="container-fluid" style="width:80%; display:inline-block;">
+                <div class="container-fluid" style="width:80%; display:inline-block; margin-top: 20px;">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -74,10 +75,13 @@ $("#mineform").attr({
                                     </thead>
                                     <tbody>
                                       <%   
+                                      System.out.println("2");
 										for(int i=0; i <list.size(); i++){   
-										PcrVO pvo = list.get(i);   
+											System.out.println("3");
+											 pvo = list.get(i);   
 										String isolea = pvo.getIsolea().split("\\s+")[0];   
-										String isoleb = pvo.getIsoleb().split("\\s+")[0];   
+										String isoleb = pvo.getIsoleb().split("\\s+")[0];
+										System.out.println("4");
 										%> 
                                    <tr id="<%=pvo.getPnum() %>" style="cursor: pointer;" onclick="selectMember(this)">   
   									<td><%=i+1 %></td>   
@@ -87,11 +91,9 @@ $("#mineform").attr({
 <%
 }
 %>
-									<tr>   
-  										<td><input type="hidden" id ="pnum" name="pnum"></td>   
-  									</tr>  
 									</tbody>
                                 </table>
+                                <input type="hidden" id ="pnum" name="pnum">
                                 </form>
                             </div>
                         </div>

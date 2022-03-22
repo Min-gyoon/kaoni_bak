@@ -141,7 +141,7 @@ color: red;
                             <hr>
                           
                             <div class="text-center">
-                                <a class="small" href="#">로그인창으로 가기</a>
+                                <a class="small" href="http://localhost:8080/memberLogin.kaoni">로그인창으로 가기</a>
                             </div>
                         </div>
                     </div>
