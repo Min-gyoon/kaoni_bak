@@ -7,7 +7,7 @@
 		SELECT * FROM BOARDTBL ORDER BY IMPOR DESC ,UPDATEDATE DESC
 </select>
 <select id="ShowMainPost" parameterType="BoardVO" resultType="BoardVO">
-	SELECT NBO,TITLE,UPDATEDATE FROM BOARDTBL WHERE IMPOR = 3 AND <![CDATA[ ROWNUM <= 5]]> 
+	SELECT NBO,TITLE,UPDATEDATE FROM BOARDTBL WHERE IMPOR = 0 AND <![CDATA[ ROWNUM <= 5]]> 
 </select>
 
 <insert id="WritePost">
