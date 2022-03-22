@@ -4,26 +4,10 @@
 <mapper namespace="com.kaoni.Board.DAO.BoardDAO">
 
 <select id="ShowAllPost" parameterType="BoardVO" resultType="BoardVO">
-<!-- SELECT  EMNUM,
-			NBO, 
-		    TITLE, 
-		    CONTENT,
-		    REGDATE,
-		    UPDATEDATE,	
-		    IMPOR    
-		 FROM ( 
-		 SELECT EMNUM,
-			NBO, 
-		    TITLE, 
-		    CONTENT,
-		    REGDATE,
-		    UPDATEDATE,
-		    IMPOR ,  
-            ROW_NUMBER() OVER(ORDER BY NBO DESC) AS RNUM
-		         FROM BOARDTBL ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY IMPOR DESC , NBO DESC -->
 		SELECT * FROM BOARDTBL ORDER BY IMPOR DESC ,UPDATEDATE DESC
+</select>
+<select id="ShowMainPost" parameterType="BoardVO" resultType="BoardVO">
+	SELECT NBO,TITLE,UPDATEDATE FROM BOARDTBL WHERE IMPOR = 3 AND <![CDATA[ ROWNUM <= 5]]> 
 </select>
 
 <insert id="WritePost">

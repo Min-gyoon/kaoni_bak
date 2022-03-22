@@ -1,7 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
 <head>
 
@@ -88,7 +86,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/ShowAllPost.kaoni">
+                <a class="nav-link" href="ShowAllPost.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>공지사항</span></a>
             </li>

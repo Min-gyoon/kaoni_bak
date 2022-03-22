@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <html>
 <head>
 
@@ -42,6 +42,8 @@
        function numberWithCommas(x) {
     	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     	}
+      
+       
   $(document).ready(function(){
       
           $.ajax({
@@ -105,13 +107,40 @@
              error : function(error){
                 console.log(error);
              }   
-          });  
+          }); 
+         	
+         $.ajax({
+             url : 'ShowMainPost.kaoni',
+             dataType : 'json',
+             success : function(data3){
+                var id ;
+                for(var i =0; i<5; i++){
+                var board ="";
+                board +="<tr >"
+                board +="<td>"+data3[i].nbo+"</td>"
+                /* board +="<td id="+data3[i].nbo+">"+data3[i].title+"</td>" */
+                board +="<td><a href=\"/DetailPost.kaoni?nbo="+data3[i].nbo+"\">"+data3[i].title+"</a></td>"
+                board +="<td>"+data3[i].updatedate+"</td>"
+                board +="</tr>"
+                $("#boardList").append(board);
+                }
+             },
+             error : function(error){
+
+                console.log(error);
+             }   
+          }); 
+         	
+       
   });//ready
 </script>
 
 </head>
 
 <body id="page-top">
+<c:if test="${empty emnum}">
+<c:redirect url="http://localhost:8080/memberLogin.kaoni"/>
+</c:if>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -175,20 +204,23 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/ShowAllPost.kaoni">
+
+                <a class="nav-link" href="ShowAllPost.kaoni">
+
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>공지사항</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="updateInfo.kaoni">
+                <a class="nav-link" href="updateInfo_pwCheck.kaoni">
                     <i class="fas fa-fw fa-table"></i>
                     <span>내정보 수정</span></a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            
+                <a class="nav-link" href="logOut.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>로그아웃</span></a>
             </li>
@@ -246,7 +278,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="addtable">
-
+						
 									</tbody>
                                 </table>
                             </div>
@@ -260,14 +292,28 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">게시판</h6>
                                     <div class="dropdown no-arrow">
+                                    
                                     </div>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div class="card-body"style="height: 350px;">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <div class="table-responsive" style="margin-top: -20px;">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>등록일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="boardList">
+										
+									</tbody>
+                                </table>
+                            </div>
                                     </div>
                                 </div>
                             </div>

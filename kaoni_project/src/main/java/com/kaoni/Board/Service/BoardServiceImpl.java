@@ -50,6 +50,12 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.listCount(); //게시물 촛 갱수
 	}
 
+	@Override
+	public List<BoardVO> ShowMainPost(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return boardDAO.ShowMainPost(bvo);
+	}
+
 	
 
 }
