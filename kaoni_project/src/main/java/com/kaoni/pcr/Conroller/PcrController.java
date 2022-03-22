@@ -137,7 +137,7 @@ List<PcrVO> listmine = pcrService.pcrMine(pvo);
 if(listmine.size()>0) {  
 model.addAttribute("listmine", listmine);  
 logger.info("pcrmine-->"+listmine.size());
-return "Pcr/pcrmine";  
+return "Pcr/pcrMine";  
 }else {  
 return "redirect:/";}  
 }  
