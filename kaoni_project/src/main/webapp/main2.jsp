@@ -182,7 +182,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="updateInfo.kaoni">
                     <i class="fas fa-fw fa-table"></i>
                     <span>내정보 수정</span></a>
             </li>
