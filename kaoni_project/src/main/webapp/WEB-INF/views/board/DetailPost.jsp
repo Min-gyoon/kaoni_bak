@@ -10,18 +10,18 @@
 
 </head>
 
-<body id="page-top">
-<header> 
-<%@include file ="/WEB-INF/views/header.jsp" %>
+<body id="page-top" >
+<header style="float: left"> 
+<%@include file ="/WEB-INF/views/header2.jsp" %>
 </header>
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" style="width:70%; display:inline-block; margin-left:60px;">
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column" >
             <!-- Main Content -->
             <div id="content" >
                 <!-- Begin Page Content -->
-                <div class="container-fluid" style="margin-left: 480px; margin-top: 250px; margin-bottom: 70px; width: 1800px;">
+                <div class="container-fluid" >
                     <div class="row">
                         <div class="col-lg-6">
 

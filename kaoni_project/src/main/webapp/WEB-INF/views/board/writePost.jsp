@@ -13,7 +13,7 @@
 
 <body>
 <header>
- <%@include file ="/WEB-INF/views/header.jsp" %>
+ <%@include file ="/WEB-INF/views/header2.jsp" %>
 </header>
 <div id="wrapper">
 <div id="content-wrapper" class="d-flex flex-column">

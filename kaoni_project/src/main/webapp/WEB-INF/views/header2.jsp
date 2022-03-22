@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     <title>Kaoni</title>
 
 	<!-- jquery -->
@@ -53,10 +53,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">코로나</h6>
-                        <a class="collapse-item" href="http://localhost:8080/pcrForm.kaoni">내 코로나 결과 입력하기(로그인시 jstl처리)</a>
-                        <a class="collapse-item" href="http://localhost:8080/pcrMine.kaoni">내 코로나 결과 모두보기(로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrForm.kaoni">내 코로나 결과 입력하기</a>
+                        <a class="collapse-item" href="http://localhost:8080/pcrMine.kaoni">내 코로나 결과 모두보기</a>
                         <a class="collapse-item" href="http://localhost:8080/pcrSelectAll.kaoni">사내 코로나 정보 모두보기</a>
-                        <a class="collapse-item" href="http://localhost:8080/adminmain.kaoni">관리자용 사내 코로나 결과(관리자 로그인시 jstl처리)</a>
+                        <a class="collapse-item" href="http://localhost:8080/adminmain.kaoni">관리자용 사내 코로나 결과</a>
                     </div>
                 </div>
             </li>
@@ -103,15 +103,21 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>로그아웃</span></a>
             </li>
+            <c:choose>
+            <c:when test="${emnum eq 'EM0000'}">
+            <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>회원관리하기(관리자)(관리자 로그인시 노출 jstl처리)</span></a>
+                    <span>회원관리하기(관리자)</span></a>
             </li>
+            </c:when>
+            <c:otherwise>
+            
+            </c:otherwise>
+            </c:choose>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
 
         </ul>
         <!-- End of Sidebar -->

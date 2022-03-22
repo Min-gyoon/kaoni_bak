@@ -24,7 +24,7 @@
 </head>
 
 <body id="page-top">
-<%@include file ="/WEB-INF/views/header.jsp" %>
+<%@include file ="/WEB-INF/views/header2.jsp" %>
     <!-- Page Wrapper -->
     <div id="wrapper" style="margin-left: 150px;margin-top: 150px;">
         

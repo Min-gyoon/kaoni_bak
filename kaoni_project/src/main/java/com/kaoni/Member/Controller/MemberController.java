@@ -192,6 +192,7 @@ public class MemberController {
 		mvo.setDeleteyn(request.getParameter("deleteyn"));
 		memberService.updateInfo(mvo);
 		logger.info("emnum : "+request.getParameter("emnum"));
+		
 		session = request.getSession();
 		session.invalidate();
 		
