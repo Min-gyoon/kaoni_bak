@@ -38,9 +38,11 @@ MemberVO mvo;
 </head>
 
 <body>
+<header style="float:left;">
 <%@include file ="/WEB-INF/views/header2.jsp" %>
+</header>
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" style="width:80%; display:inline-block;">
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

@@ -53,10 +53,11 @@ function checkOnlyOne(element) {
 	
 	</script>
 <body>
+<header style="float:left;">
 <%@include file ="/WEB-INF/views/header2.jsp" %>
-
+        </header>
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" style="width:80%; display:inline-block;">
                     <!-- DataTales Example -->
                     <div>
                         <div class="card-header py-3">
