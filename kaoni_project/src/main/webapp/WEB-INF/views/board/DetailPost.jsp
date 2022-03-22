@@ -44,19 +44,28 @@
                         수정일 : <c:out value="${data.updatedate}"></c:out>
                         </c:otherwise>
                         </c:choose>
-                                    <div class="dropdown no-arrow" >
+                                   
+                                        
+                                        <c:choose>
+                                        <c:when test="${emnum eq 'EM0000'}">
+                                         <div class="dropdown no-arrow" >
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header" style="font-size: 0.8rem">정보</div>
                                             <div class="dropdown-divider"></div>
                                               <a href="/UpdatePost.kaoni?nbo=${data.nbo}" style="margin-left: 10px; font-size: 1.0rem;">수정</a>&nbsp;&nbsp;<br><br>
                             				<a href="/DeletePost.kaoni?nbo=${data.nbo}" style="margin-left: 10px; font-size: 1.0rem;">삭제</a>&nbsp;&nbsp;
-                                        </div>
-                                    </div>
+                                       </div> </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                        </c:otherwise>
+                                        </c:choose>
+                                      
+                                    
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body" style="padding-bottom: 50px;">

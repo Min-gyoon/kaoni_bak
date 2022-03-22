@@ -104,10 +104,9 @@ function login(){
                                         <input type="hidden" id="USER_ID" name="USER_ID">
                                         <input type="hidden" id="USER_PW" name="USER_PW">
                                     </form>
-                                    <hr>
                                    
                                     <div class="text-center">
-                                        <a class="small" href="register.html">회원가입</a>
+                                        <a class="small" href="http://localhost:8080/memberSignUp.kaoni">회원가입</a>&nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>
                             </div>

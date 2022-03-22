@@ -211,12 +211,17 @@
             </li>
 
             <!-- Nav Item - Tables -->
+              <c:choose>
+            <c:when test="${emnum eq 'EM0000'}">
+            </c:when>
+            <c:otherwise>
             <li class="nav-item">
                 <a class="nav-link" href="updateInfo_pwCheck.kaoni">
                     <i class="fas fa-fw fa-table"></i>
                     <span>내정보 수정</span></a>
             </li>
-            
+            </c:otherwise>
+            </c:choose>
             <li class="nav-item">
                 <a class="nav-link" href="logOut.kaoni">
                     <i class="fas fa-fw fa-chart-area"></i>
