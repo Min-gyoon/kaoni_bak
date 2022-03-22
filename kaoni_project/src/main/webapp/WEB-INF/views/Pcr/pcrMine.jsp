@@ -62,7 +62,7 @@ $("#mineform").attr({
                             <h6 class="m-0 font-weight-bold text-primary">내 감염 정보 모두보기</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow-x:hidden;">
                             <form id="mineform" name="mineform">   
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                     <thead>
